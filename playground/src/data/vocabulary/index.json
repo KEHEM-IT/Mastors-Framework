@@ -1,0 +1,13 @@
+{
+  "version": "0.1.0",
+  "description": "Mastors built-in vocabulary manifest — import individual category files for tree-shaking.",
+  "categories": [
+    { "id": "cards",      "label": "Cards",      "file": "cards.json" },
+    { "id": "buttons",    "label": "Buttons",    "file": "buttons.json" },
+    { "id": "typography", "label": "Typography", "file": "typography.json" },
+    { "id": "alerts",     "label": "Alerts",     "file": "alerts.json" },
+    { "id": "navigation", "label": "Navigation", "file": "navigation.json" },
+    { "id": "forms",      "label": "Forms",      "file": "forms.json" },
+    { "id": "layout",     "label": "Layout",     "file": "layout.json" }
+  ]
+}

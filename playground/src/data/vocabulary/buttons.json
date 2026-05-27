@@ -1,0 +1,195 @@
+{
+  "id": "buttons",
+  "label": "Buttons",
+  "icon": "fa-solid fa-hand-pointer",
+  "description": "Actionable trigger components with clear hierarchy and accessibility enforcement.",
+  "intents": [
+    {
+      "id": "button.primary",
+      "label": "Primary Button",
+      "shortLabel": "button.primary",
+      "description": "High-emphasis button for the main action on a page or section. Uses brand fill colour.",
+      "semanticRole": "button",
+      "htmlTag": "button",
+      "ariaRole": "button",
+      "ariaLandmark": false,
+      "status": "stable",
+      "since": "0.1.0",
+      "mastors": {
+        "declaration": "<button intent=\"button.primary\" type=\"button\">\n  Click me\n</button>",
+        "config": "// mastors.config.ts\nexport default defineConfig({\n  vocabulary: [\n    'button.primary'\n  ]\n});",
+        "description": "Mastors resolves brand fill, on-brand text, radius, padding and semibold weight from tokens. Focus ring is enforced automatically."
+      },
+      "preview": { "type": "button", "text": "Click me", "tag": "button" },
+      "cssProperties": ["background-color","color","border-radius","padding","font-weight","font-size","border","cursor","transition","outline-offset"],
+      "tokenRefs": [
+        { "property": "background-color", "token": "token.color.brand.500",       "description": "Brand fill" },
+        { "property": "color",            "token": "token.color.text.onBrand",    "description": "On-brand text colour" },
+        { "property": "border-radius",    "token": "token.radius.sm",             "description": "Subtle corner radius" },
+        { "property": "padding",          "token": "token.space.inset.button.md", "description": "Button inset padding" },
+        { "property": "font-weight",      "token": "token.font.weight.semibold",  "description": "Semibold label" },
+        { "property": "transition",       "token": "token.motion.duration.fast",  "description": "Hover transition" }
+      ],
+      "a11y": {
+        "wcagLevel": "AA",
+        "wcagCriteria": [
+          { "id": "1.4.3", "name": "Contrast (Minimum)", "level": "AA" },
+          { "id": "2.4.7", "name": "Focus Visible",       "level": "AA" },
+          { "id": "2.1.1", "name": "Keyboard",            "level": "A"  },
+          { "id": "4.1.2", "name": "Name, Role, Value",   "level": "A"  }
+        ],
+        "ariaAttributes": ["type=\"button\""],
+        "focusable": true,
+        "notes": [
+          "Text contrast against button background must meet 4.5:1 (AA).",
+          "Focus ring must be clearly visible — enforced by resolver.",
+          "Always include a descriptive accessible name (visible label or aria-label)."
+        ],
+        "hints": []
+      },
+      "variants": ["cta"],
+      "modifiers": [],
+      "relatedIntents": ["button.primary.cta","button.secondary"]
+    },
+    {
+      "id": "button.primary.cta",
+      "label": "Primary CTA Button",
+      "shortLabel": "button.primary.cta",
+      "description": "Prominent call-to-action button. Larger scale with stronger visual weight for conversion-critical flows.",
+      "semanticRole": "button",
+      "htmlTag": "button",
+      "ariaRole": "button",
+      "ariaLandmark": false,
+      "status": "stable",
+      "since": "0.1.0",
+      "mastors": {
+        "declaration": "<button intent=\"button.primary.cta\" type=\"button\"\n        aria-label=\"Get started for free\">\n  Get Started Free →\n</button>",
+        "config": "// mastors.config.ts\nexport default defineConfig({\n  vocabulary: [\n    'button.primary.cta'\n  ]\n});",
+        "description": "CTA variant uses a deeper brand fill, larger padding and bold weight. The brand glow shadow and minimum 44×44px touch target are resolved from tokens automatically."
+      },
+      "preview": { "type": "button", "text": "Get Started Free →", "tag": "button" },
+      "cssProperties": ["background-color","color","border-radius","padding","font-weight","font-size","letter-spacing","border","cursor","transition","box-shadow"],
+      "tokenRefs": [
+        { "property": "background-color", "token": "token.color.brand.600",       "description": "Deeper brand fill for CTA weight" },
+        { "property": "color",            "token": "token.color.text.onBrand",    "description": "On-brand text colour" },
+        { "property": "border-radius",    "token": "token.radius.sm",             "description": "Consistent button radius" },
+        { "property": "padding",          "token": "token.space.inset.button.lg", "description": "Larger inset for CTA scale" },
+        { "property": "font-size",        "token": "token.font.size.md",          "description": "Slightly larger label" },
+        { "property": "font-weight",      "token": "token.font.weight.bold",      "description": "Bold CTA label" },
+        { "property": "box-shadow",       "token": "token.shadow.brand.glow",     "description": "Brand glow for prominence" }
+      ],
+      "a11y": {
+        "wcagLevel": "AA",
+        "wcagCriteria": [
+          { "id": "1.4.3", "name": "Contrast (Minimum)", "level": "AA"  },
+          { "id": "2.4.7", "name": "Focus Visible",       "level": "AA"  },
+          { "id": "2.5.5", "name": "Target Size",         "level": "AAA" },
+          { "id": "2.1.1", "name": "Keyboard",            "level": "A"   }
+        ],
+        "ariaAttributes": ["type=\"button\"","aria-label"],
+        "focusable": true,
+        "notes": [
+          "CTA must be the most visually prominent action — ensure it is not confused with decorative elements.",
+          "Minimum touch target 44×44 CSS pixels (WCAG 2.5.5 AAA / 2.5.8 AA in WCAG 2.2).",
+          "Avoid using colour alone to convey urgency — pair with text label."
+        ],
+        "hints": []
+      },
+      "variants": [],
+      "modifiers": [],
+      "relatedIntents": ["button.primary","button.secondary"]
+    },
+    {
+      "id": "button.secondary",
+      "label": "Secondary Button",
+      "shortLabel": "button.secondary",
+      "description": "Medium-emphasis outlined or ghost button for supporting actions alongside a primary.",
+      "semanticRole": "button",
+      "htmlTag": "button",
+      "ariaRole": "button",
+      "ariaLandmark": false,
+      "status": "stable",
+      "since": "0.1.0",
+      "mastors": {
+        "declaration": "<button intent=\"button.secondary\" type=\"button\">\n  Secondary Action\n</button>",
+        "config": "// mastors.config.ts\nexport default defineConfig({\n  vocabulary: [\n    'button.secondary'\n  ]\n});",
+        "description": "Secondary button resolves transparent/surface fill, default text colour, and a visible border. Use alongside button.primary to establish visual hierarchy."
+      },
+      "preview": { "type": "button", "text": "Secondary Action", "tag": "button" },
+      "cssProperties": ["background-color","color","border-radius","padding","font-weight","font-size","border-width","border-style","border-color","cursor","transition"],
+      "tokenRefs": [
+        { "property": "background-color", "token": "token.color.surface.base",    "description": "Transparent / surface fill" },
+        { "property": "color",            "token": "token.color.text.default",    "description": "Default text colour" },
+        { "property": "border-radius",    "token": "token.radius.sm",             "description": "Consistent button radius" },
+        { "property": "border-color",     "token": "token.color.border.default",  "description": "Visible border" },
+        { "property": "padding",          "token": "token.space.inset.button.md", "description": "Medium inset" },
+        { "property": "font-weight",      "token": "token.font.weight.semibold",  "description": "Semibold label" }
+      ],
+      "a11y": {
+        "wcagLevel": "AA",
+        "wcagCriteria": [
+          { "id": "1.4.3",  "name": "Contrast (Minimum)", "level": "AA" },
+          { "id": "1.4.11", "name": "Non-text Contrast",  "level": "AA" },
+          { "id": "2.4.7",  "name": "Focus Visible",       "level": "AA" }
+        ],
+        "ariaAttributes": ["type=\"button\""],
+        "focusable": true,
+        "notes": [
+          "Border must meet 3:1 non-text contrast (WCAG 1.4.11) against the background.",
+          "Label text must meet 4.5:1 contrast against the button surface.",
+          "Do not rely solely on border colour to differentiate from primary — use visual weight and position."
+        ],
+        "hints": []
+      },
+      "variants": [],
+      "modifiers": [],
+      "relatedIntents": ["button.primary","button.destructive"]
+    },
+    {
+      "id": "button.destructive",
+      "label": "Destructive Button",
+      "shortLabel": "button.destructive",
+      "description": "High-emphasis button for irreversible or dangerous actions. Uses semantic error/danger colour.",
+      "semanticRole": "button",
+      "htmlTag": "button",
+      "ariaRole": "button",
+      "ariaLandmark": false,
+      "status": "stable",
+      "since": "0.1.0",
+      "mastors": {
+        "declaration": "<button intent=\"button.destructive\" type=\"button\"\n        aria-describedby=\"delete-warning\">\n  Delete Account\n</button>\n<p id=\"delete-warning\" class=\"sr-only\">\n  This action is permanent and cannot be undone.\n</p>",
+        "config": "// mastors.config.ts\nexport default defineConfig({\n  vocabulary: [\n    'button.destructive'\n  ]\n});",
+        "description": "Resolves danger fill and on-danger text from tokens. Pair with aria-describedby warning text and a confirmation dialog to satisfy WCAG 3.3.4."
+      },
+      "preview": { "type": "button", "text": "Delete Account", "tag": "button" },
+      "cssProperties": ["background-color","color","border-radius","padding","font-weight","font-size","border","cursor","transition"],
+      "tokenRefs": [
+        { "property": "background-color", "token": "token.color.danger.600",      "description": "Danger fill colour" },
+        { "property": "color",            "token": "token.color.text.onDanger",   "description": "On-danger text" },
+        { "property": "border-radius",    "token": "token.radius.sm",             "description": "Consistent button radius" },
+        { "property": "padding",          "token": "token.space.inset.button.md", "description": "Medium inset" },
+        { "property": "font-weight",      "token": "token.font.weight.semibold",  "description": "Semibold label" }
+      ],
+      "a11y": {
+        "wcagLevel": "AA",
+        "wcagCriteria": [
+          { "id": "1.4.1", "name": "Use of Colour",      "level": "A"  },
+          { "id": "1.4.3", "name": "Contrast (Minimum)", "level": "AA" },
+          { "id": "2.4.7", "name": "Focus Visible",       "level": "AA" },
+          { "id": "3.3.4", "name": "Error Prevention",    "level": "AA" }
+        ],
+        "ariaAttributes": ["type=\"button\"","aria-describedby"],
+        "focusable": true,
+        "notes": [
+          "Do not rely on red colour alone — include a danger icon or warning text label (WCAG 1.4.1).",
+          "Pair with a confirmation dialog or aria-describedby warning to satisfy WCAG 3.3.4.",
+          "Focus ring must contrast against the red surface (use white/light ring)."
+        ],
+        "hints": []
+      },
+      "variants": [],
+      "modifiers": [],
+      "relatedIntents": ["button.primary","button.secondary","form.destructive.confirm"]
+    }
+  ]
+}

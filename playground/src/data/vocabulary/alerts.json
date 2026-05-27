@@ -1,0 +1,227 @@
+{
+  "id": "alerts",
+  "label": "Alerts",
+  "icon": "fa-solid fa-bell",
+  "description": "Inline feedback banners and transient toasts for system and user-action messages.",
+  "intents": [
+    {
+      "id": "alert.info",
+      "label": "Info Alert",
+      "shortLabel": "alert.info",
+      "description": "Neutral informational message. No urgency — communicates status or guidance.",
+      "semanticRole": "status",
+      "htmlTag": "div",
+      "ariaRole": "status",
+      "ariaLandmark": false,
+      "status": "stable",
+      "since": "0.1.0",
+      "mastors": {
+        "declaration": "<div intent=\"alert.info\"\n     role=\"status\"\n     aria-live=\"polite\"\n     aria-atomic=\"true\">\n  <span aria-hidden=\"true\">ℹ️</span>\n  <strong>Info</strong> — Your informational message here.\n</div>",
+        "config": "// mastors.config.ts\nexport default defineConfig({\n  vocabulary: [\n    'alert.info'\n  ]\n});",
+        "description": "Resolves info-tinted background, text and accent border from tokens. Use role='status' with aria-live='polite' so screen readers announce without interrupting."
+      },
+      "preview": { "type": "alert", "icon": "ℹ️", "title": "Info", "body": "This is an informational message with WCAG AA contrast enforced automatically.", "variant": "info" },
+      "cssProperties": ["background-color","color","border-radius","padding","border-left-width","border-left-color"],
+      "tokenRefs": [
+        { "property": "background-color",  "token": "token.color.info.surface", "description": "Info tinted background" },
+        { "property": "color",             "token": "token.color.info.text",    "description": "Info text colour" },
+        { "property": "border-left-color", "token": "token.color.info.border",  "description": "Info accent border" },
+        { "property": "border-radius",     "token": "token.radius.sm",          "description": "Subtle radius" },
+        { "property": "padding",           "token": "token.space.inset.md",     "description": "Alert inner spacing" }
+      ],
+      "a11y": {
+        "wcagLevel": "AA",
+        "wcagCriteria": [
+          { "id": "1.4.1", "name": "Use of Colour",      "level": "A"  },
+          { "id": "1.4.3", "name": "Contrast (Minimum)", "level": "AA" },
+          { "id": "4.1.3", "name": "Status Messages",    "level": "AA" }
+        ],
+        "ariaAttributes": ["role=\"status\"","aria-live=\"polite\"","aria-atomic=\"true\""],
+        "focusable": false,
+        "notes": [
+          "Use role='status' with aria-live='polite' so screen readers announce the message without interrupting.",
+          "Do not rely on colour alone to convey 'informational' — include a text label or icon with alt text."
+        ],
+        "hints": []
+      },
+      "variants": [],
+      "modifiers": [],
+      "relatedIntents": ["alert.success","alert.warning","alert.destructive"]
+    },
+    {
+      "id": "alert.success",
+      "label": "Success Alert",
+      "shortLabel": "alert.success",
+      "description": "Positive confirmation alert indicating a successful operation.",
+      "semanticRole": "status",
+      "htmlTag": "div",
+      "ariaRole": "status",
+      "ariaLandmark": false,
+      "status": "stable",
+      "since": "0.1.0",
+      "mastors": {
+        "declaration": "<div intent=\"alert.success\"\n     role=\"status\"\n     aria-live=\"polite\">\n  <span aria-hidden=\"true\">✅</span>\n  <strong>Success</strong> — Your changes have been saved.\n</div>",
+        "config": "// mastors.config.ts\nexport default defineConfig({\n  vocabulary: [\n    'alert.success'\n  ]\n});",
+        "description": "Resolves success-tinted background, text and border from tokens. Announce politely — do not interrupt user flow with assertive live region."
+      },
+      "preview": { "type": "alert", "icon": "✅", "title": "Success", "body": "Your changes have been saved. Accessibility is baked into the framework.", "variant": "success" },
+      "cssProperties": ["background-color","color","border-radius","padding","border-left-width","border-left-color"],
+      "tokenRefs": [
+        { "property": "background-color",  "token": "token.color.success.surface", "description": "Success tinted background" },
+        { "property": "color",             "token": "token.color.success.text",    "description": "Success text colour" },
+        { "property": "border-left-color", "token": "token.color.success.border",  "description": "Success accent border" },
+        { "property": "border-radius",     "token": "token.radius.sm",             "description": "Subtle radius" }
+      ],
+      "a11y": {
+        "wcagLevel": "AA",
+        "wcagCriteria": [
+          { "id": "1.4.1", "name": "Use of Colour",   "level": "A"  },
+          { "id": "4.1.3", "name": "Status Messages", "level": "AA" }
+        ],
+        "ariaAttributes": ["role=\"status\"","aria-live=\"polite\""],
+        "focusable": false,
+        "notes": [
+          "Announce success messages politely — do not interrupt user flow (aria-live='polite').",
+          "Include a checkmark icon with aria-hidden='true' plus a visible text label."
+        ],
+        "hints": []
+      },
+      "variants": [],
+      "modifiers": [],
+      "relatedIntents": ["alert.info","toast.success.transient"]
+    },
+    {
+      "id": "alert.warning",
+      "label": "Warning Alert",
+      "shortLabel": "alert.warning",
+      "description": "Caution alert signalling potential issues requiring user review before proceeding.",
+      "semanticRole": "alert",
+      "htmlTag": "div",
+      "ariaRole": "alert",
+      "ariaLandmark": false,
+      "status": "stable",
+      "since": "0.1.0",
+      "mastors": {
+        "declaration": "<div intent=\"alert.warning\"\n     role=\"alert\"\n     aria-live=\"assertive\">\n  <span aria-hidden=\"true\">⚠️</span>\n  <strong>Warning</strong> — Please review before continuing.\n</div>",
+        "config": "// mastors.config.ts\nexport default defineConfig({\n  vocabulary: [\n    'alert.warning'\n  ]\n});",
+        "description": "Resolves warning-tinted surface from tokens. Use role='alert' with aria-live='assertive' for time-sensitive warnings. Yellow/amber tokens are validated for 4.5:1 text contrast."
+      },
+      "preview": { "type": "alert", "icon": "⚠️", "title": "Warning", "body": "Please review before continuing. Focus management is handled automatically.", "variant": "warning" },
+      "cssProperties": ["background-color","color","border-radius","padding","border-left-width","border-left-color"],
+      "tokenRefs": [
+        { "property": "background-color",  "token": "token.color.warning.surface", "description": "Warning tinted background" },
+        { "property": "color",             "token": "token.color.warning.text",    "description": "Warning text colour" },
+        { "property": "border-left-color", "token": "token.color.warning.border",  "description": "Warning accent border" }
+      ],
+      "a11y": {
+        "wcagLevel": "AA",
+        "wcagCriteria": [
+          { "id": "1.4.1", "name": "Use of Colour",       "level": "A"  },
+          { "id": "4.1.3", "name": "Status Messages",     "level": "AA" },
+          { "id": "3.3.1", "name": "Error Identification","level": "A"  }
+        ],
+        "ariaAttributes": ["role=\"alert\"","aria-live=\"assertive\""],
+        "focusable": false,
+        "notes": [
+          "Warnings may use role='alert' with aria-live='assertive' if immediate attention is needed.",
+          "Yellow/amber must meet 4.5:1 text contrast — many yellows fail on white backgrounds.",
+          "Pair warning icon with descriptive text — emoji alone is insufficient for SR users."
+        ],
+        "hints": []
+      },
+      "variants": [],
+      "modifiers": [],
+      "relatedIntents": ["alert.info","alert.destructive"]
+    },
+    {
+      "id": "alert.destructive",
+      "label": "Destructive Alert",
+      "shortLabel": "alert.destructive",
+      "description": "Error alert for critical failures or blocking issues requiring immediate attention.",
+      "semanticRole": "alert",
+      "htmlTag": "div",
+      "ariaRole": "alert",
+      "ariaLandmark": false,
+      "status": "stable",
+      "since": "0.1.0",
+      "mastors": {
+        "declaration": "<div intent=\"alert.destructive\"\n     role=\"alert\"\n     aria-live=\"assertive\"\n     aria-atomic=\"true\">\n  <span aria-hidden=\"true\">🚨</span>\n  <strong>Error</strong> — Something went wrong.\n</div>",
+        "config": "// mastors.config.ts\nexport default defineConfig({\n  vocabulary: [\n    'alert.destructive'\n  ]\n});",
+        "description": "Resolves danger surface, text and border from tokens. Error messages must identify the error in text — not just colour. Use role='alert' with aria-live='assertive'."
+      },
+      "preview": { "type": "alert", "icon": "🚨", "title": "Error", "body": "Something went wrong. The error role and contrast are set by the resolver.", "variant": "destructive" },
+      "cssProperties": ["background-color","color","border-radius","padding","border-left-width","border-left-color"],
+      "tokenRefs": [
+        { "property": "background-color",  "token": "token.color.danger.surface", "description": "Danger tinted background" },
+        { "property": "color",             "token": "token.color.danger.text",    "description": "Danger text colour" },
+        { "property": "border-left-color", "token": "token.color.danger.border",  "description": "Danger accent border" }
+      ],
+      "a11y": {
+        "wcagLevel": "AA",
+        "wcagCriteria": [
+          { "id": "1.4.1", "name": "Use of Colour",       "level": "A"  },
+          { "id": "3.3.1", "name": "Error Identification", "level": "A"  },
+          { "id": "3.3.3", "name": "Error Suggestion",     "level": "AA" },
+          { "id": "4.1.3", "name": "Status Messages",      "level": "AA" }
+        ],
+        "ariaAttributes": ["role=\"alert\"","aria-live=\"assertive\"","aria-atomic=\"true\""],
+        "focusable": false,
+        "notes": [
+          "Error messages must identify the error in text — not just colour (WCAG 3.3.1).",
+          "When an error alert appears dynamically, focus should move to it or it must be announced assertively.",
+          "Include a suggestion for how to fix the error where possible (WCAG 3.3.3)."
+        ],
+        "hints": []
+      },
+      "variants": [],
+      "modifiers": [],
+      "relatedIntents": ["alert.warning","button.destructive","form.destructive.confirm"]
+    },
+    {
+      "id": "toast.success.transient",
+      "label": "Success Toast",
+      "shortLabel": "toast.success.transient",
+      "description": "Auto-dismissing transient notification for non-critical success feedback. Renders in a portal overlay.",
+      "semanticRole": "status",
+      "htmlTag": "div",
+      "ariaRole": "status",
+      "ariaLandmark": false,
+      "status": "stable",
+      "since": "0.1.0",
+      "mastors": {
+        "declaration": "<!-- Toast portal — appended to <body> by JS -->\n<div intent=\"toast.success.transient\"\n     role=\"status\"\n     aria-live=\"polite\"\n     aria-atomic=\"true\">\n  <span aria-hidden=\"true\">✓</span>\n  <p>Changes saved successfully</p>\n  <button aria-label=\"Dismiss notification\">✕</button>\n</div>",
+        "config": "// mastors.config.ts\nexport default defineConfig({\n  vocabulary: [\n    'toast.success.transient'\n  ]\n});",
+        "description": "Resolves overlay surface, large shadow, medium radius and toast max-width from tokens. Auto-dismiss must be ≥5 s and pausable on hover. Do not move focus to the toast."
+      },
+      "preview": { "type": "toast", "icon": "✓", "title": "Changes saved successfully", "body": "Your work has been saved. No action required.", "variant": "success", "dismissible": true },
+      "cssProperties": ["background-color","color","border-radius","padding","box-shadow","max-width","display","gap"],
+      "tokenRefs": [
+        { "property": "background-color", "token": "token.color.surface.overlay", "description": "Elevated overlay surface" },
+        { "property": "box-shadow",       "token": "token.shadow.lg",             "description": "Strong elevation shadow" },
+        { "property": "border-radius",    "token": "token.radius.md",             "description": "Medium radius" },
+        { "property": "padding",          "token": "token.space.inset.md",        "description": "Toast inner spacing" },
+        { "property": "max-width",        "token": "token.measure.toast",         "description": "Fixed toast max width" }
+      ],
+      "a11y": {
+        "wcagLevel": "AA",
+        "wcagCriteria": [
+          { "id": "2.2.1", "name": "Timing Adjustable", "level": "A"  },
+          { "id": "4.1.3", "name": "Status Messages",   "level": "AA" },
+          { "id": "2.1.1", "name": "Keyboard",          "level": "A"  }
+        ],
+        "ariaAttributes": ["role=\"status\"","aria-live=\"polite\"","aria-atomic=\"true\""],
+        "focusable": false,
+        "notes": [
+          "Auto-dismiss timeout must be at least 5 seconds and pausable on hover/focus (WCAG 2.2.1).",
+          "Toast must be announced via aria-live region — do not rely on visual appearance alone.",
+          "Dismiss button (×) must be keyboard accessible with an aria-label='Dismiss notification'.",
+          "Do not move focus to the toast — it is non-modal and should not interrupt workflow."
+        ],
+        "hints": []
+      },
+      "variants": [],
+      "modifiers": [],
+      "relatedIntents": ["alert.success","alert.info"]
+    }
+  ]
+}

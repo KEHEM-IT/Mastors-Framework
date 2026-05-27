@@ -1,0 +1,50 @@
+{
+  "id": "layout",
+  "label": "Layout",
+  "icon": "fa-solid fa-table-columns",
+  "description": "Structural containers governing max-width, centering, and responsive layout behaviour.",
+  "intents": [
+    {
+      "id": "container.max.centered",
+      "label": "Max-Width Centered Container",
+      "shortLabel": "container.max.centered",
+      "description": "Horizontally centered layout container with a maximum width constraint and responsive horizontal padding.",
+      "semanticRole": "generic",
+      "htmlTag": "div",
+      "ariaRole": null,
+      "ariaLandmark": false,
+      "status": "stable",
+      "since": "0.1.0",
+      "mastors": {
+        "declaration": "<div intent=\"container.max.centered\">\n  <!-- page content — centered, max-width constrained,\n       with responsive horizontal gutters applied\n       automatically from tokens -->\n</div>",
+        "config": "// mastors.config.ts\nexport default defineConfig({\n  vocabulary: [\n    'container.max.centered'\n  ]\n});",
+        "description": "Resolves max-width, auto margin-inline centering and responsive padding-inline from tokens. Content must reflow to a single column at 320px viewport width without horizontal scrolling (WCAG 1.4.10)."
+      },
+      "preview": { "type": "container", "label": "container.max.centered", "description": "Max-width constrained, horizontally padded, centered layout container." },
+      "cssProperties": ["max-width","margin-inline","padding-inline","width"],
+      "tokenRefs": [
+        { "property": "max-width",      "token": "token.layout.maxWidth.content", "description": "Content column max width" },
+        { "property": "padding-inline", "token": "token.space.container.padding", "description": "Responsive horizontal gutter" },
+        { "property": "margin-inline",  "token": "token.space.auto",              "description": "Auto centering" }
+      ],
+      "a11y": {
+        "wcagLevel": "AA",
+        "wcagCriteria": [
+          { "id": "1.4.10", "name": "Reflow",       "level": "AA" },
+          { "id": "1.4.12", "name": "Text Spacing",  "level": "AA" }
+        ],
+        "ariaAttributes": [],
+        "focusable": false,
+        "notes": [
+          "Content must reflow to a single column at 320px viewport width without horizontal scrolling (WCAG 1.4.10).",
+          "Padding-inline must shrink gracefully at small viewports — use clamp() or responsive tokens.",
+          "Do not set a fixed height — allow content to expand naturally."
+        ],
+        "hints": []
+      },
+      "variants": [],
+      "modifiers": [],
+      "relatedIntents": ["nav.primary"]
+    }
+  ]
+}

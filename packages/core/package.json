@@ -1,0 +1,31 @@
+{
+  "name": "@mastors/core",
+  "version": "0.1.0",
+  "description": "Semantic Resolver Engine — the core intelligence of Mastors",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format esm --dts",
+    "dev": "tsup src/index.ts --format esm --dts --watch",
+    "clean": "rimraf dist"
+  },
+  "dependencies": {
+    "@mastors/types": "workspace:*",
+    "@mastors/utils": "workspace:*",
+    "@mastors/tokens": "workspace:*",
+    "@mastors/schemas": "workspace:*",
+    "@mastors/accessibility": "workspace:*"
+  },
+  "devDependencies": {
+    "tsup": "^8.0.0",
+    "typescript": "^5.4.0",
+    "rimraf": "^5.0.0"
+  }
+}

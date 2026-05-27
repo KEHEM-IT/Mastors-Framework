@@ -1,0 +1,592 @@
+{
+  "version": "0.1.0",
+  "description": "Mastors built-in vocabulary — intent identifiers with full metadata for the Playground and future tooling.",
+  "categories": [
+    {
+      "id": "cards",
+      "label": "Cards",
+      "icon": "fa-solid fa-id-card",
+      "description": "Surface containers for grouping related content with visual hierarchy.",
+      "intents": [
+        {
+          "id": "card.base",
+          "label": "Base Card",
+          "shortLabel": "card.base",
+          "description": "Minimal flat card with subtle background, border, and consistent padding. The foundational surface for all card variants.",
+          "semanticRole": "region",
+          "htmlTag": "div",
+          "ariaRole": null,
+          "ariaLandmark": false,
+          "status": "stable",
+          "since": "0.1.0",
+          "mastors": {
+            "declaration": "<div intent=\"card.base\">\n  <!-- card content here -->\n</div>",
+            "config": "// mastors.config.ts\nexport default defineConfig({\n  vocabulary: [\n    'card.base'\n  ]\n});",
+            "description": "Declare intent on any container element. Mastors resolves background, border, radius and padding from tokens automatically."
+          },
+          "preview": {
+            "type": "card",
+            "title": "card.base",
+            "body": "This element is styled by the Mastors semantic resolver. The intent identifier maps to design tokens for spacing, shadow, radius, and color automatically.",
+            "actions": [
+              { "label": "Primary",   "variant": "primary"   },
+              { "label": "Secondary", "variant": "secondary" }
+            ]
+          },
+          "cssProperties": ["background-color","border-radius","padding","border-width","border-style","border-color","color"],
+          "tokenRefs": [
+            { "property": "background-color", "token": "token.color.surface.base",   "description": "Card surface background" },
+            { "property": "border-radius",    "token": "token.radius.md",             "description": "Medium corner radius" },
+            { "property": "padding",          "token": "token.space.inset.md",        "description": "Inner content spacing" },
+            { "property": "border-color",     "token": "token.color.border.subtle",   "description": "Subtle border separation" }
+          ],
+          "a11y": {
+            "wcagLevel": "AA",
+            "wcagCriteria": [
+              { "id": "1.4.3", "name": "Contrast (Minimum)",          "level": "AA"  },
+              { "id": "1.3.1", "name": "Info and Relationships",       "level": "A"   },
+              { "id": "1.3.6", "name": "Identify Purpose",             "level": "AAA" }
+            ],
+            "ariaAttributes": [],
+            "focusable": false,
+            "notes": [
+              "Ensure text within card meets 4.5:1 contrast ratio against card background.",
+              "Use a landmark role (region, article, or section) for semantically important cards.",
+              "Cards grouping interactive content should use role='group' or role='article'."
+            ],
+            "hints": []
+          },
+          "variants": ["elevated","elevated.interactive"],
+          "modifiers": [],
+          "relatedIntents": ["card.elevated","card.elevated.interactive"]
+        },
+        {
+          "id": "card.elevated",
+          "label": "Elevated Card",
+          "shortLabel": "card.elevated",
+          "description": "Card with drop shadow elevation, conveying raised depth above the page surface.",
+          "semanticRole": "region",
+          "htmlTag": "div",
+          "ariaRole": null,
+          "ariaLandmark": false,
+          "status": "stable",
+          "since": "0.1.0",
+          "mastors": {
+            "declaration": "<div intent=\"card.elevated\">\n  <!-- card content here -->\n</div>",
+            "config": "// mastors.config.ts\nexport default defineConfig({\n  vocabulary: [\n    'card.elevated'\n  ]\n});",
+            "description": "Mastors resolves the correct shadow scale from your token set. Elevation depth is derived from token.shadow.md."
+          },
+          "preview": {
+            "type": "card",
+            "title": "card.elevated",
+            "body": "Elevated cards use shadow tokens to communicate depth. Mastors resolves the correct shadow scale from your token set automatically.",
+            "actions": [
+              { "label": "Primary",   "variant": "primary"   },
+              { "label": "Secondary", "variant": "secondary" }
+            ]
+          },
+          "cssProperties": ["background-color","border-radius","padding","border-width","border-style","border-color","box-shadow","color"],
+          "tokenRefs": [
+            { "property": "background-color", "token": "token.color.surface.elevated", "description": "Elevated surface background" },
+            { "property": "border-radius",    "token": "token.radius.md",               "description": "Medium corner radius" },
+            { "property": "padding",          "token": "token.space.inset.md",          "description": "Inner content spacing" },
+            { "property": "box-shadow",       "token": "token.shadow.md",               "description": "Medium elevation shadow" },
+            { "property": "border-color",     "token": "token.color.border.subtle",     "description": "Subtle border separation" }
+          ],
+          "a11y": {
+            "wcagLevel": "AA",
+            "wcagCriteria": [
+              { "id": "1.4.3", "name": "Contrast (Minimum)",    "level": "AA" },
+              { "id": "1.3.1", "name": "Info and Relationships", "level": "A"  }
+            ],
+            "ariaAttributes": [],
+            "focusable": false,
+            "notes": [
+              "Shadow alone must not be the only visual differentiator — use border or background contrast too.",
+              "Ensure 3:1 contrast between card surface and page background per WCAG 1.4.11."
+            ],
+            "hints": []
+          },
+          "variants": ["interactive"],
+          "modifiers": [],
+          "relatedIntents": ["card.base","card.elevated.interactive"]
+        },
+        {
+          "id": "card.elevated.interactive",
+          "label": "Interactive Elevated Card",
+          "shortLabel": "card.elevated.interactive",
+          "description": "Elevated card that responds to hover and focus with transform and shadow transitions. Fully keyboard-navigable.",
+          "semanticRole": "button",
+          "htmlTag": "div",
+          "ariaRole": "button",
+          "ariaLandmark": false,
+          "status": "stable",
+          "since": "0.1.0",
+          "mastors": {
+            "declaration": "<div intent=\"card.elevated.interactive\"\n     tabindex=\"0\"\n     role=\"button\"\n     aria-label=\"Open details\">\n  <!-- interactive card content -->\n</div>",
+            "config": "// mastors.config.ts\nexport default defineConfig({\n  vocabulary: [\n    'card.elevated.interactive'\n  ]\n});",
+            "description": "Interactive cards lift on hover and receive a visible focus ring on keyboard focus. Transition timing is resolved from motion tokens. prefers-reduced-motion is honoured automatically."
+          },
+          "preview": {
+            "type": "card",
+            "title": "card.elevated.interactive",
+            "body": "Interactive cards lift on hover and receive a visible focus ring on keyboard focus. Transition timing is resolved from motion tokens.",
+            "actions": [
+              { "label": "Primary",   "variant": "primary"   },
+              { "label": "Secondary", "variant": "secondary" }
+            ]
+          },
+          "cssProperties": ["background-color","border-radius","padding","border-width","border-style","border-color","box-shadow","cursor","transition","transform","outline"],
+          "tokenRefs": [
+            { "property": "background-color", "token": "token.color.surface.elevated",  "description": "Elevated surface background" },
+            { "property": "border-radius",    "token": "token.radius.md",                "description": "Medium corner radius" },
+            { "property": "padding",          "token": "token.space.inset.md",           "description": "Inner content spacing" },
+            { "property": "box-shadow",       "token": "token.shadow.md",                "description": "Base elevation shadow" },
+            { "property": "transition",       "token": "token.motion.duration.fast",     "description": "Hover/focus transition speed" },
+            { "property": "outline",          "token": "token.color.focus.ring",         "description": "Keyboard focus ring color" }
+          ],
+          "a11y": {
+            "wcagLevel": "AA",
+            "wcagCriteria": [
+              { "id": "1.4.3",  "name": "Contrast (Minimum)",          "level": "AA"  },
+              { "id": "2.1.1",  "name": "Keyboard",                    "level": "A"   },
+              { "id": "2.4.7",  "name": "Focus Visible",               "level": "AA"  },
+              { "id": "2.5.3",  "name": "Label in Name",               "level": "A"   },
+              { "id": "2.3.3",  "name": "Animation from Interactions", "level": "AAA" }
+            ],
+            "ariaAttributes": ["tabindex=\"0\"","role=\"button\"","aria-label"],
+            "focusable": true,
+            "notes": [
+              "Must have a visible focus ring with 3:1 contrast against adjacent colours.",
+              "Honour prefers-reduced-motion — transition is auto-disabled by the resolver.",
+              "If card is the only interactive element inside, use role='button' and tabindex='0'.",
+              "Provide an aria-label describing the card's action or destination."
+            ],
+            "hints": []
+          },
+          "variants": [],
+          "modifiers": [],
+          "relatedIntents": ["card.base","card.elevated"]
+        }
+      ]
+    },
+    {
+      "id": "buttons",
+      "label": "Buttons",
+      "icon": "fa-solid fa-hand-pointer",
+      "description": "Actionable trigger components with clear hierarchy and accessibility enforcement.",
+      "intents": [
+        {
+          "id": "button.primary",
+          "label": "Primary Button",
+          "shortLabel": "button.primary",
+          "description": "High-emphasis button for the main action on a page or section. Uses brand fill colour.",
+          "semanticRole": "button",
+          "htmlTag": "button",
+          "ariaRole": "button",
+          "ariaLandmark": false,
+          "status": "stable",
+          "since": "0.1.0",
+          "mastors": {
+            "declaration": "<button intent=\"button.primary\" type=\"button\">\n  Click me\n</button>",
+            "config": "// mastors.config.ts\nexport default defineConfig({\n  vocabulary: [\n    'button.primary'\n  ]\n});",
+            "description": "Mastors resolves brand fill, on-brand text, radius, padding and semibold weight from tokens. Focus ring is enforced automatically."
+          },
+          "preview": { "type": "button", "text": "Click me", "tag": "button" },
+          "cssProperties": ["background-color","color","border-radius","padding","font-weight","font-size","border","cursor","transition","outline-offset"],
+          "tokenRefs": [
+            { "property": "background-color", "token": "token.color.brand.500",       "description": "Brand fill" },
+            { "property": "color",            "token": "token.color.text.onBrand",    "description": "On-brand text colour" },
+            { "property": "border-radius",    "token": "token.radius.sm",             "description": "Subtle corner radius" },
+            { "property": "padding",          "token": "token.space.inset.button.md", "description": "Button inset padding" },
+            { "property": "font-weight",      "token": "token.font.weight.semibold",  "description": "Semibold label" },
+            { "property": "transition",       "token": "token.motion.duration.fast",  "description": "Hover transition" }
+          ],
+          "a11y": {
+            "wcagLevel": "AA",
+            "wcagCriteria": [
+              { "id": "1.4.3", "name": "Contrast (Minimum)", "level": "AA" },
+              { "id": "2.4.7", "name": "Focus Visible",       "level": "AA" },
+              { "id": "2.1.1", "name": "Keyboard",            "level": "A"  },
+              { "id": "4.1.2", "name": "Name, Role, Value",   "level": "A"  }
+            ],
+            "ariaAttributes": ["type=\"button\""],
+            "focusable": true,
+            "notes": [
+              "Text contrast against button background must meet 4.5:1 (AA).",
+              "Focus ring must be clearly visible — enforced by resolver.",
+              "Always include a descriptive accessible name (visible label or aria-label)."
+            ],
+            "hints": []
+          },
+          "variants": ["cta"],
+          "modifiers": [],
+          "relatedIntents": ["button.primary.cta","button.secondary"]
+        },
+        {
+          "id": "button.primary.cta",
+          "label": "Primary CTA Button",
+          "shortLabel": "button.primary.cta",
+          "description": "Prominent call-to-action button. Larger scale with stronger visual weight for conversion-critical flows.",
+          "semanticRole": "button",
+          "htmlTag": "button",
+          "ariaRole": "button",
+          "ariaLandmark": false,
+          "status": "stable",
+          "since": "0.1.0",
+          "mastors": {
+            "declaration": "<button intent=\"button.primary.cta\" type=\"button\"\n        aria-label=\"Get started for free\">\n  Get Started Free \u2192\n</button>",
+            "config": "// mastors.config.ts\nexport default defineConfig({\n  vocabulary: [\n    'button.primary.cta'\n  ]\n});",
+            "description": "CTA variant uses a deeper brand fill, larger padding and bold weight. The brand glow shadow and minimum 44\u00d744px touch target are resolved from tokens automatically."
+          },
+          "preview": { "type": "button", "text": "Get Started Free \u2192", "tag": "button" },
+          "cssProperties": ["background-color","color","border-radius","padding","font-weight","font-size","letter-spacing","border","cursor","transition","box-shadow"],
+          "tokenRefs": [
+            { "property": "background-color", "token": "token.color.brand.600",        "description": "Deeper brand fill for CTA weight" },
+            { "property": "color",            "token": "token.color.text.onBrand",     "description": "On-brand text colour" },
+            { "property": "border-radius",    "token": "token.radius.sm",              "description": "Consistent button radius" },
+            { "property": "padding",          "token": "token.space.inset.button.lg",  "description": "Larger inset for CTA scale" },
+            { "property": "font-size",        "token": "token.font.size.md",           "description": "Slightly larger label" },
+            { "property": "font-weight",      "token": "token.font.weight.bold",       "description": "Bold CTA label" },
+            { "property": "box-shadow",       "token": "token.shadow.brand.glow",      "description": "Brand glow for prominence" }
+          ],
+          "a11y": {
+            "wcagLevel": "AA",
+            "wcagCriteria": [
+              { "id": "1.4.3", "name": "Contrast (Minimum)", "level": "AA"  },
+              { "id": "2.4.7", "name": "Focus Visible",       "level": "AA"  },
+              { "id": "2.5.5", "name": "Target Size",         "level": "AAA" },
+              { "id": "2.1.1", "name": "Keyboard",            "level": "A"   }
+            ],
+            "ariaAttributes": ["type=\"button\"","aria-label"],
+            "focusable": true,
+            "notes": [
+              "CTA must be the most visually prominent action — ensure it is not confused with decorative elements.",
+              "Minimum touch target 44\u00d744 CSS pixels (WCAG 2.5.5 AAA / 2.5.8 AA in WCAG 2.2).",
+              "Avoid using colour alone to convey urgency — pair with text label."
+            ],
+            "hints": []
+          },
+          "variants": [],
+          "modifiers": [],
+          "relatedIntents": ["button.primary","button.secondary"]
+        },
+        {
+          "id": "button.secondary",
+          "label": "Secondary Button",
+          "shortLabel": "button.secondary",
+          "description": "Medium-emphasis outlined or ghost button for supporting actions alongside a primary.",
+          "semanticRole": "button",
+          "htmlTag": "button",
+          "ariaRole": "button",
+          "ariaLandmark": false,
+          "status": "stable",
+          "since": "0.1.0",
+          "mastors": {
+            "declaration": "<button intent=\"button.secondary\" type=\"button\">\n  Secondary Action\n</button>",
+            "config": "// mastors.config.ts\nexport default defineConfig({\n  vocabulary: [\n    'button.secondary'\n  ]\n});",
+            "description": "Secondary button resolves transparent/surface fill, default text colour, and a visible border. Use alongside button.primary to establish visual hierarchy."
+          },
+          "preview": { "type": "button", "text": "Secondary Action", "tag": "button" },
+          "cssProperties": ["background-color","color","border-radius","padding","font-weight","font-size","border-width","border-style","border-color","cursor","transition"],
+          "tokenRefs": [
+            { "property": "background-color", "token": "token.color.surface.base",    "description": "Transparent / surface fill" },
+            { "property": "color",            "token": "token.color.text.default",    "description": "Default text colour" },
+            { "property": "border-radius",    "token": "token.radius.sm",             "description": "Consistent button radius" },
+            { "property": "border-color",     "token": "token.color.border.default",  "description": "Visible border" },
+            { "property": "padding",          "token": "token.space.inset.button.md", "description": "Medium inset" },
+            { "property": "font-weight",      "token": "token.font.weight.semibold",  "description": "Semibold label" }
+          ],
+          "a11y": {
+            "wcagLevel": "AA",
+            "wcagCriteria": [
+              { "id": "1.4.3",  "name": "Contrast (Minimum)", "level": "AA" },
+              { "id": "1.4.11", "name": "Non-text Contrast",  "level": "AA" },
+              { "id": "2.4.7",  "name": "Focus Visible",       "level": "AA" }
+            ],
+            "ariaAttributes": ["type=\"button\""],
+            "focusable": true,
+            "notes": [
+              "Border must meet 3:1 non-text contrast (WCAG 1.4.11) against the background.",
+              "Label text must meet 4.5:1 contrast against the button surface.",
+              "Do not rely solely on border colour to differentiate from primary — use visual weight and position."
+            ],
+            "hints": []
+          },
+          "variants": [],
+          "modifiers": [],
+          "relatedIntents": ["button.primary","button.destructive"]
+        },
+        {
+          "id": "button.destructive",
+          "label": "Destructive Button",
+          "shortLabel": "button.destructive",
+          "description": "High-emphasis button for irreversible or dangerous actions. Uses semantic error/danger colour.",
+          "semanticRole": "button",
+          "htmlTag": "button",
+          "ariaRole": "button",
+          "ariaLandmark": false,
+          "status": "stable",
+          "since": "0.1.0",
+          "mastors": {
+            "declaration": "<button intent=\"button.destructive\" type=\"button\"\n        aria-describedby=\"delete-warning\">\n  Delete Account\n</button>\n<p id=\"delete-warning\" class=\"sr-only\">\n  This action is permanent and cannot be undone.\n</p>",
+            "config": "// mastors.config.ts\nexport default defineConfig({\n  vocabulary: [\n    'button.destructive'\n  ]\n});",
+            "description": "Resolves danger fill and on-danger text from tokens. Pair with aria-describedby warning text and a confirmation dialog to satisfy WCAG 3.3.4."
+          },
+          "preview": { "type": "button", "text": "Delete Account", "tag": "button" },
+          "cssProperties": ["background-color","color","border-radius","padding","font-weight","font-size","border","cursor","transition"],
+          "tokenRefs": [
+            { "property": "background-color", "token": "token.color.danger.600",       "description": "Danger fill colour" },
+            { "property": "color",            "token": "token.color.text.onDanger",    "description": "On-danger text" },
+            { "property": "border-radius",    "token": "token.radius.sm",              "description": "Consistent button radius" },
+            { "property": "padding",          "token": "token.space.inset.button.md",  "description": "Medium inset" },
+            { "property": "font-weight",      "token": "token.font.weight.semibold",   "description": "Semibold label" }
+          ],
+          "a11y": {
+            "wcagLevel": "AA",
+            "wcagCriteria": [
+              { "id": "1.4.1", "name": "Use of Colour",      "level": "A"  },
+              { "id": "1.4.3", "name": "Contrast (Minimum)", "level": "AA" },
+              { "id": "2.4.7", "name": "Focus Visible",       "level": "AA" },
+              { "id": "3.3.4", "name": "Error Prevention",    "level": "AA" }
+            ],
+            "ariaAttributes": ["type=\"button\"","aria-describedby"],
+            "focusable": true,
+            "notes": [
+              "Do not rely on red colour alone — include a danger icon or warning text label (WCAG 1.4.1).",
+              "Pair with a confirmation dialog or aria-describedby warning to satisfy WCAG 3.3.4.",
+              "Focus ring must contrast against the red surface (use white/light ring)."
+            ],
+            "hints": []
+          },
+          "variants": [],
+          "modifiers": [],
+          "relatedIntents": ["button.primary","button.secondary","form.destructive.confirm"]
+        }
+      ]
+    },
+    {
+      "id": "typography",
+      "label": "Typography",
+      "icon": "fa-solid fa-font",
+      "description": "Semantic text styles mapped to type-scale tokens for consistent typographic hierarchy.",
+      "intents": [
+        {
+          "id": "heading.hero",
+          "label": "Hero Heading",
+          "shortLabel": "heading.hero",
+          "description": "Largest display heading for hero sections and page-level titles. Maps to the H1 element.",
+          "semanticRole": "heading",
+          "htmlTag": "h1",
+          "ariaRole": "heading",
+          "ariaLandmark": false,
+          "status": "stable",
+          "since": "0.1.0",
+          "mastors": {
+            "declaration": "<h1 intent=\"heading.hero\">\n  Intent-Based Styling for the Future Web\n</h1>",
+            "config": "// mastors.config.ts\nexport default defineConfig({\n  vocabulary: [\n    'heading.hero'\n  ]\n});",
+            "description": "Maps to H1. Mastors resolves 5xl font-size, bold weight, tight line-height and tracking from tokens. The resolver emits a warning if a second heading.hero is declared on the same page."
+          },
+          "preview": { "type": "heading", "tag": "h1", "text": "Intent-Based Styling for the Future Web" },
+          "cssProperties": ["font-size","font-weight","line-height","letter-spacing","color","font-family"],
+          "tokenRefs": [
+            { "property": "font-size",      "token": "token.font.size.5xl",         "description": "Display scale font size" },
+            { "property": "font-weight",    "token": "token.font.weight.bold",      "description": "Bold weight for heroes" },
+            { "property": "line-height",    "token": "token.font.lineHeight.tight",  "description": "Tight leading for large text" },
+            { "property": "letter-spacing", "token": "token.font.tracking.tight",   "description": "Slightly tighter tracking" },
+            { "property": "color",          "token": "token.color.text.default",    "description": "Primary text colour" }
+          ],
+          "a11y": {
+            "wcagLevel": "AA",
+            "wcagCriteria": [
+              { "id": "1.3.1", "name": "Info and Relationships", "level": "A"  },
+              { "id": "1.4.3", "name": "Contrast (Minimum)",     "level": "AA" },
+              { "id": "2.4.6", "name": "Headings and Labels",    "level": "AA" }
+            ],
+            "ariaAttributes": ["aria-level=\"1\""],
+            "focusable": false,
+            "notes": [
+              "Only one H1 per page — the resolver emits a warning if a second heading.hero is declared.",
+              "Ensure heading text contrast meets 4.5:1 at all sizes (even large).",
+              "Heading must describe the page topic — do not use for decorative text."
+            ],
+            "hints": []
+          },
+          "variants": [],
+          "modifiers": [],
+          "relatedIntents": ["heading.section","heading.subsection"]
+        },
+        {
+          "id": "heading.section",
+          "label": "Section Heading",
+          "shortLabel": "heading.section",
+          "description": "Second-level heading dividing major page sections. Maps to H2.",
+          "semanticRole": "heading",
+          "htmlTag": "h2",
+          "ariaRole": "heading",
+          "ariaLandmark": false,
+          "status": "stable",
+          "since": "0.1.0",
+          "mastors": {
+            "declaration": "<h2 intent=\"heading.section\">\n  Design Intent, Not Classes\n</h2>",
+            "config": "// mastors.config.ts\nexport default defineConfig({\n  vocabulary: [\n    'heading.section'\n  ]\n});",
+            "description": "Maps to H2. Resolves 3xl size, bold weight, and snug line-height. Used to divide major page sections. Heading hierarchy is validated by the resolver."
+          },
+          "preview": { "type": "heading", "tag": "h2", "text": "Design Intent, Not Classes" },
+          "cssProperties": ["font-size","font-weight","line-height","letter-spacing","color"],
+          "tokenRefs": [
+            { "property": "font-size",   "token": "token.font.size.3xl",        "description": "Section-level size" },
+            { "property": "font-weight", "token": "token.font.weight.bold",     "description": "Bold section label" },
+            { "property": "line-height", "token": "token.font.lineHeight.snug", "description": "Comfortable leading" },
+            { "property": "color",       "token": "token.color.text.default",   "description": "Primary text colour" }
+          ],
+          "a11y": {
+            "wcagLevel": "AA",
+            "wcagCriteria": [
+              { "id": "1.3.1", "name": "Info and Relationships", "level": "A"  },
+              { "id": "2.4.6", "name": "Headings and Labels",    "level": "AA" }
+            ],
+            "ariaAttributes": ["aria-level=\"2\""],
+            "focusable": false,
+            "notes": [
+              "Heading hierarchy must be sequential — do not skip from H1 to H3.",
+              "Section headings help screen-reader users navigate via the heading list (JAWS, NVDA, VoiceOver)."
+            ],
+            "hints": []
+          },
+          "variants": [],
+          "modifiers": [],
+          "relatedIntents": ["heading.hero","heading.subsection"]
+        },
+        {
+          "id": "heading.subsection",
+          "label": "Subsection Heading",
+          "shortLabel": "heading.subsection",
+          "description": "Third-level heading for sub-sections within a major section. Maps to H3.",
+          "semanticRole": "heading",
+          "htmlTag": "h3",
+          "ariaRole": "heading",
+          "ariaLandmark": false,
+          "status": "stable",
+          "since": "0.1.0",
+          "mastors": {
+            "declaration": "<h3 intent=\"heading.subsection\">\n  Automatic accessibility enforcement\n</h3>",
+            "config": "// mastors.config.ts\nexport default defineConfig({\n  vocabulary: [\n    'heading.subsection'\n  ]\n});",
+            "description": "Maps to H3. Resolves xl size, semibold weight and normal line-height. Must nest inside an H2 section — the resolver validates heading depth."
+          },
+          "preview": { "type": "heading", "tag": "h3", "text": "Automatic accessibility enforcement" },
+          "cssProperties": ["font-size","font-weight","line-height","color"],
+          "tokenRefs": [
+            { "property": "font-size",   "token": "token.font.size.xl",           "description": "Subsection size" },
+            { "property": "font-weight", "token": "token.font.weight.semibold",   "description": "Semibold for visual hierarchy" },
+            { "property": "line-height", "token": "token.font.lineHeight.normal", "description": "Normal leading" },
+            { "property": "color",       "token": "token.color.text.default",     "description": "Primary text colour" }
+          ],
+          "a11y": {
+            "wcagLevel": "AA",
+            "wcagCriteria": [
+              { "id": "1.3.1", "name": "Info and Relationships", "level": "A"  },
+              { "id": "2.4.6", "name": "Headings and Labels",    "level": "AA" }
+            ],
+            "ariaAttributes": ["aria-level=\"3\""],
+            "focusable": false,
+            "notes": [
+              "Maintain heading level sequence — H3 must nest inside H2 sections.",
+              "Avoid using heading styles purely for visual emphasis — use bold/italic instead."
+            ],
+            "hints": []
+          },
+          "variants": [],
+          "modifiers": [],
+          "relatedIntents": ["heading.hero","heading.section"]
+        },
+        {
+          "id": "body.readable",
+          "label": "Readable Body",
+          "shortLabel": "body.readable",
+          "description": "Standard body copy optimised for screen readability. Comfortable line-height and measure.",
+          "semanticRole": "paragraph",
+          "htmlTag": "p",
+          "ariaRole": null,
+          "ariaLandmark": false,
+          "status": "stable",
+          "since": "0.1.0",
+          "mastors": {
+            "declaration": "<p intent=\"body.readable\">\n  Mastors resolves semantic design intent into accessible,\n  responsive, theme-aware CSS at build time.\n</p>",
+            "config": "// mastors.config.ts\nexport default defineConfig({\n  vocabulary: [\n    'body.readable'\n  ]\n});",
+            "description": "Resolves base font-size (16px), relaxed line-height (1.6) and an optimal readable max-width (~65ch) from tokens. Suitable for interface body copy."
+          },
+          "preview": { "type": "body", "tag": "p", "text": "Mastors resolves semantic design intent into accessible, responsive, theme-aware CSS at build time — with zero runtime overhead." },
+          "cssProperties": ["font-size","line-height","color","max-width","font-family"],
+          "tokenRefs": [
+            { "property": "font-size",   "token": "token.font.size.base",          "description": "Base body size (16px)" },
+            { "property": "line-height", "token": "token.font.lineHeight.relaxed", "description": "Relaxed leading for readability" },
+            { "property": "color",       "token": "token.color.text.default",      "description": "Primary text colour" },
+            { "property": "max-width",   "token": "token.measure.readable",        "description": "~65 ch optimal line length" }
+          ],
+          "a11y": {
+            "wcagLevel": "AA",
+            "wcagCriteria": [
+              { "id": "1.4.3",  "name": "Contrast (Minimum)",  "level": "AA"  },
+              { "id": "1.4.8",  "name": "Visual Presentation", "level": "AAA" },
+              { "id": "1.4.12", "name": "Text Spacing",        "level": "AA"  }
+            ],
+            "ariaAttributes": [],
+            "focusable": false,
+            "notes": [
+              "Line-height (leading) must be at least 1.5 times the font size (WCAG 1.4.12).",
+              "Optimal line length is 45\u201375 characters. max-width token enforces this automatically.",
+              "Text must reflow to a single column at 400% zoom without horizontal scroll (WCAG 1.4.10)."
+            ],
+            "hints": []
+          },
+          "variants": ["longform"],
+          "modifiers": [],
+          "relatedIntents": ["body.readable.longform"]
+        },
+        {
+          "id": "body.readable.longform",
+          "label": "Longform Body",
+          "shortLabel": "body.readable.longform",
+          "description": "Extended body copy for articles, documentation, and prose-heavy content. Wider measure, slightly larger size.",
+          "semanticRole": "paragraph",
+          "htmlTag": "p",
+          "ariaRole": null,
+          "ariaLandmark": false,
+          "status": "stable",
+          "since": "0.1.0",
+          "mastors": {
+            "declaration": "<article>\n  <h2 intent=\"heading.section\">Article Title</h2>\n  <p intent=\"body.readable.longform\">\n    Extended prose content for documentation or articles.\n  </p>\n</article>",
+            "config": "// mastors.config.ts\nexport default defineConfig({\n  vocabulary: [\n    'body.readable.longform'\n  ]\n});",
+            "description": "Resolves md font-size, loose line-height (1.8) and a wider max-width (~75ch). Wrap in <article> with a visible heading for assistive technology navigation."
+          },
+          "preview": { "type": "body", "tag": "p", "text": "Mastors resolves semantic design intent into accessible, responsive, theme-aware CSS at build time — with zero runtime overhead. Longform body adds generous spacing and wider measure for sustained reading." },
+          "cssProperties": ["font-size","line-height","color","max-width","font-family","word-spacing"],
+          "tokenRefs": [
+            { "property": "font-size",   "token": "token.font.size.md",          "description": "Slightly larger for long-read" },
+            { "property": "line-height", "token": "token.font.lineHeight.loose",  "description": "Loose leading for long prose" },
+            { "property": "color",       "token": "token.color.text.default",     "description": "Primary text colour" },
+            { "property": "max-width",   "token": "token.measure.longform",       "description": "~75 ch for longform measure" }
+          ],
+          "a11y": {
+            "wcagLevel": "AAA",
+            "wcagCriteria": [
+              { "id": "1.4.3",  "name": "Contrast (Minimum)",  "level": "AA"  },
+              { "id": "1.4.8",  "name": "Visual Presentation", "level": "AAA" },
+              { "id": "1.4.12", "name": "Text Spacing",        "level": "AA"  }
+            ],
+            "ariaAttributes": [],
+            "focusable": false,
+            "notes": [
+              "For articles, wrap in <article> with a visible heading for assistive technology navigation.",
+              "Avoid justified text — it creates uneven spacing that hinders readability (WCAG 1.4.8).",
+              "Consider offering a user control to increase text size or spacing without loss of content."
+            ],
+            "hints": []
+          },
+          "variants": [],
+          "modifiers": [],
+          "relatedIntents": ["body.readable"]
+        }
+      ]
+    },

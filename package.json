@@ -1,0 +1,43 @@
+{
+  "name": "mastors",
+  "version": "0.1.0",
+  "description": "Intent-Based Styling Framework — declare design intent, get accessible CSS",
+  "type": "module",
+  "private": true,
+  "packageManager": "pnpm@9.0.0",
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=9.0.0"
+  },
+  "scripts": {
+    "build": "pnpm --filter \"./packages/**\" -r run build",
+    "build:watch": "pnpm --filter \"./packages/**\" -r run dev --parallel",
+    "playground": "pnpm --filter mastors-playground dev",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "clean": "pnpm -r run clean && rimraf node_modules"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0",
+    "@vitest/coverage-v8": "^1.6.0",
+    "eslint": "^8.57.0",
+    "rimraf": "^5.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.4.0",
+    "vite": "^5.2.0",
+    "vitest": "^1.6.0"
+  },
+  "dependencies": {
+    "culori": "^4.0.0",
+    "style-dictionary": "^4.0.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "typescript": "^5.4.0"
+    }
+  }
+}

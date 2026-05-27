@@ -1,0 +1,36 @@
+{
+  "name": "@mastors/plugin-webpack",
+  "version": "0.1.0",
+  "description": "webpack/Turbopack plugin for Mastors — build-time CSS compilation",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format esm --dts",
+    "dev": "tsup src/index.ts --format esm --dts --watch",
+    "clean": "rimraf dist"
+  },
+  "dependencies": {
+    "@mastors/types": "workspace:*",
+    "@mastors/compiler": "workspace:*",
+    "@mastors/api": "workspace:*"
+  },
+  "peerDependencies": {
+    "webpack": ">=5.0.0"
+  },
+  "peerDependenciesMeta": {
+    "webpack": { "optional": true }
+  },
+  "devDependencies": {
+    "webpack": "^5.91.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.4.0",
+    "rimraf": "^5.0.0"
+  }
+}

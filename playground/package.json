@@ -1,0 +1,26 @@
+{
+  "name": "mastors-playground",
+  "version": "0.1.0",
+  "description": "Interactive Mastors playground — explore intent resolution in the browser",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@mastors/api": "workspace:*",
+    "@mastors/core": "workspace:*",
+    "@mastors/compiler": "workspace:*",
+    "@mastors/schemas": "workspace:*",
+    "@mastors/tokens": "workspace:*",
+    "@mastors/types": "workspace:*",
+    "@mastors/utils": "workspace:*",
+    "@mastors/accessibility": "workspace:*"
+  },
+  "devDependencies": {
+    "vite": "^5.2.0",
+    "typescript": "^5.4.0"
+  }
+}

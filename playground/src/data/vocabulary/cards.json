@@ -1,0 +1,168 @@
+{
+  "id": "cards",
+  "label": "Cards",
+  "icon": "fa-solid fa-id-card",
+  "description": "Surface containers for grouping related content with visual hierarchy.",
+  "intents": [
+    {
+      "id": "card.base",
+      "label": "Base Card",
+      "shortLabel": "card.base",
+      "description": "Minimal flat card with subtle background, border, and consistent padding. The foundational surface for all card variants.",
+      "semanticRole": "region",
+      "htmlTag": "div",
+      "ariaRole": null,
+      "ariaLandmark": false,
+      "status": "stable",
+      "since": "0.1.0",
+      "mastors": {
+        "declaration": "<div intent=\"card.base\">\n  <!-- card content here -->\n</div>",
+        "config": "// mastors.config.ts\nexport default defineConfig({\n  vocabulary: [\n    'card.base'\n  ]\n});",
+        "description": "Declare intent on any container element. Mastors resolves background, border, radius and padding from tokens automatically."
+      },
+      "preview": {
+        "type": "card",
+        "title": "card.base",
+        "body": "This element is styled by the Mastors semantic resolver. The intent identifier maps to design tokens for spacing, shadow, radius, and color automatically.",
+        "actions": [
+          { "label": "Primary",   "variant": "primary"   },
+          { "label": "Secondary", "variant": "secondary" }
+        ]
+      },
+      "cssProperties": ["background-color","border-radius","padding","border-width","border-style","border-color","color"],
+      "tokenRefs": [
+        { "property": "background-color", "token": "token.color.surface.base",  "description": "Card surface background" },
+        { "property": "border-radius",    "token": "token.radius.md",           "description": "Medium corner radius" },
+        { "property": "padding",          "token": "token.space.inset.md",      "description": "Inner content spacing" },
+        { "property": "border-color",     "token": "token.color.border.subtle", "description": "Subtle border separation" }
+      ],
+      "a11y": {
+        "wcagLevel": "AA",
+        "wcagCriteria": [
+          { "id": "1.4.3", "name": "Contrast (Minimum)",    "level": "AA"  },
+          { "id": "1.3.1", "name": "Info and Relationships", "level": "A"   },
+          { "id": "1.3.6", "name": "Identify Purpose",       "level": "AAA" }
+        ],
+        "ariaAttributes": [],
+        "focusable": false,
+        "notes": [
+          "Ensure text within card meets 4.5:1 contrast ratio against card background.",
+          "Use a landmark role (region, article, or section) for semantically important cards.",
+          "Cards grouping interactive content should use role='group' or role='article'."
+        ],
+        "hints": []
+      },
+      "variants": ["elevated","elevated.interactive"],
+      "modifiers": [],
+      "relatedIntents": ["card.elevated","card.elevated.interactive"]
+    },
+    {
+      "id": "card.elevated",
+      "label": "Elevated Card",
+      "shortLabel": "card.elevated",
+      "description": "Card with drop shadow elevation, conveying raised depth above the page surface.",
+      "semanticRole": "region",
+      "htmlTag": "div",
+      "ariaRole": null,
+      "ariaLandmark": false,
+      "status": "stable",
+      "since": "0.1.0",
+      "mastors": {
+        "declaration": "<div intent=\"card.elevated\">\n  <!-- card content here -->\n</div>",
+        "config": "// mastors.config.ts\nexport default defineConfig({\n  vocabulary: [\n    'card.elevated'\n  ]\n});",
+        "description": "Mastors resolves the correct shadow scale from your token set. Elevation depth is derived from token.shadow.md."
+      },
+      "preview": {
+        "type": "card",
+        "title": "card.elevated",
+        "body": "Elevated cards use shadow tokens to communicate depth. Mastors resolves the correct shadow scale from your token set automatically.",
+        "actions": [
+          { "label": "Primary",   "variant": "primary"   },
+          { "label": "Secondary", "variant": "secondary" }
+        ]
+      },
+      "cssProperties": ["background-color","border-radius","padding","border-width","border-style","border-color","box-shadow","color"],
+      "tokenRefs": [
+        { "property": "background-color", "token": "token.color.surface.elevated", "description": "Elevated surface background" },
+        { "property": "border-radius",    "token": "token.radius.md",              "description": "Medium corner radius" },
+        { "property": "padding",          "token": "token.space.inset.md",         "description": "Inner content spacing" },
+        { "property": "box-shadow",       "token": "token.shadow.md",              "description": "Medium elevation shadow" },
+        { "property": "border-color",     "token": "token.color.border.subtle",    "description": "Subtle border separation" }
+      ],
+      "a11y": {
+        "wcagLevel": "AA",
+        "wcagCriteria": [
+          { "id": "1.4.3", "name": "Contrast (Minimum)",    "level": "AA" },
+          { "id": "1.3.1", "name": "Info and Relationships", "level": "A"  }
+        ],
+        "ariaAttributes": [],
+        "focusable": false,
+        "notes": [
+          "Shadow alone must not be the only visual differentiator — use border or background contrast too.",
+          "Ensure 3:1 contrast between card surface and page background per WCAG 1.4.11."
+        ],
+        "hints": []
+      },
+      "variants": ["interactive"],
+      "modifiers": [],
+      "relatedIntents": ["card.base","card.elevated.interactive"]
+    },
+    {
+      "id": "card.elevated.interactive",
+      "label": "Interactive Elevated Card",
+      "shortLabel": "card.elevated.interactive",
+      "description": "Elevated card that responds to hover and focus with transform and shadow transitions. Fully keyboard-navigable.",
+      "semanticRole": "button",
+      "htmlTag": "div",
+      "ariaRole": "button",
+      "ariaLandmark": false,
+      "status": "stable",
+      "since": "0.1.0",
+      "mastors": {
+        "declaration": "<div intent=\"card.elevated.interactive\"\n     tabindex=\"0\"\n     role=\"button\"\n     aria-label=\"Open details\">\n  <!-- interactive card content -->\n</div>",
+        "config": "// mastors.config.ts\nexport default defineConfig({\n  vocabulary: [\n    'card.elevated.interactive'\n  ]\n});",
+        "description": "Interactive cards lift on hover and receive a visible focus ring on keyboard focus. Transition timing is resolved from motion tokens. prefers-reduced-motion is honoured automatically."
+      },
+      "preview": {
+        "type": "card",
+        "title": "card.elevated.interactive",
+        "body": "Interactive cards lift on hover and receive a visible focus ring on keyboard focus. Transition timing is resolved from motion tokens.",
+        "actions": [
+          { "label": "Primary",   "variant": "primary"   },
+          { "label": "Secondary", "variant": "secondary" }
+        ]
+      },
+      "cssProperties": ["background-color","border-radius","padding","border-width","border-style","border-color","box-shadow","cursor","transition","transform","outline"],
+      "tokenRefs": [
+        { "property": "background-color", "token": "token.color.surface.elevated", "description": "Elevated surface background" },
+        { "property": "border-radius",    "token": "token.radius.md",              "description": "Medium corner radius" },
+        { "property": "padding",          "token": "token.space.inset.md",         "description": "Inner content spacing" },
+        { "property": "box-shadow",       "token": "token.shadow.md",              "description": "Base elevation shadow" },
+        { "property": "transition",       "token": "token.motion.duration.fast",   "description": "Hover/focus transition speed" },
+        { "property": "outline",          "token": "token.color.focus.ring",       "description": "Keyboard focus ring color" }
+      ],
+      "a11y": {
+        "wcagLevel": "AA",
+        "wcagCriteria": [
+          { "id": "1.4.3", "name": "Contrast (Minimum)",          "level": "AA"  },
+          { "id": "2.1.1", "name": "Keyboard",                    "level": "A"   },
+          { "id": "2.4.7", "name": "Focus Visible",               "level": "AA"  },
+          { "id": "2.5.3", "name": "Label in Name",               "level": "A"   },
+          { "id": "2.3.3", "name": "Animation from Interactions", "level": "AAA" }
+        ],
+        "ariaAttributes": ["tabindex=\"0\"","role=\"button\"","aria-label"],
+        "focusable": true,
+        "notes": [
+          "Must have a visible focus ring with 3:1 contrast against adjacent colours.",
+          "Honour prefers-reduced-motion — transition is auto-disabled by the resolver.",
+          "If card is the only interactive element inside, use role='button' and tabindex='0'.",
+          "Provide an aria-label describing the card's action or destination."
+        ],
+        "hints": []
+      },
+      "variants": [],
+      "modifiers": [],
+      "relatedIntents": ["card.base","card.elevated"]
+    }
+  ]
+}

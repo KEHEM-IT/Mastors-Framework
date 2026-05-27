@@ -1,0 +1,1469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mastors Framework Development - Complete Prompt Sequence</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            text-align: center;
+            padding: 40px 0;
+            border-bottom: 3px solid #2c3e50;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .header .subtitle {
+            font-size: 1.2em;
+            color: #7f8c8d;
+            margin-bottom: 20px;
+        }
+
+        .header .directory {
+            background: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1em;
+            color: #e74c3c;
+            margin-top: 20px;
+        }
+
+        .intro {
+            background: #3498db;
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+        }
+
+        .intro h2 {
+            margin-bottom: 15px;
+        }
+
+        .intro ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .intro li {
+            padding: 5px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .intro li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .toc {
+            background: #ecf0f1;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+        }
+
+        .toc h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .toc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .toc-item {
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #3498db;
+        }
+
+        .toc-item a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+
+        .toc-item a:hover {
+            color: #3498db;
+        }
+
+        .prompt-section {
+            margin-bottom: 60px;
+            page-break-inside: avoid;
+        }
+
+        .prompt-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 8px 8px 0 0;
+            margin-bottom: 0;
+        }
+
+        .prompt-header h2 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .prompt-number {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+
+        .prompt-content {
+            background: white;
+            border: 2px solid #667eea;
+            border-top: none;
+            padding: 30px;
+            border-radius: 0 0 8px 8px;
+        }
+
+        .prompt-content h3 {
+            color: #2c3e50;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ecf0f1;
+        }
+
+        .prompt-content h3:first-child {
+            margin-top: 0;
+        }
+
+        .prompt-content ul, .prompt-content ol {
+            margin-left: 30px;
+            margin-bottom: 20px;
+        }
+
+        .prompt-content li {
+            margin-bottom: 10px;
+        }
+
+        .code-block {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .highlight {
+            background: #fff3cd;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: 500;
+        }
+
+        .critical-box {
+            background: #ffe5e5;
+            border-left: 4px solid #e74c3c;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .critical-box h4 {
+            color: #e74c3c;
+            margin-bottom: 10px;
+        }
+
+        .info-box {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .info-box h4 {
+            color: #2196f3;
+            margin-bottom: 10px;
+        }
+
+        .success-box {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .success-box h4 {
+            color: #4caf50;
+            margin-bottom: 10px;
+        }
+
+        .notes-section {
+            background: #f8f9fa;
+            padding: 40px;
+            border-radius: 8px;
+            margin-top: 60px;
+        }
+
+        .notes-section h2 {
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+
+        .notes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .note-card {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .note-card h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .note-card h3:before {
+            content: "▸";
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+
+        .checklist {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .checklist li {
+            padding: 8px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .checklist li:before {
+            content: "☐";
+            position: absolute;
+            left: 0;
+            font-size: 1.2em;
+            color: #95a5a6;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 60px;
+            border-top: 3px solid #2c3e50;
+            color: #7f8c8d;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                padding: 20px;
+            }
+            .prompt-section {
+                page-break-inside: avoid;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            .header h1 {
+                font-size: 1.8em;
+            }
+            .toc-grid, .notes-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🎨 MASTORS FRAMEWORK</h1>
+            <div class="subtitle">Intent-Based Styling for the Future Web</div>
+            <div class="subtitle">Complete Development Prompt Sequence</div>
+            <div class="directory">📁 Project Directory: D:\Web\Mastors CDN\Framework</div>
+        </div>
+
+        <!-- Introduction -->
+        <div class="intro">
+            <h2>📋 About This Document</h2>
+            <p style="margin-bottom: 15px;">This document contains 20 sequential prompts to build the complete Mastors Framework from scratch. Each prompt builds on the previous work and must be executed in order.</p>
+            <ul>
+                <li>Each prompt is self-contained with clear tasks</li>
+                <li>All file operations target the specified directory</li>
+                <li>Claude can use command line and filesystem operations</li>
+                <li>Covers complete Phase 1 & 2 from the roadmap</li>
+                <li>Excludes AI integration and future ecosystem features</li>
+            </ul>
+        </div>
+
+        <!-- Table of Contents -->
+        <div class="toc">
+            <h2>📑 Table of Contents</h2>
+            <div class="toc-grid">
+                <div class="toc-item"><a href="#prompt-1">1. Project Foundation & Architecture</a></div>
+                <div class="toc-item"><a href="#prompt-2">2. Type System & Core Interfaces</a></div>
+                <div class="toc-item"><a href="#prompt-3">3. Semantic Schema System</a></div>
+                <div class="toc-item"><a href="#prompt-4">4. Design Token Integration</a></div>
+                <div class="toc-item"><a href="#prompt-5">5. Core Semantic Resolver Engine</a></div>
+                <div class="toc-item"><a href="#prompt-6">6. Accessibility Guard Layer</a></div>
+                <div class="toc-item"><a href="#prompt-7">7. CSS Output Compiler</a></div>
+                <div class="toc-item"><a href="#prompt-8">8. Intent Declaration API</a></div>
+                <div class="toc-item"><a href="#prompt-9">9. React Adapter & Hooks</a></div>
+                <div class="toc-item"><a href="#prompt-10">10. Vite Plugin</a></div>
+                <div class="toc-item"><a href="#prompt-11">11. Vue 3 Adapter</a></div>
+                <div class="toc-item"><a href="#prompt-12">12. Svelte Adapter</a></div>
+                <div class="toc-item"><a href="#prompt-13">13. CLI Tool</a></div>
+                <div class="toc-item"><a href="#prompt-14">14. VSCode Extension</a></div>
+                <div class="toc-item"><a href="#prompt-15">15. Testing Infrastructure</a></div>
+                <div class="toc-item"><a href="#prompt-16">16. Developer Playground</a></div>
+                <div class="toc-item"><a href="#prompt-17">17. Documentation Site</a></div>
+                <div class="toc-item"><a href="#prompt-18">18. Example Projects</a></div>
+                <div class="toc-item"><a href="#prompt-19">19. Build & Release Config</a></div>
+                <div class="toc-item"><a href="#prompt-20">20. Performance & Final Polish</a></div>
+            </div>
+        </div>
+
+        <!-- Prompt 1 -->
+        <div class="prompt-section" id="prompt-1">
+            <div class="prompt-header">
+                <div class="prompt-number">PROMPT 1 of 20</div>
+                <h2>Project Foundation & Architecture Setup</h2>
+            </div>
+            <div class="prompt-content">
+                <p><strong>Working directory:</strong> <code>D:\Web\Mastors CDN\Framework</code></p>
+                
+                <p>I need you to set up the foundational architecture for the Mastors Intent-Based Styling Framework based on the thesis paper.</p>
+
+                <h3>TASKS:</h3>
+                <ol>
+                    <li>Create the complete project structure with all necessary folders</li>
+                    <li>Initialize package.json with all dependencies (TypeScript, Vite, build tools)</li>
+                    <li>Set up TypeScript configuration (tsconfig.json) for a modern build system</li>
+                    <li>Create the basic folder architecture:
+                        <ul>
+                            <li><code>/core</code> (semantic resolver engine)</li>
+                            <li><code>/compiler</code> (output compiler)</li>
+                            <li><code>/api</code> (intent declaration API)</li>
+                            <li><code>/adapters</code> (framework adapters - React, Vue, Svelte)</li>
+                            <li><code>/plugins</code> (Vite, webpack plugins)</li>
+                            <li><code>/accessibility</code> (WCAG guard layer)</li>
+                            <li><code>/schemas</code> (semantic vocabulary definitions)</li>
+                            <li><code>/tokens</code> (design token integration)</li>
+                            <li><code>/utils</code> (helper functions)</li>
+                            <li><code>/types</code> (TypeScript definitions)</li>
+                        </ul>
+                    </li>
+                    <li>Create initial README.md with project overview</li>
+                    <li>Set up .gitignore for Node.js/TypeScript project</li>
+                    <li>Create initial ARCHITECTURE.md documenting the 5-layer system</li>
+                </ol>
+
+                <div class="critical-box">
+                    <h4>CRITICAL REQUIREMENTS:</h4>
+                    <ul>
+                        <li>Use modern ES modules</li>
+                        <li>Target Node 18+</li>
+                        <li>Set up for monorepo structure (using pnpm workspaces)</li>
+                        <li>Include dev dependencies for testing (Vitest)</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>📝 Output Location:</h4>
+                    <p>Write all files directly to: <strong>D:\Web\Mastors CDN\Framework</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Prompt 2 -->
+        <div class="prompt-section" id="prompt-2">
+            <div class="prompt-header">
+                <div class="prompt-number">PROMPT 2 of 20</div>
+                <h2>Type System & Core Interfaces</h2>
+            </div>
+            <div class="prompt-content">
+                <p><strong>Working directory:</strong> <code>D:\Web\Mastors CDN\Framework</code></p>
+                
+                <p>Now create the complete TypeScript type system and core interfaces for Mastors.</p>
+
+                <h3>TASKS:</h3>
+                <ol>
+                    <li>In <code>/types</code> folder, create:
+                        <ul>
+                            <li><code>intent.types.ts</code> (Intent identifier types, semantic segments)</li>
+                            <li><code>schema.types.ts</code> (Semantic schema structure)</li>
+                            <li><code>tokens.types.ts</code> (Design token types)</li>
+                            <li><code>resolver.types.ts</code> (Resolver configuration and output types)</li>
+                            <li><code>accessibility.types.ts</code> (WCAG compliance types)</li>
+                            <li><code>output.types.ts</code> (CSS output types)</li>
+                        </ul>
+                    </li>
+                    <li>Define the core interfaces:
+                        <ul>
+                            <li>IntentDeclaration</li>
+                            <li>SemanticSchema</li>
+                            <li>ResolverContext</li>
+                            <li>TokenMapping</li>
+                            <li>AccessibilityRule</li>
+                            <li>CSSOutput</li>
+                        </ul>
+                    </li>
+                    <li>Create semantic vocabulary type definitions with dot-notation support</li>
+                    <li>Set up strong typing for the semantic schema validation</li>
+                    <li>Create utility types for type inference from schema</li>
+                </ol>
+
+                <div class="critical-box">
+                    <h4>REQUIREMENTS:</h4>
+                    <ul>
+                        <li>Full TypeScript strict mode compliance</li>
+                        <li>Extensive JSDoc comments</li>
+                        <li>Export all types from index.ts</li>
+                        <li>Support for template literal types for dot notation</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>📝 Output Location:</h4>
+                    <p>Write to: <strong>D:\Web\Mastors CDN\Framework\types\</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Prompt 3 -->
+        <div class="prompt-section" id="prompt-3">
+            <div class="prompt-header">
+                <div class="prompt-number">PROMPT 3 of 20</div>
+                <h2>Semantic Schema System</h2>
+            </div>
+            <div class="prompt-content">
+                <p><strong>Working directory:</strong> <code>D:\Web\Mastors CDN\Framework</code></p>
+                
+                <p>Create the semantic schema definition and validation system.</p>
+
+                <h3>TASKS:</h3>
+                <ol>
+                    <li>In <code>/schemas</code> folder, create:
+                        <ul>
+                            <li><code>schema-builder.ts</code> (Schema definition builder with type inference)</li>
+                            <li><code>schema-validator.ts</code> (Runtime schema validation)</li>
+                            <li><code>default-vocabulary.ts</code> (Built-in semantic vocabulary)</li>
+                            <li><code>schema-loader.ts</code> (Load and merge schemas)</li>
+                        </ul>
+                    </li>
+                    <li>Implement defineSchema() function with full type safety</li>
+                    <li>Create the default vocabulary covering:
+                        <ul>
+                            <li>Layout intents (container, grid, flex)</li>
+                            <li>Typography intents (heading, body, caption)</li>
+                            <li>Interactive intents (button, link, input)</li>
+                            <li>Feedback intents (alert, toast, badge)</li>
+                            <li>Media intents (image, video)</li>
+                            <li>Navigation intents (nav, breadcrumb)</li>
+                        </ul>
+                    </li>
+                    <li>Build schema inheritance and composition system</li>
+                    <li>Create schema extension API for custom vocabularies</li>
+                </ol>
+
+                <div class="info-box">
+                    <h4>💡 Example Output:</h4>
+                    <p>The schema should support definitions like:</p>
+                    <div class="code-block">"card.elevated.interactive": {
+  spacing: { x: "token.space.4", y: "token.space.3" },
+  shadow: "token.shadow.elevated",
+  radius: "token.radius.lg",
+  interaction: { hover: "lift", focus: "ring.primary" },
+  a11y: { role: "article", contrast: "AA" }
+}</div>
+                </div>
+
+                <div class="info-box">
+                    <h4>📝 Output Location:</h4>
+                    <p>Write to: <strong>D:\Web\Mastors CDN\Framework\schemas\</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Prompt 4 -->
+        <div class="prompt-section" id="prompt-4">
+            <div class="prompt-header">
+                <div class="prompt-number">PROMPT 4 of 20</div>
+                <h2>Design Token Integration System</h2>
+            </div>
+            <div class="prompt-content">
+                <p><strong>Working directory:</strong> <code>D:\Web\Mastors CDN\Framework</code></p>
+                
+                <p>Build the design token integration layer supporting multiple token formats.</p>
+
+                <h3>TASKS:</h3>
+                <ol>
+                    <li>In <code>/tokens</code> folder, create:
+                        <ul>
+                            <li><code>token-parser.ts</code> (Parse Style Dictionary, Figma Tokens, W3C tokens)</li>
+                            <li><code>token-resolver.ts</code> (Resolve token references in schemas)</li>
+                            <li><code>token-types.ts</code> (Token format type definitions)</li>
+                            <li><code>token-transformer.ts</code> (Convert between token formats)</li>
+                        </ul>
+                    </li>
+                    <li>Support token formats:
+                        <ul>
+                            <li>Style Dictionary JSON</li>
+                            <li>Figma Tokens JSON</li>
+                            <li>W3C Design Tokens Community Group format</li>
+                            <li>CSS Custom Properties</li>
+                        </ul>
+                    </li>
+                    <li>Implement token reference resolution (e.g., "token.space.4" → actual value)</li>
+                    <li>Create token validation (ensure referenced tokens exist)</li>
+                    <li>Build token theme support (light/dark, brand variants)</li>
+                    <li>Create example token files:
+                        <ul>
+                            <li><code>tokens/examples/base-tokens.json</code></li>
+                            <li><code>tokens/examples/dark-theme.json</code></li>
+                            <li><code>tokens/examples/figma-tokens.json</code></li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <div class="info-box">
+                    <h4>📝 Output Location:</h4>
+                    <p>Write to: <strong>D:\Web\Mastors CDN\Framework\tokens\</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Prompt 5 -->
+        <div class="prompt-section" id="prompt-5">
+            <div class="prompt-header">
+                <div class="prompt-number">PROMPT 5 of 20</div>
+                <h2>Core Semantic Resolver Engine</h2>
+            </div>
+            <div class="prompt-content">
+                <p><strong>Working directory:</strong> <code>D:\Web\Mastors CDN\Framework</code></p>
+                
+                <p>Implement the core semantic resolver engine - the "brain" of Mastors.</p>
+
+                <h3>TASKS:</h3>
+                <ol>
+                    <li>In <code>/core</code> folder, create:
+                        <ul>
+                            <li><code>resolver.ts</code> (Main resolver class)</li>
+                            <li><code>intent-parser.ts</code> (Parse dot-notation intent identifiers)</li>
+                            <li><code>context-inference.ts</code> (Apply context-aware transformations)</li>
+                            <li><code>token-expansion.ts</code> (Expand token references)</li>
+                            <li><code>cache-manager.ts</code> (Cache resolved intents for performance)</li>
+                        </ul>
+                    </li>
+                    <li>Implement the 3-stage resolver algorithm:
+                        <div class="info-box" style="margin-top: 15px;">
+                            <h4>STAGE 1: Lexical Parsing</h4>
+                            <ul>
+                                <li>Parse "card.elevated.interactive" → ["card", "elevated", "interactive"]</li>
+                                <li>Validate segments against schema</li>
+                            </ul>
+                        </div>
+                        <div class="info-box">
+                            <h4>STAGE 2: Token Expansion</h4>
+                            <ul>
+                                <li>Resolve token references</li>
+                                <li>Apply inheritance from base intents</li>
+                            </ul>
+                        </div>
+                        <div class="info-box">
+                            <h4>STAGE 3: Context Inference</h4>
+                            <ul>
+                                <li>Apply viewport context</li>
+                                <li>Apply parent component context</li>
+                                <li>Apply theme context</li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>Create deterministic resolver (same input = same output)</li>
+                    <li>Build resolver configuration system</li>
+                    <li>Implement resolver plugins API for extensibility</li>
+                </ol>
+
+                <div class="success-box">
+                    <h4>🎯 PERFORMANCE TARGET:</h4>
+                    <p><strong>&lt;50ms</strong> for 1,000 intent resolutions</p>
+                </div>
+
+                <div class="info-box">
+                    <h4>📝 Output Location:</h4>
+                    <p>Write to: <strong>D:\Web\Mastors CDN\Framework\core\</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Prompt 6 -->
+        <div class="prompt-section" id="prompt-6">
+            <div class="prompt-header">
+                <div class="prompt-number">PROMPT 6 of 20</div>
+                <h2>Accessibility Guard Layer</h2>
+            </div>
+            <div class="prompt-content">
+                <p><strong>Working directory:</strong> <code>D:\Web\Mastors CDN\Framework</code></p>
+                
+                <p>Build the accessibility enforcement system (WCAG 2.2 compliance).</p>
+
+                <h3>TASKS:</h3>
+                <ol>
+                    <li>In <code>/accessibility</code> folder, create:
+                        <ul>
+                            <li><code>contrast-checker.ts</code> (WCAG AA/AAA contrast ratio validation)</li>
+                            <li><code>aria-generator.ts</code> (Automatic ARIA attribute generation)</li>
+                            <li><code>focus-manager.ts</code> (Focus ring and keyboard navigation)</li>
+                            <li><code>motion-guard.ts</code> (prefers-reduced-motion enforcement)</li>
+                            <li><code>accessibility-report.ts</code> (Generate a11y compliance manifest)</li>
+                        </ul>
+                    </li>
+                    <li>Implement WCAG 2.2 contrast checking:
+                        <ul>
+                            <li>Normal text: 4.5:1 (AA), 7:1 (AAA)</li>
+                            <li>Large text: 3:1 (AA), 4.5:1 (AAA)</li>
+                            <li>UI components: 3:1 minimum</li>
+                        </ul>
+                    </li>
+                    <li>Create ARIA role recommendations based on intent</li>
+                    <li>Build focus-visible polyfill for cross-browser support</li>
+                    <li>Implement accessibility warnings (dev mode) vs enforcement (CI mode)</li>
+                    <li>Create accessibility manifest output format (JSON)</li>
+                </ol>
+
+                <div class="info-box">
+                    <h4>📝 Output Location:</h4>
+                    <p>Write to: <strong>D:\Web\Mastors CDN\Framework\accessibility\</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Prompt 7 -->
+        <div class="prompt-section" id="prompt-7">
+            <div class="prompt-header">
+                <div class="prompt-number">PROMPT 7 of 20</div>
+                <h2>CSS Output Compiler (Zero-Runtime)</h2>
+            </div>
+            <div class="prompt-content">
+                <p><strong>Working directory:</strong> <code>D:\Web\Mastors CDN\Framework</code></p>
+                
+                <p>Build the output compiler that generates optimized atomic CSS.</p>
+
+                <h3>TASKS:</h3>
+                <ol>
+                    <li>In <code>/compiler</code> folder, create:
+                        <ul>
+                            <li><code>compiler.ts</code> (Main compilation orchestrator)</li>
+                            <li><code>atomic-generator.ts</code> (Generate atomic CSS classes)</li>
+                            <li><code>class-deduplicator.ts</code> (Deduplicate identical classes)</li>
+                            <li><code>css-optimizer.ts</code> (Minify and optimize output)</li>
+                            <li><code>critical-css.ts</code> (Extract critical CSS)</li>
+                            <li><code>output-writer.ts</code> (Write CSS files)</li>
+                        </ul>
+                    </li>
+                    <li>Implement atomic CSS generation:
+                        <ul>
+                            <li>One class per unique style property combination</li>
+                            <li>Automatic class naming (hash-based or semantic)</li>
+                            <li>Responsive variant generation</li>
+                            <li>Theme variant generation</li>
+                        </ul>
+                    </li>
+                    <li>Build CSS purging (remove unused classes)</li>
+                    <li>Create source map generation for debugging</li>
+                    <li>Implement multiple output formats:
+                        <ul>
+                            <li>Single CSS file</li>
+                            <li>CSS Modules</li>
+                            <li>CSS-in-JS objects (for framework adapters)</li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <div class="success-box">
+                    <h4>🎯 PERFORMANCE TARGET:</h4>
+                    <p><strong>&lt;100ms</strong> incremental builds</p>
+                </div>
+
+                <div class="info-box">
+                    <h4>📝 Output Location:</h4>
+                    <p>Write to: <strong>D:\Web\Mastors CDN\Framework\compiler\</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Prompt 8 -->
+        <div class="prompt-section" id="prompt-8">
+            <div class="prompt-header">
+                <div class="prompt-number">PROMPT 8 of 20</div>
+                <h2>Intent Declaration API (Public API)</h2>
+            </div>
+            <div class="prompt-content">
+                <p><strong>Working directory:</strong> <code>D:\Web\Mastors CDN\Framework</code></p>
+                
+                <p>Create the public-facing developer API for declaring intents.</p>
+
+                <h3>TASKS:</h3>
+                <ol>
+                    <li>In <code>/api</code> folder, create:
+                        <ul>
+                            <li><code>intent.ts</code> (Main intent() function)</li>
+                            <li><code>compose.ts</code> (Compose multiple intents)</li>
+                            <li><code>semantics.ts</code> (Define global semantic rules)</li>
+                            <li><code>intent-inspector.ts</code> (Dev tools integration)</li>
+                        </ul>
+                    </li>
+                    <li>Implement the core API functions:
+                        <div class="code-block">intent(identifier: string): IntentDeclaration
+compose(...intents: IntentDeclaration[]): IntentDeclaration
+semantics(rules: SemanticRules): void</div>
+                    </li>
+                    <li>Build full TypeScript autocomplete support:
+                        <ul>
+                            <li>Infer valid intent identifiers from schema</li>
+                            <li>Provide inline documentation</li>
+                            <li>Type-safe intent composition</li>
+                        </ul>
+                    </li>
+                    <li>Create intent inspector for debugging:
+                        <ul>
+                            <li>Show full resolution chain</li>
+                            <li>Display applied tokens</li>
+                            <li>Show accessibility warnings</li>
+                        </ul>
+                    </li>
+                    <li>Implement runtime development warnings (invalid intents, missing tokens)</li>
+                </ol>
+
+                <div class="info-box">
+                    <h4>📝 Output Location:</h4>
+                    <p>Write to: <strong>D:\Web\Mastors CDN\Framework\api\</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Prompt 9 -->
+        <div class="prompt-section" id="prompt-9">
+            <div class="prompt-header">
+                <div class="prompt-number">PROMPT 9 of 20</div>
+                <h2>React Adapter & Hooks</h2>
+            </div>
+            <div class="prompt-content">
+                <p><strong>Working directory:</strong> <code>D:\Web\Mastors CDN\Framework</code></p>
+                
+                <p>Build the React framework adapter with hooks and JSX support.</p>
+
+                <h3>TASKS:</h3>
+                <ol>
+                    <li>In <code>/adapters/react</code> folder, create:
+                        <ul>
+                            <li><code>useIntent.ts</code> (React hook for intents)</li>
+                            <li><code>MastorsProvider.tsx</code> (Context provider for schema/tokens)</li>
+                            <li><code>jsx-factory.ts</code> (JSX element factory with intent support)</li>
+                            <li><code>ssr-support.ts</code> (Server-side rendering utilities)</li>
+                        </ul>
+                    </li>
+                    <li>Implement useIntent() hook:
+                        <div class="code-block">const className = useIntent("card.elevated.interactive");</div>
+                    </li>
+                    <li>Create JSX element bindings:
+                        <div class="code-block">&lt;Mastors.div intent="card.elevated.interactive"&gt;</div>
+                    </li>
+                    <li>Build Next.js integration:
+                        <ul>
+                            <li>App Router support</li>
+                            <li>Server Components compatibility</li>
+                            <li>CSS extraction for RSC</li>
+                        </ul>
+                    </li>
+                    <li>Create example components demonstrating usage</li>
+                    <li>Write React-specific documentation</li>
+                </ol>
+
+                <div class="info-box">
+                    <h4>📝 Output Location:</h4>
+                    <p>Write to: <strong>D:\Web\Mastors CDN\Framework\adapters\react\</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Prompt 10 -->
+        <div class="prompt-section" id="prompt-10">
+            <div class="prompt-header">
+                <div class="prompt-number">PROMPT 10 of 20</div>
+                <h2>Vite Plugin</h2>
+            </div>
+            <div class="prompt-content">
+                <p><strong>Working directory:</strong> <code>D:\Web\Mastors CDN\Framework</code></p>
+                
+                <p>Create the Vite build plugin for Mastors compilation.</p>
+
+                <h3>TASKS:</h3>
+                <ol>
+                    <li>In <code>/plugins/vite</code> folder, create:
+                        <ul>
+                            <li><code>index.ts</code> (Main Vite plugin export)</li>
+                            <li><code>hmr-handler.ts</code> (Hot module replacement support)</li>
+                            <li><code>dev-server.ts</code> (Development server integration)</li>
+                            <li><code>build-optimizer.ts</code> (Production build optimization)</li>
+                        </ul>
+                    </li>
+                    <li>Implement Vite plugin interface:
+                        <ul>
+                            <li>Transform step (compile intents during build)</li>
+                            <li>HMR updates (instant preview of intent changes)</li>
+                            <li>CSS injection (inject generated CSS)</li>
+                            <li>Virtual modules (expose schema types)</li>
+                        </ul>
+                    </li>
+                    <li>Create plugin configuration options:
+                        <ul>
+                            <li>Schema path</li>
+                            <li>Token path</li>
+                            <li>Output CSS path</li>
+                            <li>Accessibility mode (warn/enforce)</li>
+                        </ul>
+                    </li>
+                    <li>Build incremental compilation (only recompile changed intents)</li>
+                    <li>Create development overlay for accessibility warnings</li>
+                </ol>
+
+                <div class="info-box">
+                    <h4>📝 Output Location:</h4>
+                    <p>Write to: <strong>D:\Web\Mastors CDN\Framework\plugins\vite\</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Prompt 11 -->
+        <div class="prompt-section" id="prompt-11">
+            <div class="prompt-header">
+                <div class="prompt-number">PROMPT 11 of 20</div>
+                <h2>Vue 3 Adapter</h2>
+            </div>
+            <div class="prompt-content">
+                <p><strong>Working directory:</strong> <code>D:\Web\Mastors CDN\Framework</code></p>
+                
+                <p>Build the Vue 3 framework adapter.</p>
+
+                <h3>TASKS:</h3>
+                <ol>
+                    <li>In <code>/adapters/vue</code> folder, create:
+                        <ul>
+                            <li><code>useIntent.ts</code> (Vue composition API composable)</li>
+                            <li><code>plugin.ts</code> (Vue plugin for global registration)</li>
+                            <li><code>directives.ts</code> (v-intent directive)</li>
+                            <li><code>components.ts</code> (Mastors component wrappers)</li>
+                        </ul>
+                    </li>
+                    <li>Implement Vue 3 composable:
+                        <div class="code-block">const className = useIntent('card.elevated');</div>
+                    </li>
+                    <li>Create v-intent directive:
+                        <div class="code-block">&lt;div v-intent="'card.elevated.interactive'"&gt;</div>
+                    </li>
+                    <li>Build Nuxt 3 module</li>
+                    <li>Support Vue SFC &lt;style&gt; integration</li>
+                    <li>Create Vue-specific examples</li>
+                </ol>
+
+                <div class="info-box">
+                    <h4>📝 Output Location:</h4>
+                    <p>Write to: <strong>D:\Web\Mastors CDN\Framework\adapters\vue\</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Prompt 12 -->
+        <div class="prompt-section" id="prompt-12">
+            <div class="prompt-header">
+                <div class="prompt-number">PROMPT 12 of 20</div>
+                <h2>Svelte Adapter</h2>
+            </div>
+            <div class="prompt-content">
+                <p><strong>Working directory:</strong> <code>D:\Web\Mastors CDN\Framework</code></p>
+                
+                <p>Build the Svelte framework adapter.</p>
+
+                <h3>TASKS:</h3>
+                <ol>
+                    <li>In <code>/adapters/svelte</code> folder, create:
+                        <ul>
+                            <li><code>intent-store.ts</code> (Svelte store for intent state)</li>
+                            <li><code>preprocessor.ts</code> (Svelte preprocessor for &lt;style intent&gt;)</li>
+                            <li><code>actions.ts</code> (Svelte use:intent action)</li>
+                            <li><code>sveltekit-integration.ts</code> (SvelteKit plugin)</li>
+                        </ul>
+                    </li>
+                    <li>Implement Svelte action:
+                        <div class="code-block">&lt;div use:intent={'card.elevated'}&gt;</div>
+                    </li>
+                    <li>Create style preprocessor:
+                        <div class="code-block">&lt;style intent="card.elevated"&gt;</div>
+                    </li>
+                    <li>Build SvelteKit adapter</li>
+                    <li>Support SSR and hydration</li>
+                    <li>Create Svelte examples</li>
+                </ol>
+
+                <div class="info-box">
+                    <h4>📝 Output Location:</h4>
+                    <p>Write to: <strong>D:\Web\Mastors CDN\Framework\adapters\svelte\</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Prompt 13 -->
+        <div class="prompt-section" id="prompt-13">
+            <div class="prompt-header">
+                <div class="prompt-number">PROMPT 13 of 20</div>
+                <h2>CLI Tool</h2>
+            </div>
+            <div class="prompt-content">
+                <p><strong>Working directory:</strong> <code>D:\Web\Mastors CDN\Framework</code></p>
+                
+                <p>Create the Mastors CLI for development and build operations.</p>
+
+                <h3>TASKS:</h3>
+                <ol>
+                    <li>In <code>/cli</code> folder, create:
+                        <ul>
+                            <li><code>index.ts</code> (CLI entry point using commander.js)</li>
+                            <li><code>commands/init.ts</code> (Initialize new Mastors project)</li>
+                            <li><code>commands/build.ts</code> (Build production CSS)</li>
+                            <li><code>commands/dev.ts</code> (Development mode with watch)</li>
+                            <li><code>commands/validate.ts</code> (Validate schema and tokens)</li>
+                            <li><code>commands/inspect.ts</code> (Inspect resolved intent)</li>
+                        </ul>
+                    </li>
+                    <li>Implement CLI commands:
+                        <div class="code-block">mastors init
+mastors build
+mastors dev --watch
+mastors validate schema
+mastors inspect "card.elevated.interactive"</div>
+                    </li>
+                    <li>Create interactive schema builder (prompts)</li>
+                    <li>Build token import wizard (import from Figma, etc.)</li>
+                    <li>Implement accessibility audit command</li>
+                </ol>
+
+                <div class="info-box">
+                    <h4>📝 Output Location:</h4>
+                    <p>Write to: <strong>D:\Web\Mastors CDN\Framework\cli\</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Prompt 14 -->
+        <div class="prompt-section" id="prompt-14">
+            <div class="prompt-header">
+                <div class="prompt-number">PROMPT 14 of 20</div>
+                <h2>VSCode Extension Foundation</h2>
+            </div>
+            <div class="prompt-content">
+                <p><strong>Working directory:</strong> <code>D:\Web\Mastors CDN\Framework</code></p>
+                
+                <p>Create the VSCode extension for Mastors IntelliSense and tooling.</p>
+
+                <h3>TASKS:</h3>
+                <ol>
+                    <li>In <code>/vscode-extension</code> folder, create:
+                        <ul>
+                            <li><code>extension.ts</code> (Extension activation)</li>
+                            <li><code>completion-provider.ts</code> (Autocomplete for intent identifiers)</li>
+                            <li><code>hover-provider.ts</code> (Show resolved styles on hover)</li>
+                            <li><code>diagnostic-provider.ts</code> (Show accessibility warnings)</li>
+                            <li><code>webview-inspector.ts</code> (Visual intent inspector panel)</li>
+                        </ul>
+                    </li>
+                    <li>Implement IntelliSense features:
+                        <ul>
+                            <li>Autocomplete intent identifiers from schema</li>
+                            <li>Hover to show resolved CSS</li>
+                            <li>Inline accessibility warnings</li>
+                            <li>Schema validation errors</li>
+                        </ul>
+                    </li>
+                    <li>Create visual intent inspector webview</li>
+                    <li>Build "Go to schema definition" support</li>
+                    <li>Create extension package.json and vsix build</li>
+                </ol>
+
+                <div class="info-box">
+                    <h4>📝 Output Location:</h4>
+                    <p>Write to: <strong>D:\Web\Mastors CDN\Framework\vscode-extension\</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Prompt 15 -->
+        <div class="prompt-section" id="prompt-15">
+            <div class="prompt-header">
+                <div class="prompt-number">PROMPT 15 of 20</div>
+                <h2>Testing Infrastructure</h2>
+            </div>
+            <div class="prompt-content">
+                <p><strong>Working directory:</strong> <code>D:\Web\Mastors CDN\Framework</code></p>
+                
+                <p>Set up comprehensive testing infrastructure.</p>
+
+                <h3>TASKS:</h3>
+                <ol>
+                    <li>In <code>/tests</code> folder, create:
+                        <ul>
+                            <li><code>unit/</code> (Unit tests for all modules)</li>
+                            <li><code>integration/</code> (Integration tests for full pipeline)</li>
+                            <li><code>e2e/</code> (End-to-end framework adapter tests)</li>
+                            <li><code>fixtures/</code> (Test schemas, tokens, components)</li>
+                            <li><code>helpers/</code> (Test utilities)</li>
+                        </ul>
+                    </li>
+                    <li>Create test suites:
+                        <ul>
+                            <li>Resolver accuracy tests</li>
+                            <li>Token resolution tests</li>
+                            <li>Accessibility compliance tests</li>
+                            <li>CSS output validation tests</li>
+                            <li>Framework adapter tests</li>
+                        </ul>
+                    </li>
+                    <li>Set up Vitest configuration</li>
+                    <li>Create test coverage reporting (aim for &gt;80%)</li>
+                    <li>Build snapshot testing for CSS output</li>
+                    <li>Create performance benchmarks</li>
+                </ol>
+
+                <div class="info-box">
+                    <h4>📝 Output Location:</h4>
+                    <p>Write to: <strong>D:\Web\Mastors CDN\Framework\tests\</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Prompt 16 -->
+        <div class="prompt-section" id="prompt-16">
+            <div class="prompt-header">
+                <div class="prompt-number">PROMPT 16 of 20</div>
+                <h2>Developer Playground (Web App)</h2>
+            </div>
+            <div class="prompt-content">
+                <p><strong>Working directory:</strong> <code>D:\Web\Mastors CDN\Framework</code></p>
+                
+                <p>Build an interactive web-based playground for exploring Mastors.</p>
+
+                <h3>TASKS:</h3>
+                <ol>
+                    <li>In <code>/playground</code> folder, create a Vite + React app:
+                        <ul>
+                            <li><code>App.tsx</code> (Main playground interface)</li>
+                            <li><code>SchemaEditor.tsx</code> (Edit schema in real-time)</li>
+                            <li><code>IntentPreview.tsx</code> (Live preview of resolved intents)</li>
+                            <li><code>TokenEditor.tsx</code> (Edit design tokens)</li>
+                            <li><code>CSSOutput.tsx</code> (View generated CSS)</li>
+                        </ul>
+                    </li>
+                    <li>Features:
+                        <ul>
+                            <li>Split-pane editor (schema | preview | output)</li>
+                            <li>Real-time compilation</li>
+                            <li>Shareable playground URLs</li>
+                            <li>Export schema/tokens</li>
+                            <li>Accessibility inspector panel</li>
+                        </ul>
+                    </li>
+                    <li>Deploy configuration (Vercel/Netlify)</li>
+                </ol>
+
+                <div class="info-box">
+                    <h4>📝 Output Location:</h4>
+                    <p>Write to: <strong>D:\Web\Mastors CDN\Framework\playground\</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Prompt 17 -->
+        <div class="prompt-section" id="prompt-17">
+            <div class="prompt-header">
+                <div class="prompt-number">PROMPT 17 of 20</div>
+                <h2>Documentation Site</h2>
+            </div>
+            <div class="prompt-content">
+                <p><strong>Working directory:</strong> <code>D:\Web\Mastors CDN\Framework</code></p>
+                
+                <p>Create comprehensive documentation site using VitePress or Docusaurus.</p>
+
+                <h3>TASKS:</h3>
+                <ol>
+                    <li>In <code>/docs</code> folder, create:
+                        <ul>
+                            <li><code>index.md</code> (Home page)</li>
+                            <li><code>getting-started/</code> (Installation, Quick Start)</li>
+                            <li><code>concepts/</code> (Intent-Based Styling explanation)</li>
+                            <li><code>api-reference/</code> (Complete API docs)</li>
+                            <li><code>guides/</code> (Framework-specific guides)</li>
+                            <li><code>examples/</code> (Real-world examples)</li>
+                            <li><code>architecture/</code> (Technical deep-dive)</li>
+                        </ul>
+                    </li>
+                    <li>Content structure:
+                        <ul>
+                            <li>Getting Started Guide</li>
+                            <li>Core Concepts (3 Pillars)</li>
+                            <li>Schema Definition Guide</li>
+                            <li>Token Integration Guide</li>
+                            <li>Accessibility Guide</li>
+                            <li>Framework Adapters (React, Vue, Svelte)</li>
+                            <li>CLI Reference</li>
+                            <li>Migration from Tailwind</li>
+                        </ul>
+                    </li>
+                    <li>Configure deployment</li>
+                    <li>Add interactive code examples</li>
+                    <li>Create searchable docs</li>
+                </ol>
+
+                <div class="info-box">
+                    <h4>📝 Output Location:</h4>
+                    <p>Write to: <strong>D:\Web\Mastors CDN\Framework\docs\</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Prompt 18 -->
+        <div class="prompt-section" id="prompt-18">
+            <div class="prompt-header">
+                <div class="prompt-number">PROMPT 18 of 20</div>
+                <h2>Example Projects</h2>
+            </div>
+            <div class="prompt-content">
+                <p><strong>Working directory:</strong> <code>D:\Web\Mastors CDN\Framework</code></p>
+                
+                <p>Create example projects demonstrating Mastors usage.</p>
+
+                <h3>TASKS:</h3>
+                <ol>
+                    <li>In <code>/examples</code> folder, create:
+                        <ul>
+                            <li><code>react-dashboard/</code> (Complex React app with design system)</li>
+                            <li><code>vue-ecommerce/</code> (Vue 3 e-commerce site)</li>
+                            <li><code>svelte-blog/</code> (SvelteKit blog)</li>
+                            <li><code>accessibility-first/</code> (Fully accessible web app)</li>
+                            <li><code>multi-theme/</code> (App with 4+ themes)</li>
+                        </ul>
+                    </li>
+                    <li>Each example should demonstrate:
+                        <ul>
+                            <li>Real-world semantic schema</li>
+                            <li>Custom design tokens</li>
+                            <li>Accessibility compliance</li>
+                            <li>Responsive design</li>
+                            <li>Theme switching</li>
+                        </ul>
+                    </li>
+                    <li>Include README with setup instructions</li>
+                    <li>Deploy live demos</li>
+                </ol>
+
+                <div class="info-box">
+                    <h4>📝 Output Location:</h4>
+                    <p>Write to: <strong>D:\Web\Mastors CDN\Framework\examples\</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Prompt 19 -->
+        <div class="prompt-section" id="prompt-19">
+            <div class="prompt-header">
+                <div class="prompt-number">PROMPT 19 of 20</div>
+                <h2>Build & Release Configuration</h2>
+            </div>
+            <div class="prompt-content">
+                <p><strong>Working directory:</strong> <code>D:\Web\Mastors CDN\Framework</code></p>
+                
+                <p>Set up the build system and release automation.</p>
+
+                <h3>TASKS:</h3>
+                <ol>
+                    <li>Configure the monorepo build:
+                        <ul>
+                            <li>Set up pnpm workspaces</li>
+                            <li>Configure Turborepo or Nx for build orchestration</li>
+                            <li>Create build scripts for all packages</li>
+                        </ul>
+                    </li>
+                    <li>Set up release workflow:
+                        <ul>
+                            <li>Semantic versioning</li>
+                            <li>Automated changelog generation</li>
+                            <li>npm publishing configuration</li>
+                            <li>GitHub releases</li>
+                        </ul>
+                    </li>
+                    <li>Create CI/CD pipelines (GitHub Actions):
+                        <ul>
+                            <li>Run tests on PR</li>
+                            <li>Build all packages</li>
+                            <li>Publish to npm on tag</li>
+                            <li>Deploy docs and playground</li>
+                        </ul>
+                    </li>
+                    <li>Set up pre-commit hooks (Husky + lint-staged)</li>
+                </ol>
+
+                <div class="info-box">
+                    <h4>📝 Output Location:</h4>
+                    <p>Write to: <strong>D:\Web\Mastors CDN\Framework</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Prompt 20 -->
+        <div class="prompt-section" id="prompt-20">
+            <div class="prompt-header">
+                <div class="prompt-number">PROMPT 20 of 20</div>
+                <h2>Performance Optimization & Final Polish</h2>
+            </div>
+            <div class="prompt-content">
+                <p><strong>Working directory:</strong> <code>D:\Web\Mastors CDN\Framework</code></p>
+                
+                <p>Optimize performance and add final production-ready features.</p>
+
+                <h3>TASKS:</h3>
+                <ol>
+                    <li>Performance optimization:
+                        <ul>
+                            <li>Profile and optimize resolver (target &lt;50ms)</li>
+                            <li>Implement aggressive caching</li>
+                            <li>Optimize CSS output size</li>
+                            <li>Bundle size analysis and reduction</li>
+                        </ul>
+                    </li>
+                    <li>Add production features:
+                        <ul>
+                            <li>Error handling and recovery</li>
+                            <li>Detailed error messages</li>
+                            <li>Logging system</li>
+                            <li>Telemetry (opt-in)</li>
+                        </ul>
+                    </li>
+                    <li>Security audit:
+                        <ul>
+                            <li>Dependency scanning</li>
+                            <li>Input validation</li>
+                            <li>XSS prevention in generated CSS</li>
+                        </ul>
+                    </li>
+                    <li>Final polish:
+                        <ul>
+                            <li>Code formatting (Prettier)</li>
+                            <li>Linting (ESLint)</li>
+                            <li>License headers</li>
+                            <li>CONTRIBUTING.md</li>
+                            <li>CODE_OF_CONDUCT.md</li>
+                        </ul>
+                    </li>
+                    <li>Prepare v1.0.0 release checklist</li>
+                </ol>
+
+                <div class="info-box">
+                    <h4>📝 Output Location:</h4>
+                    <p>Write to: <strong>D:\Web\Mastors CDN\Framework</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Development Notes -->
+        <div class="notes-section">
+            <h2>📚 Development Notes & Guidelines</h2>
+            
+            <div class="notes-grid">
+                <div class="note-card">
+                    <h3>Execution Order</h3>
+                    <ul>
+                        <li>Run prompts sequentially (1-20)</li>
+                        <li>Each prompt builds on previous work</li>
+                        <li>Test after each major component</li>
+                        <li>Don't skip prompts</li>
+                    </ul>
+                </div>
+
+                <div class="note-card">
+                    <h3>Excluded Features</h3>
+                    <ul>
+                        <li>AI integration features (Phase 3)</li>
+                        <li>Figma plugin development</li>
+                        <li>Enterprise design system compiler</li>
+                        <li>Mastors Cloud infrastructure</li>
+                        <li>Spatial/XR interface support</li>
+                    </ul>
+                </div>
+
+                <div class="note-card">
+                    <h3>Coverage</h3>
+                    <ul>
+                        <li>Complete Phase 1 (Foundation): Prompts 1-8</li>
+                        <li>Complete Phase 2 (Engine): Prompts 9-20</li>
+                        <li>Production-ready v1.0.0 framework</li>
+                    </ul>
+                </div>
+
+                <div class="note-card">
+                    <h3>Estimated Timeline</h3>
+                    <ul>
+                        <li>Each prompt: 1-3 hours of development</li>
+                        <li>Total: 20-60 hours of focused work</li>
+                        <li>Assumes Claude has filesystem/CLI access</li>
+                    </ul>
+                </div>
+
+                <div class="note-card">
+                    <h3>Testing Strategy</h3>
+                    <ul>
+                        <li>Unit tests written alongside each module</li>
+                        <li>Integration tests after Phase 1 complete</li>
+                        <li>E2E tests after framework adapters complete</li>
+                        <li>Performance benchmarks throughout</li>
+                    </ul>
+                </div>
+
+                <div class="note-card">
+                    <h3>Technology Stack</h3>
+                    <ul>
+                        <li>TypeScript (strict mode)</li>
+                        <li>Node.js 18+</li>
+                        <li>pnpm workspaces (monorepo)</li>
+                        <li>Vite (build tool)</li>
+                        <li>Vitest (testing)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="success-box" style="margin-top: 30px;">
+                <h4>🎯 Target Deliverables Checklist</h4>
+                <ul class="checklist">
+                    <li>Working semantic resolver engine</li>
+                    <li>Zero-runtime CSS compiler</li>
+                    <li>React, Vue, Svelte adapters</li>
+                    <li>Vite plugin with HMR</li>
+                    <li>CLI tool</li>
+                    <li>VSCode extension</li>
+                    <li>Complete documentation</li>
+                    <li>Interactive playground</li>
+                    <li>Example projects</li>
+                    <li>CI/CD pipeline</li>
+                    <li>npm-ready packages</li>
+                    <li>Test coverage &gt;80%</li>
+                    <li>Performance benchmarks passing</li>
+                    <li>Accessibility compliance automated</li>
+                    <li>Production deployment ready</li>
+                </ul>
+            </div>
+
+            <div class="info-box" style="margin-top: 30px;">
+                <h4>💡 Best Practices</h4>
+                <ul>
+                    <li><strong>Version Control:</strong> Commit after each prompt completion</li>
+                    <li><strong>Documentation:</strong> Update README and ARCHITECTURE.md as you go</li>
+                    <li><strong>Testing:</strong> Write tests alongside implementation</li>
+                    <li><strong>Performance:</strong> Profile and benchmark regularly</li>
+                    <li><strong>Code Review:</strong> Review generated code for quality and consistency</li>
+                    <li><strong>Dependencies:</strong> Keep dependencies minimal and updated</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p><strong>MASTORS Framework Development</strong></p>
+            <p>Intent-Based Styling for the Future Web</p>
+            <p style="margin-top: 20px;">© 2026 Mastors Project • Open Research — Public Domain</p>
+            <p style="margin-top: 10px; font-size: 0.9em;">This document is part of the Mastors Thesis Paper v1.0</p>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add print functionality
+        function printDocument() {
+            window.print();
+        }
+
+        // Add checklist toggle functionality
+        document.querySelectorAll('.checklist li').forEach(item => {
+            item.addEventListener('click', function() {
+                this.style.textDecoration = this.style.textDecoration === 'line-through' ? 'none' : 'line-through';
+                this.style.color = this.style.color === 'rgb(149, 165, 166)' ? '#333' : '#95a5a6';
+            });
+        });
+    </script>
+</body>
+</html>

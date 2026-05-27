@@ -1,0 +1,32 @@
+{
+  "name": "@mastors/adapter-svelte",
+  "version": "0.1.0",
+  "description": "Svelte adapter for Mastors — intent action and MastorsElement component",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format esm --dts",
+    "dev": "tsup src/index.ts --format esm --dts --watch",
+    "clean": "rimraf dist"
+  },
+  "dependencies": {
+    "@mastors/types": "workspace:*",
+    "@mastors/api": "workspace:*"
+  },
+  "peerDependencies": {
+    "svelte": ">=4.0.0"
+  },
+  "devDependencies": {
+    "svelte": "^4.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.4.0",
+    "rimraf": "^5.0.0"
+  }
+}

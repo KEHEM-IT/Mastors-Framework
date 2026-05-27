@@ -1,0 +1,99 @@
+{
+  "id": "forms",
+  "label": "Forms",
+  "icon": "fa-solid fa-pen-to-square",
+  "description": "Input fields and form containers with label association, error states, and ARIA compliance.",
+  "intents": [
+    {
+      "id": "form.field",
+      "label": "Form Field",
+      "shortLabel": "form.field",
+      "description": "Standard labelled input field with focus ring, border, and supporting helper text.",
+      "semanticRole": "group",
+      "htmlTag": "div",
+      "ariaRole": "group",
+      "ariaLandmark": false,
+      "status": "stable",
+      "since": "0.1.0",
+      "mastors": {
+        "declaration": "<div intent=\"form.field\" role=\"group\">\n  <label for=\"email\">Email address</label>\n  <input\n    id=\"email\"\n    type=\"email\"\n    autocomplete=\"email\"\n    aria-describedby=\"email-helper\"\n    aria-required=\"true\"\n    placeholder=\"you@example.com\"\n  />\n  <p id=\"email-helper\">\n    Focus ring, border-color, and ARIA are resolved automatically.\n  </p>\n</div>",
+        "config": "// mastors.config.ts\nexport default defineConfig({\n  vocabulary: [\n    'form.field'\n  ]\n});",
+        "description": "Resolves input background, border, radius, padding and focus ring colour from tokens. Every input must have a visible <label> associated via for/id — never placeholder-only."
+      },
+      "preview": { "type": "form", "variant": "field", "label": "Email address", "placeholder": "you@example.com", "inputType": "email", "helperText": "Focus ring, border-color, and ARIA are resolved automatically." },
+      "cssProperties": ["background-color","border-radius","border-width","border-color","padding","color","font-size","outline","outline-offset"],
+      "tokenRefs": [
+        { "property": "background-color", "token": "token.color.surface.input",  "description": "Input background" },
+        { "property": "border-color",     "token": "token.color.border.input",   "description": "Default input border" },
+        { "property": "border-radius",    "token": "token.radius.sm",            "description": "Input corner radius" },
+        { "property": "padding",          "token": "token.space.inset.input.md", "description": "Input inner spacing" },
+        { "property": "outline",          "token": "token.color.focus.ring",     "description": "Focus ring colour" }
+      ],
+      "a11y": {
+        "wcagLevel": "AA",
+        "wcagCriteria": [
+          { "id": "1.3.1", "name": "Info and Relationships", "level": "A"  },
+          { "id": "1.4.3", "name": "Contrast (Minimum)",     "level": "AA" },
+          { "id": "2.4.7", "name": "Focus Visible",          "level": "AA" },
+          { "id": "3.3.2", "name": "Labels or Instructions", "level": "A"  },
+          { "id": "1.3.5", "name": "Identify Input Purpose", "level": "AA" }
+        ],
+        "ariaAttributes": ["id (for label association)","aria-describedby (helper text)","aria-required","autocomplete"],
+        "focusable": true,
+        "notes": [
+          "Every input must have a visible <label> associated via 'for'/'id' — never placeholder-only.",
+          "Focus ring must be 2px solid with 3:1 contrast against adjacent colours.",
+          "Use autocomplete attributes for common fields (email, name, tel) per WCAG 1.3.5.",
+          "Helper text linked via aria-describedby is announced after the label by screen readers."
+        ],
+        "hints": []
+      },
+      "variants": [],
+      "modifiers": [],
+      "relatedIntents": ["form.destructive.confirm"]
+    },
+    {
+      "id": "form.destructive.confirm",
+      "label": "Destructive Confirm Form",
+      "shortLabel": "form.destructive.confirm",
+      "description": "Confirmation form pattern for irreversible actions. Includes danger-styled input and explicit copy requirement.",
+      "semanticRole": "form",
+      "htmlTag": "div",
+      "ariaRole": "form",
+      "ariaLandmark": false,
+      "status": "stable",
+      "since": "0.1.0",
+      "mastors": {
+        "declaration": "<div intent=\"form.destructive.confirm\" role=\"form\"\n     aria-label=\"Confirm deletion\">\n  <h3>⚠️ Confirm Deletion</h3>\n  <p id=\"delete-desc\">\n    This action cannot be undone. All data will be permanently removed.\n  </p>\n  <input\n    type=\"text\"\n    aria-describedby=\"delete-desc\"\n    aria-required=\"true\"\n    aria-invalid=\"true\"\n    placeholder=\"Type DELETE to confirm\"\n  />\n  <button intent=\"button.destructive\" type=\"submit\">\n    Delete permanently\n  </button>\n</div>",
+        "config": "// mastors.config.ts\nexport default defineConfig({\n  vocabulary: [\n    'form.destructive.confirm'\n  ]\n});",
+        "description": "Resolves danger-tinted input background and danger border from tokens. Clear instructions on what to type must be visible and linked via aria-describedby. Always provide a Cancel path."
+      },
+      "preview": { "type": "form", "variant": "destructive", "heading": "Confirm Deletion", "description": "This action cannot be undone. All data will be permanently removed.", "placeholder": "Type DELETE to confirm", "inputType": "text" },
+      "cssProperties": ["background-color","border-radius","border-width","border-color","padding","color","font-size"],
+      "tokenRefs": [
+        { "property": "background-color", "token": "token.color.danger.surface.subtle", "description": "Danger-tinted input bg" },
+        { "property": "border-color",     "token": "token.color.danger.border",         "description": "Danger border colour" },
+        { "property": "border-radius",    "token": "token.radius.sm",                   "description": "Input radius" }
+      ],
+      "a11y": {
+        "wcagLevel": "AA",
+        "wcagCriteria": [
+          { "id": "3.3.1", "name": "Error Identification",  "level": "A"  },
+          { "id": "3.3.4", "name": "Error Prevention",      "level": "AA" },
+          { "id": "3.3.2", "name": "Labels or Instructions","level": "A"  }
+        ],
+        "ariaAttributes": ["aria-describedby (danger warning text)","aria-required=\"true\"","aria-invalid (before confirmation)"],
+        "focusable": true,
+        "notes": [
+          "Clear instructions on what to type must be visible and linked via aria-describedby.",
+          "Error state if incorrect text is entered — never silently fail.",
+          "Provide a clear Cancel path — destructive actions must be reversible or confirmable (WCAG 3.3.4)."
+        ],
+        "hints": []
+      },
+      "variants": [],
+      "modifiers": [],
+      "relatedIntents": ["form.field","button.destructive"]
+    }
+  ]
+}

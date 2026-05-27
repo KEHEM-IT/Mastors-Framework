@@ -1,0 +1,97 @@
+{
+  "id": "navigation",
+  "label": "Navigation",
+  "icon": "fa-solid fa-compass",
+  "description": "Site-level navigation bars with layout and landmark semantics.",
+  "intents": [
+    {
+      "id": "nav.primary",
+      "label": "Primary Navigation",
+      "shortLabel": "nav.primary",
+      "description": "Main horizontal site navigation bar. Contains logo, nav links, and a primary action.",
+      "semanticRole": "navigation",
+      "htmlTag": "nav",
+      "ariaRole": "navigation",
+      "ariaLandmark": true,
+      "status": "stable",
+      "since": "0.1.0",
+      "mastors": {
+        "declaration": "<nav intent=\"nav.primary\" aria-label=\"Main navigation\">\n  <a href=\"/\" aria-label=\"Mastors home\">◆ Mastors</a>\n  <ul role=\"list\">\n    <li><a href=\"/docs\">Docs</a></li>\n    <li><a href=\"/api\">API</a></li>\n    <li><a href=\"/github\">GitHub</a></li>\n  </ul>\n  <a href=\"/start\" intent=\"button.primary.cta\">Get Started</a>\n</nav>",
+        "config": "// mastors.config.ts\nexport default defineConfig({\n  vocabulary: [\n    'nav.primary'\n  ]\n});",
+        "description": "Resolves nav surface background, inset padding and subtle bottom border from tokens. Provide a skip-to-content link before the nav (WCAG 2.4.1). Use aria-current='page' for the active link."
+      },
+      "preview": { "type": "nav", "logo": "◆ Mastors", "links": ["Docs","API","GitHub"], "cta": "Get Started" },
+      "cssProperties": ["background-color","padding","display","align-items","gap","border-bottom"],
+      "tokenRefs": [
+        { "property": "background-color", "token": "token.color.surface.nav",   "description": "Navigation surface" },
+        { "property": "padding",          "token": "token.space.inset.nav",     "description": "Nav bar inner padding" },
+        { "property": "border-bottom",    "token": "token.color.border.subtle", "description": "Bottom separator" }
+      ],
+      "a11y": {
+        "wcagLevel": "AA",
+        "wcagCriteria": [
+          { "id": "1.3.1", "name": "Info and Relationships", "level": "A"  },
+          { "id": "2.4.1", "name": "Bypass Blocks",          "level": "A"  },
+          { "id": "2.4.3", "name": "Focus Order",            "level": "A"  },
+          { "id": "2.4.7", "name": "Focus Visible",          "level": "AA" }
+        ],
+        "ariaAttributes": ["aria-label=\"Main navigation\""],
+        "focusable": false,
+        "notes": [
+          "Use <nav aria-label='Main navigation'> — pages with multiple navs need distinct labels.",
+          "Provide a skip-to-content link before the nav bar (WCAG 2.4.1).",
+          "Active/current page link must be indicated via aria-current='page', not colour alone.",
+          "All nav links and CTAs must be reachable and operable via keyboard in logical tab order."
+        ],
+        "hints": []
+      },
+      "variants": ["sticky"],
+      "modifiers": [],
+      "relatedIntents": ["nav.primary.sticky"]
+    },
+    {
+      "id": "nav.primary.sticky",
+      "label": "Sticky Primary Navigation",
+      "shortLabel": "nav.primary.sticky",
+      "description": "Primary navigation pinned to the top of the viewport during scroll. Adds backdrop-blur and shadow.",
+      "semanticRole": "navigation",
+      "htmlTag": "nav",
+      "ariaRole": "navigation",
+      "ariaLandmark": true,
+      "status": "stable",
+      "since": "0.1.0",
+      "mastors": {
+        "declaration": "<nav intent=\"nav.primary.sticky\" aria-label=\"Main navigation\">\n  <!-- same structure as nav.primary -->\n  <!-- position:sticky, backdrop-filter and z-index\n       are resolved from tokens automatically -->\n</nav>",
+        "config": "// mastors.config.ts\nexport default defineConfig({\n  vocabulary: [\n    'nav.primary.sticky'\n  ]\n});",
+        "description": "Extends nav.primary with position:sticky, top:0, backdrop-filter blur and a scroll shadow — all resolved from tokens. Add scroll-margin-top to jump-target sections to prevent the sticky nav from obscuring them."
+      },
+      "preview": { "type": "nav", "logo": "◆ Mastors", "links": ["Docs","API","GitHub"], "cta": "Get Started", "sticky": true },
+      "cssProperties": ["background-color","padding","position","top","z-index","backdrop-filter","box-shadow","border-bottom"],
+      "tokenRefs": [
+        { "property": "background-color", "token": "token.color.surface.nav.translucent", "description": "Semi-transparent nav surface" },
+        { "property": "backdrop-filter",  "token": "token.blur.nav",                      "description": "Frosted glass blur" },
+        { "property": "box-shadow",       "token": "token.shadow.sm",                     "description": "Subtle scroll shadow" },
+        { "property": "z-index",          "token": "token.zIndex.nav",                    "description": "Nav stacking context" }
+      ],
+      "a11y": {
+        "wcagLevel": "AA",
+        "wcagCriteria": [
+          { "id": "1.3.1", "name": "Info and Relationships", "level": "A"  },
+          { "id": "2.4.1", "name": "Bypass Blocks",          "level": "A"  },
+          { "id": "1.4.3", "name": "Contrast (Minimum)",     "level": "AA" }
+        ],
+        "ariaAttributes": ["aria-label=\"Main navigation\""],
+        "focusable": false,
+        "notes": [
+          "Backdrop-filter blur must not reduce the legibility of nav link text — verify contrast on all scroll positions.",
+          "Sticky nav can obscure jump-target anchors — add scroll-margin-top to section targets.",
+          "backdrop-filter is a CSS property — ensure fallback opacity for unsupported browsers."
+        ],
+        "hints": []
+      },
+      "variants": [],
+      "modifiers": [],
+      "relatedIntents": ["nav.primary"]
+    }
+  ]
+}
