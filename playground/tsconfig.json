@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "strict": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "verbatimModuleSyntax": true,
+    "noEmit": true,
+    "paths": {
+      "@mastors/core":          ["../packages/core/src/index.ts"],
+      "@mastors/compiler":      ["../packages/compiler/src/index.ts"],
+      "@mastors/api":           ["../packages/api/src/index.ts"],
+      "@mastors/accessibility": ["../packages/accessibility/src/index.ts"],
+      "@mastors/tokens":        ["../packages/tokens/src/index.ts"],
+      "@mastors/types":         ["../packages/types/src/index.ts"],
+      "@mastors/utils":         ["../packages/utils/src/index.ts"],
+      "@mastors/schemas":       ["../packages/schemas/src/index.ts"],
+      "@mastors/adapters/*":    ["../packages/adapters/*/src/index.ts"],
+      "@mastors/plugins/*":     ["../packages/plugins/*/src/index.ts"]
+    }
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx", "vite.config.ts"]
+}
