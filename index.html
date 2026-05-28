@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="dark scroll-smooth">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,7 +9,9 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Robotto:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Robotto:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Fira+Code:wght@400;500&display=swap"
+    rel="stylesheet" />
 
   <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -33,8 +36,8 @@
             mono: ['Fira Code', 'monospace'],
           },
           colors: {
-            ink:   { 950:'#070910', 900:'#0b0d14', 800:'#111320', 750:'#141727', 700:'#161929', 600:'#1d2133', 500:'#252840', 400:'#2e3350', 300:'#3d4166', 200:'#4a5080', 100:'#636899' },
-            brand: { 400:'#818cf8', 500:'#6366f1', 600:'#4f46e5', 700:'#4338ca' },
+            ink: { 950: '#070910', 900: '#0b0d14', 800: '#111320', 750: '#141727', 700: '#161929', 600: '#1d2133', 500: '#252840', 400: '#2e3350', 300: '#3d4166', 200: '#4a5080', 100: '#636899' },
+            brand: { 400: '#818cf8', 500: '#6366f1', 600: '#4f46e5', 700: '#4338ca' },
           },
           animation: {
             'fade-in': 'fadeIn 0.4s ease forwards',
@@ -46,11 +49,15 @@
   </script>
 
   <style>
-    *, *::before, *::after { box-sizing: border-box; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
 
     :root {
       --brand: #6366f1;
-      --brand-glow: rgba(99,102,241,0.35);
+      --brand-glow: rgba(99, 102, 241, 0.35);
       --surface: #111320;
       --surface-raised: #1d2133;
       --border: #2e3350;
@@ -60,10 +67,23 @@
     }
 
     /* ── Scrollbar ── */
-    ::-webkit-scrollbar { width: 5px; height: 5px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: #2e3350; border-radius: 9px; }
-    ::-webkit-scrollbar-thumb:hover { background: var(--brand); }
+    ::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #2e3350;
+      border-radius: 9px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--brand);
+    }
 
     body {
       font-family: 'DM Sans', sans-serif;
@@ -75,8 +95,8 @@
     /* ── Grid bg ── */
     .grid-bg {
       background-image:
-        linear-gradient(rgba(99,102,241,0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(99,102,241,0.04) 1px, transparent 1px);
+        linear-gradient(rgba(99, 102, 241, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(99, 102, 241, 0.04) 1px, transparent 1px);
       background-size: 48px 48px;
     }
 
@@ -91,7 +111,7 @@
 
     /* ── Hero glow ── */
     .hero-glow {
-      background: radial-gradient(ellipse 700px 400px at 50% -80px, rgba(99,102,241,0.18) 0%, transparent 70%);
+      background: radial-gradient(ellipse 700px 400px at 50% -80px, rgba(99, 102, 241, 0.18) 0%, transparent 70%);
     }
 
     /* ── Prism overrides ── */
@@ -105,14 +125,25 @@
       font-family: 'Fira Code', monospace !important;
       border: 1px solid #2e3350;
       border-top: none;
+      overflow-x: auto !important;
+      -webkit-overflow-scrolling: touch;
     }
+
+    @media (max-width: 639px) {
+      pre[class*="language-"] {
+        padding: 1rem !important;
+        font-size: 0.72rem !important;
+      }
+    }
+
     code[class*="language-"] {
       font-family: 'Fira Code', monospace !important;
       font-size: 0.8rem !important;
     }
-    :not(pre) > code {
-      background: rgba(99,102,241,0.12);
-      border: 1px solid rgba(99,102,241,0.25);
+
+    :not(pre)>code {
+      background: rgba(99, 102, 241, 0.12);
+      border: 1px solid rgba(99, 102, 241, 0.25);
       border-radius: 4px;
       padding: 1px 7px;
       font-family: 'Fira Code', monospace;
@@ -127,6 +158,7 @@
       border: 1px solid #2e3350;
       margin: 1.25rem 0;
     }
+
     .code-block-header {
       display: flex;
       align-items: center;
@@ -138,13 +170,18 @@
       font-size: 0.7rem;
       color: #64748b;
     }
+
     .code-block-header .lang-badge {
       display: flex;
       align-items: center;
       gap: 6px;
       color: #818cf8;
     }
-    .code-block pre { border-radius: 0 !important; border: none !important; }
+
+    .code-block pre {
+      border-radius: 0 !important;
+      border: none !important;
+    }
 
     /* ── Copy btn ── */
     .copy-btn {
@@ -154,12 +191,15 @@
       font-size: 0.65rem;
       font-weight: 600;
       font-family: 'DM Sans', sans-serif;
-      background: rgba(99,102,241,0.12);
+      background: rgba(99, 102, 241, 0.12);
       color: #818cf8;
-      border: 1px solid rgba(99,102,241,0.25);
+      border: 1px solid rgba(99, 102, 241, 0.25);
       transition: all 0.12s;
     }
-    .copy-btn:hover { background: rgba(99,102,241,0.25); }
+
+    .copy-btn:hover {
+      background: rgba(99, 102, 241, 0.25);
+    }
 
     /* ── Sidebar nav ── */
     .sidebar-link {
@@ -175,8 +215,19 @@
       white-space: nowrap;
       cursor: pointer;
     }
-    .sidebar-link:hover { background: #1d2133; color: #e2e8f0; }
-    .sidebar-link.active { background: rgba(99,102,241,0.15); color: #818cf8; border-left: 2px solid #6366f1; padding-left: 10px; }
+
+    .sidebar-link:hover {
+      background: #1d2133;
+      color: #e2e8f0;
+    }
+
+    .sidebar-link.active {
+      background: rgba(99, 102, 241, 0.15);
+      color: #818cf8;
+      border-left: 2px solid #6366f1;
+      padding-left: 10px;
+    }
+
     .sidebar-section-label {
       font-size: 0.62rem;
       font-weight: 700;
@@ -187,8 +238,20 @@
     }
 
     /* ── Content sections ── */
-    .doc-section { padding: 4rem 0; border-bottom: 1px solid #1d2133; }
-    .doc-section:last-child { border-bottom: none; }
+    .doc-section {
+      padding: 4rem 0;
+      border-bottom: 1px solid #1d2133;
+    }
+
+    .doc-section:last-child {
+      border-bottom: none;
+    }
+
+    @media (max-width: 639px) {
+      .doc-section {
+        padding: 2.5rem 0;
+      }
+    }
 
     .section-label {
       font-size: 0.65rem;
@@ -201,6 +264,7 @@
       align-items: center;
       gap: 8px;
     }
+
     .section-label::before {
       content: '';
       display: block;
@@ -217,6 +281,13 @@
       margin-bottom: 1rem;
       letter-spacing: -0.02em;
     }
+
+    @media (max-width: 639px) {
+      h2.doc-h2 {
+        font-size: 1.4rem;
+      }
+    }
+
     h3.doc-h3 {
       font-family: 'Robotto', sans-serif;
       font-size: 1.1rem;
@@ -225,6 +296,7 @@
       margin: 2rem 0 0.75rem;
       letter-spacing: -0.01em;
     }
+
     p.doc-p {
       font-size: 0.925rem;
       line-height: 1.75;
@@ -240,15 +312,18 @@
       padding: 1.25rem 1.5rem;
       transition: border-color 0.15s;
     }
-    .feature-card:hover { border-color: rgba(99,102,241,0.4); }
+
+    .feature-card:hover {
+      border-color: rgba(99, 102, 241, 0.4);
+    }
 
     /* ── Intent chip ── */
     .intent-chip {
       display: inline-flex;
       align-items: center;
       gap: 5px;
-      background: rgba(99,102,241,0.1);
-      border: 1px solid rgba(99,102,241,0.25);
+      background: rgba(99, 102, 241, 0.1);
+      border: 1px solid rgba(99, 102, 241, 0.25);
       border-radius: 5px;
       padding: 2px 10px;
       font-family: 'Fira Code', monospace;
@@ -256,25 +331,122 @@
       color: #a5b4fc;
       white-space: nowrap;
     }
-    .intent-chip.green { background: rgba(34,197,94,0.1); border-color: rgba(34,197,94,0.25); color: #86efac; }
-    .intent-chip.yellow { background: rgba(234,179,8,0.1); border-color: rgba(234,179,8,0.25); color: #fde047; }
-    .intent-chip.red { background: rgba(239,68,68,0.1); border-color: rgba(239,68,68,0.25); color: #fca5a5; }
+
+    .intent-chip.green {
+      background: rgba(34, 197, 94, 0.1);
+      border-color: rgba(34, 197, 94, 0.25);
+      color: #86efac;
+    }
+
+    .intent-chip.yellow {
+      background: rgba(234, 179, 8, 0.1);
+      border-color: rgba(234, 179, 8, 0.25);
+      color: #fde047;
+    }
+
+    .intent-chip.red {
+      background: rgba(239, 68, 68, 0.1);
+      border-color: rgba(239, 68, 68, 0.25);
+      color: #fca5a5;
+    }
 
     /* ── Table ── */
-    .doc-table { width: 100%; border-collapse: collapse; font-size: 0.83rem; }
-    .doc-table th { background: #1d2133; color: #64748b; font-weight: 600; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 8px 14px; text-align: left; border-bottom: 1px solid #2e3350; }
-    .doc-table td { padding: 9px 14px; border-bottom: 1px solid #161929; color: #94a3b8; vertical-align: top; }
-    .doc-table tr:last-child td { border-bottom: none; }
-    .doc-table tr:hover td { background: rgba(255,255,255,0.015); }
-    .doc-table-wrap { border: 1px solid #2e3350; border-radius: 10px; overflow: hidden; margin: 1.25rem 0; }
+    .doc-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.83rem;
+    }
+
+    .doc-table th {
+      background: #1d2133;
+      color: #64748b;
+      font-weight: 600;
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 8px 14px;
+      text-align: left;
+      border-bottom: 1px solid #2e3350;
+      white-space: nowrap;
+    }
+
+    .doc-table td {
+      padding: 9px 14px;
+      border-bottom: 1px solid #161929;
+      color: #94a3b8;
+      vertical-align: top;
+    }
+
+    .doc-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .doc-table tr:hover td {
+      background: rgba(255, 255, 255, 0.015);
+    }
+
+    .doc-table-wrap {
+      border: 1px solid #2e3350;
+      border-radius: 10px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      margin: 1.25rem 0;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    @media (max-width: 639px) {
+
+      .doc-table th,
+      .doc-table td {
+        padding: 7px 10px;
+        font-size: 0.75rem;
+      }
+
+      .doc-table {
+        font-size: 0.75rem;
+      }
+    }
 
     /* ── Badge ── */
-    .badge { display: inline-flex; align-items: center; gap: 4px; padding: 1px 8px; border-radius: 4px; font-size: 0.65rem; font-weight: 700; }
-    .badge-purple { background: rgba(99,102,241,0.15); color: #818cf8; border: 1px solid rgba(99,102,241,0.3); }
-    .badge-green  { background: rgba(34,197,94,0.12);  color: #86efac; border: 1px solid rgba(34,197,94,0.3); }
-    .badge-yellow { background: rgba(234,179,8,0.12);  color: #fde047; border: 1px solid rgba(234,179,8,0.3); }
-    .badge-blue   { background: rgba(59,130,246,0.12); color: #93c5fd; border: 1px solid rgba(59,130,246,0.3); }
-    .badge-red    { background: rgba(239,68,68,0.12);  color: #fca5a5; border: 1px solid rgba(239,68,68,0.3); }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 1px 8px;
+      border-radius: 4px;
+      font-size: 0.65rem;
+      font-weight: 700;
+    }
+
+    .badge-purple {
+      background: rgba(99, 102, 241, 0.15);
+      color: #818cf8;
+      border: 1px solid rgba(99, 102, 241, 0.3);
+    }
+
+    .badge-green {
+      background: rgba(34, 197, 94, 0.12);
+      color: #86efac;
+      border: 1px solid rgba(34, 197, 94, 0.3);
+    }
+
+    .badge-yellow {
+      background: rgba(234, 179, 8, 0.12);
+      color: #fde047;
+      border: 1px solid rgba(234, 179, 8, 0.3);
+    }
+
+    .badge-blue {
+      background: rgba(59, 130, 246, 0.12);
+      color: #93c5fd;
+      border: 1px solid rgba(59, 130, 246, 0.3);
+    }
+
+    .badge-red {
+      background: rgba(239, 68, 68, 0.12);
+      color: #fca5a5;
+      border: 1px solid rgba(239, 68, 68, 0.3);
+    }
 
     /* ── Layer step ── */
     .layer-step {
@@ -283,14 +455,18 @@
       padding: 1rem 0;
       border-bottom: 1px solid #161929;
     }
-    .layer-step:last-child { border-bottom: none; }
+
+    .layer-step:last-child {
+      border-bottom: none;
+    }
+
     .layer-num {
       flex-shrink: 0;
       width: 28px;
       height: 28px;
       border-radius: 8px;
-      background: rgba(99,102,241,0.12);
-      border: 1px solid rgba(99,102,241,0.3);
+      background: rgba(99, 102, 241, 0.12);
+      border: 1px solid rgba(99, 102, 241, 0.3);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -302,24 +478,74 @@
     }
 
     /* ── Animations ── */
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    @keyframes slideUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes pulse-ring { 0%,100%{opacity:.6} 50%{opacity:1} }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulse-ring {
+
+      0%,
+      100% {
+        opacity: .6
+      }
+
+      50% {
+        opacity: 1
+      }
+    }
 
     /* ── Sidebar mobile ── */
-    #sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 40; }
-    #sidebar-overlay.open { display: block; }
+    #sidebar-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 40;
+    }
+
+    #sidebar-overlay.open {
+      display: block;
+    }
 
     @media (max-width: 1023px) {
       #main-sidebar {
-        position: fixed; top: 0; left: 0; height: 100dvh;
-        transform: translateX(-100%); transition: transform 0.22s ease;
-        z-index: 50; width: 260px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100dvh;
+        transform: translateX(-100%);
+        transition: transform 0.22s ease;
+        z-index: 50;
+        width: 260px;
       }
-      #main-sidebar.open { transform: translateX(0); }
+
+      #main-sidebar.open {
+        transform: translateX(0);
+      }
     }
+
     @media (min-width: 1024px) {
-      #sidebar-toggle { display: none !important; }
+      #sidebar-toggle {
+        display: none !important;
+      }
     }
 
     /* ── Sticky sidebar ── */
@@ -338,262 +564,358 @@
     }
 
     /* ── Roadmap ── */
-    .roadmap-row { display: flex; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid #161929; align-items: flex-start; }
-    .roadmap-row:last-child { border-bottom: none; }
-    .roadmap-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
-    .roadmap-dot.done   { background: #22c55e; box-shadow: 0 0 8px rgba(34,197,94,0.5); }
-    .roadmap-dot.active { background: #6366f1; box-shadow: 0 0 8px rgba(99,102,241,0.5); }
-    .roadmap-dot.soon   { background: #3d4166; }
-    .roadmap-dot.future { background: #252840; }
+    .roadmap-row {
+      display: flex;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid #161929;
+      align-items: flex-start;
+    }
+
+    .roadmap-row:last-child {
+      border-bottom: none;
+    }
+
+    @media (max-width: 639px) {
+      .roadmap-row {
+        padding: 0.875rem 1rem;
+        gap: 0.75rem;
+      }
+    }
+
+    .roadmap-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 5px;
+    }
+
+    .roadmap-dot.done {
+      background: #22c55e;
+      box-shadow: 0 0 8px rgba(34, 197, 94, 0.5);
+    }
+
+    .roadmap-dot.active {
+      background: #6366f1;
+      box-shadow: 0 0 8px rgba(99, 102, 241, 0.5);
+    }
+
+    .roadmap-dot.soon {
+      background: #3d4166;
+    }
+
+    .roadmap-dot.future {
+      background: #252840;
+    }
 
     /* ── Token swatch ── */
-    .token-row { display: flex; align-items: center; gap: 10px; padding: 7px 0; border-bottom: 1px solid #161929; font-size: 0.78rem; }
-    .token-row:last-child { border-bottom: none; }
-    .token-swatch { width: 20px; height: 20px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1); flex-shrink: 0; }
-    .token-name  { font-family: 'Fira Code', monospace; color: #a5b4fc; font-size: 0.73rem; flex: 1; }
-    .token-value { font-family: 'Fira Code', monospace; color: #64748b; font-size: 0.7rem; }
+    .token-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 7px 0;
+      border-bottom: 1px solid #161929;
+      font-size: 0.78rem;
+    }
+
+    .token-row:last-child {
+      border-bottom: none;
+    }
+
+    .token-swatch {
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      flex-shrink: 0;
+    }
+
+    .token-name {
+      font-family: 'Fira Code', monospace;
+      color: #a5b4fc;
+      font-size: 0.73rem;
+      flex: 1;
+    }
+
+    .token-value {
+      font-family: 'Fira Code', monospace;
+      color: #64748b;
+      font-size: 0.7rem;
+    }
 
     /* active section highlight */
-    .section-anchor { scroll-margin-top: 5rem; }
+    .section-anchor {
+      scroll-margin-top: 5rem;
+    }
   </style>
 </head>
+
 <body class="min-h-screen">
 
-<!-- Overlay for mobile sidebar -->
-<div id="sidebar-overlay" onclick="toggleSidebar(false)"></div>
+  <!-- Overlay for mobile sidebar -->
+  <div id="sidebar-overlay" onclick="toggleSidebar(false)"></div>
 
-<!-- ═══════════════════════════════════════════════════════════
+  <!-- ═══════════════════════════════════════════════════════════
      TOP NAV
 ════════════════════════════════════════════════════════════ -->
-<header id="topnav" class="fixed top-0 inset-x-0 z-30 h-14 flex items-center gap-4 px-4 md:px-6 border-b border-ink-600"
-        style="background: rgba(11,13,20,0.92); backdrop-filter: blur(12px);">
+  <header id="topnav"
+    class="fixed top-0 inset-x-0 z-30 h-14 flex items-center gap-0 md:gap-4 px-4 md:px-6 border-b border-ink-600"
+    style="background: rgba(11,13,20,0.92); backdrop-filter: blur(12px);">
 
-  <!-- Mobile: sidebar toggle -->
-  <button id="sidebar-toggle" onclick="toggleSidebar(true)"
-    class="lg:hidden text-slate-400 hover:text-white p-1.5 rounded-md hover:bg-ink-600 transition-colors">
-    <i class="fa-solid fa-bars text-sm"></i>
-  </button>
+    <!-- Mobile: sidebar toggle -->
+    <button id="sidebar-toggle" onclick="toggleSidebar(true)"
+      class="lg:hidden text-slate-400 hover:text-white p-1.5 rounded-md hover:bg-ink-600 transition-colors">
+      <i class="fa-solid fa-bars text-sm"></i>
+    </button>
 
-  <!-- Logo -->
-  <a href="#intro" class="flex items-center gap-2.5 no-underline">
-    <span class="text-brand-500 text-lg leading-none font-bold">◆</span>
-    <span class="font-display font-bold text-[1.05rem] tracking-tight text-white">Mastors</span>
-    <span class="text-[0.55rem] font-bold bg-brand-600 text-white px-1.5 py-0.5 rounded uppercase tracking-widest hidden sm:inline">v0.1</span>
-  </a>
+    <!-- Logo -->
+    <a href="#intro" class="flex items-center gap-2.5 no-underline">
+      <span class="text-brand-500 text-lg leading-none font-bold">◆</span>
+      <span class="font-display font-bold text-[1.05rem] tracking-tight text-white">Mastors</span>
+      <span
+        class="text-[0.55rem] font-bold bg-brand-600 text-white px-1.5 py-0.5 rounded uppercase tracking-widest hidden sm:inline">v0.1</span>
+    </a>
 
-  <div class="flex-1"></div>
+    <div class="flex-1"></div>
 
-  <!-- Nav links -->
-  <nav class="hidden md:flex items-center gap-5">
-    <a href="#quick-start" class="text-slate-400 hover:text-slate-200 text-xs transition-colors font-body">Quick Start</a>
-    <a href="#vocabulary"  class="text-slate-400 hover:text-slate-200 text-xs transition-colors font-body">Vocabulary</a>
-    <a href="#adapters"    class="text-slate-400 hover:text-slate-200 text-xs transition-colors font-body">Adapters</a>
-    <a href="#tokens"      class="text-slate-400 hover:text-slate-200 text-xs transition-colors font-body">Tokens</a>
-    <a href="#roadmap"     class="text-slate-400 hover:text-slate-200 text-xs transition-colors font-body">Roadmap</a>
-  </nav>
+    <!-- Nav links -->
+    <nav class="hidden md:flex items-center gap-5">
+      <a href="#quick-start" class="text-slate-400 hover:text-slate-200 text-xs transition-colors font-body">Quick
+        Start</a>
+      <a href="#vocabulary"
+        class="text-slate-400 hover:text-slate-200 text-xs transition-colors font-body">Vocabulary</a>
+      <a href="#adapters" class="text-slate-400 hover:text-slate-200 text-xs transition-colors font-body">Adapters</a>
+      <a href="#tokens" class="text-slate-400 hover:text-slate-200 text-xs transition-colors font-body">Tokens</a>
+      <a href="#roadmap" class="text-slate-400 hover:text-slate-200 text-xs transition-colors font-body">Roadmap</a>
+    </nav>
 
-  <!-- GitHub -->
-  <a href="#" class="hidden sm:flex items-center gap-1.5 text-slate-400 hover:text-slate-200 text-xs transition-colors">
-    <i class="fa-brands fa-github text-sm"></i>
-    <span class="hidden md:inline">GitHub</span>
-  </a>
+    <!-- GitHub -->
+    <a href="#"
+      class="hidden sm:flex items-center gap-1.5 text-slate-400 hover:text-slate-200 text-xs transition-colors">
+      <i class="fa-brands fa-github text-sm"></i>
+      <span class="hidden md:inline">GitHub</span>
+    </a>
 
-  <!-- Playground CTA -->
-  <a href="./playground/index.html"
-     class="flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-white text-xs font-semibold transition-all"
-     style="background: linear-gradient(135deg, #6366f1, #4f46e5); box-shadow: 0 0 16px rgba(99,102,241,0.3);"
-     onmouseover="this.style.boxShadow='0 0 24px rgba(99,102,241,0.5)'"
-     onmouseout="this.style.boxShadow='0 0 16px rgba(99,102,241,0.3)'">
-    <i class="fa-solid fa-play text-[0.6rem] cta-pulse"></i>
-    <span>Playground</span>
-  </a>
-</header>
+    <!-- Playground CTA -->
+    <a href="./playground/index.html"
+      class="flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-white text-xs font-semibold transition-all"
+      style="background: linear-gradient(135deg, #6366f1, #4f46e5); box-shadow: 0 0 16px rgba(99,102,241,0.3);"
+      onmouseover="this.style.boxShadow='0 0 24px rgba(99,102,241,0.5)'"
+      onmouseout="this.style.boxShadow='0 0 16px rgba(99,102,241,0.3)'">
+      <i class="fa-solid fa-play text-[0.6rem] cta-pulse"></i>
+      <span>Playground</span>
+    </a>
+  </header>
 
-<!-- ═══════════════════════════════════════════════════════════
+  <!-- ═══════════════════════════════════════════════════════════
      LAYOUT WRAPPER
 ════════════════════════════════════════════════════════════ -->
-<div class="pt-14 flex min-h-screen">
+  <div class="pt-14 flex min-h-screen">
 
-  <!-- ── LEFT SIDEBAR ─────────────────────────────────────── -->
-  <aside id="main-sidebar"
-    class="w-[260px] flex-shrink-0 flex flex-col bg-ink-800 border-r border-ink-600 overflow-y-auto overflow-x-hidden">
+    <!-- ── LEFT SIDEBAR ─────────────────────────────────────── -->
+    <aside id="main-sidebar"
+      class="w-[260px] flex-shrink-0 flex flex-col bg-ink-800 border-r border-ink-600 overflow-y-auto overflow-x-hidden">
 
-    <div class="py-4 px-2">
+      <div class="py-4 px-2">
 
-      <!-- GETTING STARTED -->
-      <div class="sidebar-section-label">Getting Started</div>
-      <a class="sidebar-link" href="#intro" onclick="closeSidebarMobile()"><i class="fa-solid fa-house-chimney w-4 text-center opacity-50"></i>Introduction</a>
-      <a class="sidebar-link" href="#installation" onclick="closeSidebarMobile()"><i class="fa-solid fa-download w-4 text-center opacity-50"></i>Installation</a>
-      <a class="sidebar-link" href="#quick-start" onclick="closeSidebarMobile()"><i class="fa-solid fa-bolt w-4 text-center opacity-50"></i>Quick Start</a>
-      <a class="sidebar-link" href="#architecture" onclick="closeSidebarMobile()"><i class="fa-solid fa-layer-group w-4 text-center opacity-50"></i>Architecture</a>
+        <!-- GETTING STARTED -->
+        <div class="sidebar-section-label">Getting Started</div>
+        <a class="sidebar-link" href="#intro" onclick="closeSidebarMobile()"><i
+            class="fa-solid fa-house-chimney w-4 text-center opacity-50"></i>Introduction</a>
+        <a class="sidebar-link" href="#installation" onclick="closeSidebarMobile()"><i
+            class="fa-solid fa-download w-4 text-center opacity-50"></i>Installation</a>
+        <a class="sidebar-link" href="#quick-start" onclick="closeSidebarMobile()"><i
+            class="fa-solid fa-bolt w-4 text-center opacity-50"></i>Quick Start</a>
+        <a class="sidebar-link" href="#architecture" onclick="closeSidebarMobile()"><i
+            class="fa-solid fa-layer-group w-4 text-center opacity-50"></i>Architecture</a>
 
-      <!-- CORE CONCEPTS -->
-      <div class="sidebar-section-label mt-2">Core API</div>
-      <a class="sidebar-link" href="#intent-api" onclick="closeSidebarMobile()"><i class="fa-solid fa-code w-4 text-center opacity-50"></i>Intent API</a>
-      <a class="sidebar-link" href="#resolver" onclick="closeSidebarMobile()"><i class="fa-solid fa-gears w-4 text-center opacity-50"></i>Semantic Resolver</a>
-      <a class="sidebar-link" href="#vocabulary" onclick="closeSidebarMobile()"><i class="fa-solid fa-book w-4 text-center opacity-50"></i>Vocabulary</a>
+        <!-- CORE CONCEPTS -->
+        <div class="sidebar-section-label mt-2">Core API</div>
+        <a class="sidebar-link" href="#intent-api" onclick="closeSidebarMobile()"><i
+            class="fa-solid fa-code w-4 text-center opacity-50"></i>Intent API</a>
+        <a class="sidebar-link" href="#resolver" onclick="closeSidebarMobile()"><i
+            class="fa-solid fa-gears w-4 text-center opacity-50"></i>Semantic Resolver</a>
+        <a class="sidebar-link" href="#vocabulary" onclick="closeSidebarMobile()"><i
+            class="fa-solid fa-book w-4 text-center opacity-50"></i>Vocabulary</a>
 
-      <!-- VOCABULARY -->
-      <div class="sidebar-section-label mt-2">Vocabulary</div>
-      <a class="sidebar-link pl-8 text-[0.73rem]" href="#vocab-cards" onclick="closeSidebarMobile()">Cards</a>
-      <a class="sidebar-link pl-8 text-[0.73rem]" href="#vocab-buttons" onclick="closeSidebarMobile()">Buttons</a>
-      <a class="sidebar-link pl-8 text-[0.73rem]" href="#vocab-typography" onclick="closeSidebarMobile()">Typography</a>
-      <a class="sidebar-link pl-8 text-[0.73rem]" href="#vocab-alerts" onclick="closeSidebarMobile()">Alerts</a>
-      <a class="sidebar-link pl-8 text-[0.73rem]" href="#vocab-nav" onclick="closeSidebarMobile()">Navigation</a>
-      <a class="sidebar-link pl-8 text-[0.73rem]" href="#vocab-forms" onclick="closeSidebarMobile()">Forms</a>
-      <a class="sidebar-link pl-8 text-[0.73rem]" href="#vocab-layout" onclick="closeSidebarMobile()">Layout</a>
+        <!-- VOCABULARY -->
+        <div class="sidebar-section-label mt-2">Vocabulary</div>
+        <a class="sidebar-link pl-8 text-[0.73rem]" href="#vocab-cards" onclick="closeSidebarMobile()">Cards</a>
+        <a class="sidebar-link pl-8 text-[0.73rem]" href="#vocab-buttons" onclick="closeSidebarMobile()">Buttons</a>
+        <a class="sidebar-link pl-8 text-[0.73rem]" href="#vocab-typography"
+          onclick="closeSidebarMobile()">Typography</a>
+        <a class="sidebar-link pl-8 text-[0.73rem]" href="#vocab-alerts" onclick="closeSidebarMobile()">Alerts</a>
+        <a class="sidebar-link pl-8 text-[0.73rem]" href="#vocab-nav" onclick="closeSidebarMobile()">Navigation</a>
+        <a class="sidebar-link pl-8 text-[0.73rem]" href="#vocab-forms" onclick="closeSidebarMobile()">Forms</a>
+        <a class="sidebar-link pl-8 text-[0.73rem]" href="#vocab-layout" onclick="closeSidebarMobile()">Layout</a>
 
-      <!-- FRAMEWORK -->
-      <div class="sidebar-section-label mt-2">Integrations</div>
-      <a class="sidebar-link" href="#adapters" onclick="closeSidebarMobile()"><i class="fa-brands fa-react w-4 text-center opacity-50"></i>Framework Adapters</a>
-      <a class="sidebar-link" href="#build-plugins" onclick="closeSidebarMobile()"><i class="fa-solid fa-plug w-4 text-center opacity-50"></i>Build Plugins</a>
-      <a class="sidebar-link" href="#configuration" onclick="closeSidebarMobile()"><i class="fa-solid fa-sliders w-4 text-center opacity-50"></i>Configuration</a>
+        <!-- FRAMEWORK -->
+        <div class="sidebar-section-label mt-2">Integrations</div>
+        <a class="sidebar-link" href="#adapters" onclick="closeSidebarMobile()"><i
+            class="fa-brands fa-react w-4 text-center opacity-50"></i>Framework Adapters</a>
+        <a class="sidebar-link" href="#build-plugins" onclick="closeSidebarMobile()"><i
+            class="fa-solid fa-plug w-4 text-center opacity-50"></i>Build Plugins</a>
+        <a class="sidebar-link" href="#configuration" onclick="closeSidebarMobile()"><i
+            class="fa-solid fa-sliders w-4 text-center opacity-50"></i>Configuration</a>
 
-      <!-- REFERENCE -->
-      <div class="sidebar-section-label mt-2">Reference</div>
-      <a class="sidebar-link" href="#tokens" onclick="closeSidebarMobile()"><i class="fa-solid fa-coins w-4 text-center opacity-50"></i>Design Tokens</a>
-      <a class="sidebar-link" href="#accessibility" onclick="closeSidebarMobile()"><i class="fa-solid fa-universal-access w-4 text-center opacity-50"></i>Accessibility</a>
-      <a class="sidebar-link" href="#packages" onclick="closeSidebarMobile()"><i class="fa-solid fa-cube w-4 text-center opacity-50"></i>Packages</a>
-      <a class="sidebar-link" href="#roadmap" onclick="closeSidebarMobile()"><i class="fa-solid fa-map w-4 text-center opacity-50"></i>Roadmap</a>
+        <!-- REFERENCE -->
+        <div class="sidebar-section-label mt-2">Reference</div>
+        <a class="sidebar-link" href="#tokens" onclick="closeSidebarMobile()"><i
+            class="fa-solid fa-coins w-4 text-center opacity-50"></i>Design Tokens</a>
+        <a class="sidebar-link" href="#accessibility" onclick="closeSidebarMobile()"><i
+            class="fa-solid fa-universal-access w-4 text-center opacity-50"></i>Accessibility</a>
+        <a class="sidebar-link" href="#packages" onclick="closeSidebarMobile()"><i
+            class="fa-solid fa-cube w-4 text-center opacity-50"></i>Packages</a>
+        <a class="sidebar-link" href="#roadmap" onclick="closeSidebarMobile()"><i
+            class="fa-solid fa-map w-4 text-center opacity-50"></i>Roadmap</a>
 
-      <!-- Playground pill -->
-      <div class="mt-4 mx-2 p-3 rounded-xl" style="background: rgba(99,102,241,0.08); border: 1px solid rgba(99,102,241,0.2);">
-        <div class="text-[0.62rem] font-bold uppercase tracking-widest text-brand-400 mb-1.5">
-          <i class="fa-solid fa-play mr-1"></i>Interactive
+        <!-- Playground pill -->
+        <div class="mt-4 mx-2 p-3 rounded-xl"
+          style="background: rgba(99,102,241,0.08); border: 1px solid rgba(99,102,241,0.2);">
+          <div class="text-[0.62rem] font-bold uppercase tracking-widest text-brand-400 mb-1.5">
+            <i class="fa-solid fa-play mr-1"></i>Interactive
+          </div>
+          <p class="text-[0.72rem] text-slate-500 mb-2.5 leading-relaxed">Explore every intent live in the Mastors
+            Playground.</p>
+          <a href="./playground/index.html"
+            class="block text-center py-1.5 rounded-lg text-white text-[0.72rem] font-semibold transition-all"
+            style="background: #6366f1">
+            Open Playground →
+          </a>
         </div>
-        <p class="text-[0.72rem] text-slate-500 mb-2.5 leading-relaxed">Explore every intent live in the Mastors Playground.</p>
-        <a href="./playground/index.html"
-           class="block text-center py-1.5 rounded-lg text-white text-[0.72rem] font-semibold transition-all"
-           style="background: #6366f1">
-          Open Playground →
-        </a>
       </div>
-    </div>
-  </aside>
+    </aside>
 
-  <!-- ── MAIN CONTENT ──────────────────────────────────────── -->
-  <main class="flex-1 min-w-0 overflow-x-hidden">
+    <!-- ── MAIN CONTENT ──────────────────────────────────────── -->
+    <main class="flex-1 min-w-0 overflow-x-hidden">
 
-    <!-- ══════════════════════════════════════════════════════
+      <!-- ══════════════════════════════════════════════════════
          HERO
     ═══════════════════════════════════════════════════════ -->
-    <section class="relative overflow-hidden grid-bg noise min-h-[520px] flex items-center" id="intro">
-      <div class="hero-glow absolute inset-0 pointer-events-none"></div>
-      <div class="relative z-10 max-w-3xl mx-auto px-6 py-20 text-center">
-        <!-- Logo mark -->
-        <div class="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full"
-             style="background: rgba(99,102,241,0.1); border: 1px solid rgba(99,102,241,0.25);">
-          <span class="text-brand-500 text-sm font-bold">◆</span>
-          <span class="text-brand-400 text-xs font-bold font-mono tracking-widest uppercase">Mastors v0.1</span>
-          <span class="badge badge-green text-[0.55rem]">Stable</span>
+      <section class="relative overflow-hidden grid-bg noise min-h-[520px] flex items-center" id="intro">
+        <div class="hero-glow absolute inset-0 pointer-events-none"></div>
+        <div class="relative z-10 md:max-w-3xl max-w-full mx-auto px-6 py-20 text-center">
+          <!-- Logo mark -->
+          <div class="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full"
+            style="background: rgba(99,102,241,0.1); border: 1px solid rgba(99,102,241,0.25);">
+            <span class="text-brand-500 text-sm font-bold">◆</span>
+            <span class="text-brand-400 text-xs font-bold font-mono tracking-widest uppercase">Mastors v0.1</span>
+            <span class="badge badge-green text-[0.55rem]">Stable</span>
+          </div>
+
+          <h1
+            class="font-display font-extrabold text-4xl sm:text-5xl md:text-6xl leading-tight tracking-tight text-white mb-5">
+            Style is the<br>
+            <span
+              style="background: linear-gradient(90deg, #818cf8, #6366f1, #4f46e5); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">expression
+              of intent.</span>
+          </h1>
+
+          <p class="text-slate-400 text-base sm:text-lg leading-relaxed max-w-xl mx-auto mb-8 font-body">
+            Mastors is an <strong class="text-slate-300">Intent-Based Styling Framework</strong> — declare <em>what</em>
+            a UI element <em>is</em> and Mastors resolves <em>how it looks</em>: accessible, responsive, theme-aware,
+            and zero-runtime.
+          </p>
+
+          <!-- Install command -->
+          <div class="flex items-center gap-3 px-4 py-2.5 rounded-xl mb-8 font-mono text-sm w-full overflow-x-auto"
+            style="background: #070910; border: 1px solid #2e3350; margin-left: auto; margin-right: auto;">
+            <span class="text-brand-400 flex-shrink-0">$</span>
+            <span class="text-slate-300 whitespace-nowrap">pnpm add @mastors/api @mastors/core @mastors/schemas</span>
+            <button
+              onclick="copyText('pnpm add @mastors/api @mastors/core @mastors/schemas @mastors/tokens @mastors/types')"
+              class="copy-btn flex-shrink-0 ml-auto">
+              <i class="fa-solid fa-copy mr-1"></i>Copy
+            </button>
+          </div>
+
+          <div class="flex flex-wrap items-center justify-center gap-3">
+            <a href="#quick-start"
+              class="flex items-center gap-2 px-5 py-2.5 rounded-lg text-white font-semibold text-sm transition-all"
+              style="background: #6366f1; box-shadow: 0 4px 20px rgba(99,102,241,0.35);"
+              onmouseover="this.style.boxShadow='0 4px 28px rgba(99,102,241,0.5)'"
+              onmouseout="this.style.boxShadow='0 4px 20px rgba(99,102,241,0.35)'">
+              <i class="fa-solid fa-bolt text-xs"></i> Get Started
+            </a>
+            <a href="./playground/index.html"
+              class="flex items-center gap-2 px-5 py-2.5 rounded-lg text-slate-300 font-semibold text-sm transition-all"
+              style="background: #1d2133; border: 1px solid #2e3350;"
+              onmouseover="this.style.borderColor='rgba(99,102,241,0.5)'" onmouseout="this.style.borderColor='#2e3350'">
+              <i class="fa-solid fa-play text-xs text-brand-400"></i> Open Playground
+            </a>
+          </div>
         </div>
+      </section>
 
-        <h1 class="font-display font-extrabold text-4xl sm:text-5xl md:text-6xl leading-tight tracking-tight text-white mb-5">
-          Style is the<br>
-          <span style="background: linear-gradient(90deg, #818cf8, #6366f1, #4f46e5); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">expression of intent.</span>
-        </h1>
-
-        <p class="text-slate-400 text-base sm:text-lg leading-relaxed max-w-xl mx-auto mb-8 font-body">
-          Mastors is an <strong class="text-slate-300">Intent-Based Styling Framework</strong> — declare <em>what</em> a UI element <em>is</em> and Mastors resolves <em>how it looks</em>: accessible, responsive, theme-aware, and zero-runtime.
-        </p>
-
-        <!-- Install command -->
-        <div class="inline-flex items-center gap-3 px-4 py-2.5 rounded-xl mb-8 font-mono text-sm"
-             style="background: #070910; border: 1px solid #2e3350; max-width: 100%;">
-          <span class="text-brand-400">$</span>
-          <span class="text-slate-300 truncate">pnpm add @mastors/api @mastors/core @mastors/schemas</span>
-          <button onclick="copyText('pnpm add @mastors/api @mastors/core @mastors/schemas @mastors/tokens @mastors/types')" class="copy-btn flex-shrink-0">
-            <i class="fa-solid fa-copy mr-1"></i>Copy
-          </button>
+      <!-- Feature strip -->
+      <div class="grid grid-cols-2 md:grid-cols-4 border-b border-ink-600">
+        <div class="flex items-center gap-3 px-4 sm:px-5 py-4 border-r border-ink-600">
+          <i class="fa-solid fa-bolt text-brand-400 text-lg flex-shrink-0"></i>
+          <div>
+            <div class="text-xs font-bold text-slate-200">Zero-Runtime</div>
+            <div class="text-[0.68rem] text-slate-500">CSS compiled at build time</div>
+          </div>
         </div>
-
-        <div class="flex flex-wrap items-center justify-center gap-3">
-          <a href="#quick-start"
-             class="flex items-center gap-2 px-5 py-2.5 rounded-lg text-white font-semibold text-sm transition-all"
-             style="background: #6366f1; box-shadow: 0 4px 20px rgba(99,102,241,0.35);"
-             onmouseover="this.style.boxShadow='0 4px 28px rgba(99,102,241,0.5)'"
-             onmouseout="this.style.boxShadow='0 4px 20px rgba(99,102,241,0.35)'">
-            <i class="fa-solid fa-bolt text-xs"></i> Get Started
-          </a>
-          <a href="./playground/index.html"
-             class="flex items-center gap-2 px-5 py-2.5 rounded-lg text-slate-300 font-semibold text-sm transition-all"
-             style="background: #1d2133; border: 1px solid #2e3350;"
-             onmouseover="this.style.borderColor='rgba(99,102,241,0.5)'"
-             onmouseout="this.style.borderColor='#2e3350'">
-            <i class="fa-solid fa-play text-xs text-brand-400"></i> Open Playground
-          </a>
+        <div class="flex items-center gap-3 px-4 sm:px-5 py-4 md:border-r border-ink-600">
+          <i class="fa-solid fa-universal-access text-green-400 text-lg flex-shrink-0"></i>
+          <div>
+            <div class="text-xs font-bold text-slate-200">WCAG 2.2</div>
+            <div class="text-[0.68rem] text-slate-500">Auto a11y enforcement</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-3 px-4 sm:px-5 py-4 border-r border-ink-600 border-t md:border-t-0">
+          <i class="fa-solid fa-palette text-blue-400 text-lg flex-shrink-0"></i>
+          <div>
+            <div class="text-xs font-bold text-slate-200">Token-Native</div>
+            <div class="text-[0.68rem] text-slate-500">Design token–driven</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-3 px-4 sm:px-5 py-4 border-t md:border-t-0">
+          <i class="fa-solid fa-cubes text-yellow-400 text-lg flex-shrink-0"></i>
+          <div>
+            <div class="text-xs font-bold text-slate-200">Framework Agnostic</div>
+            <div class="text-[0.68rem] text-slate-500">React, Vue, Svelte</div>
+          </div>
         </div>
       </div>
-    </section>
 
-    <!-- Feature strip -->
-    <div class="grid grid-cols-2 md:grid-cols-4 border-b border-ink-600">
-      <div class="flex items-center gap-3 px-5 py-4 border-r border-ink-600">
-        <i class="fa-solid fa-bolt text-brand-400 text-lg flex-shrink-0"></i>
-        <div>
-          <div class="text-xs font-bold text-slate-200">Zero-Runtime</div>
-          <div class="text-[0.68rem] text-slate-500">CSS compiled at build time</div>
-        </div>
-      </div>
-      <div class="flex items-center gap-3 px-5 py-4 md:border-r border-ink-600">
-        <i class="fa-solid fa-universal-access text-green-400 text-lg flex-shrink-0"></i>
-        <div>
-          <div class="text-xs font-bold text-slate-200">WCAG 2.2</div>
-          <div class="text-[0.68rem] text-slate-500">Auto a11y enforcement</div>
-        </div>
-      </div>
-      <div class="flex items-center gap-3 px-5 py-4 border-r border-ink-600 border-t md:border-t-0">
-        <i class="fa-solid fa-palette text-blue-400 text-lg flex-shrink-0"></i>
-        <div>
-          <div class="text-xs font-bold text-slate-200">Token-Native</div>
-          <div class="text-[0.68rem] text-slate-500">Design token–driven</div>
-        </div>
-      </div>
-      <div class="flex items-center gap-3 px-5 py-4 border-t md:border-t-0">
-        <i class="fa-solid fa-cubes text-yellow-400 text-lg flex-shrink-0"></i>
-        <div>
-          <div class="text-xs font-bold text-slate-200">Framework Agnostic</div>
-          <div class="text-[0.68rem] text-slate-500">React, Vue, Svelte</div>
-        </div>
-      </div>
-    </div>
+      <div class="max-w-4xl mx-auto px-4 sm:px-6">
 
-    <div class="max-w-4xl mx-auto px-6">
-
-      <!-- ════════════════════════════════════════════════════
+        <!-- ════════════════════════════════════════════════════
            INSTALLATION
       ═══════════════════════════════════════════════════════ -->
-      <section class="doc-section section-anchor" id="installation">
-        <div class="section-label">01</div>
-        <h2 class="doc-h2">Installation</h2>
-        <p class="doc-p">Mastors is a pnpm workspace monorepo. Install the packages you need.</p>
+        <section class="doc-section section-anchor" id="installation">
+          <div class="section-label">01</div>
+          <h2 class="doc-h2">Installation</h2>
+          <p class="doc-p">Mastors is a pnpm workspace monorepo. Install the packages you need.</p>
 
-        <h3 class="doc-h3">Full install</h3>
-        <div class="code-block">
-          <div class="code-block-header">
-            <span class="lang-badge"><i class="fa-solid fa-terminal text-[0.65rem]"></i> bash</span>
-            <button class="copy-btn" onclick="copyBlock(this)"><i class="fa-solid fa-copy mr-1"></i>Copy</button>
-          </div>
-          <pre><code class="language-bash">pnpm add @mastors/api @mastors/core @mastors/compiler \
+          <h3 class="doc-h3">Full install</h3>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="lang-badge"><i class="fa-solid fa-terminal text-[0.65rem]"></i> bash</span>
+              <button class="copy-btn" onclick="copyBlock(this)"><i class="fa-solid fa-copy mr-1"></i>Copy</button>
+            </div>
+            <pre><code class="language-bash">pnpm add @mastors/api @mastors/core @mastors/compiler \
         @mastors/schemas @mastors/tokens @mastors/types @mastors/utils</code></pre>
-        </div>
-
-        <h3 class="doc-h3">Minimal install (API + core only)</h3>
-        <div class="code-block">
-          <div class="code-block-header">
-            <span class="lang-badge"><i class="fa-solid fa-terminal text-[0.65rem]"></i> bash</span>
-            <button class="copy-btn" onclick="copyBlock(this)"><i class="fa-solid fa-copy mr-1"></i>Copy</button>
           </div>
-          <pre><code class="language-bash">pnpm add @mastors/api @mastors/core @mastors/schemas @mastors/tokens @mastors/types</code></pre>
-        </div>
 
-        <h3 class="doc-h3">Framework adapters</h3>
-        <div class="code-block">
-          <div class="code-block-header">
-            <span class="lang-badge"><i class="fa-brands fa-react text-[0.65rem]"></i> bash</span>
-            <button class="copy-btn" onclick="copyBlock(this)"><i class="fa-solid fa-copy mr-1"></i>Copy</button>
+          <h3 class="doc-h3">Minimal install (API + core only)</h3>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="lang-badge"><i class="fa-solid fa-terminal text-[0.65rem]"></i> bash</span>
+              <button class="copy-btn" onclick="copyBlock(this)"><i class="fa-solid fa-copy mr-1"></i>Copy</button>
+            </div>
+            <pre><code class="language-bash">pnpm add @mastors/api @mastors/core @mastors/schemas @mastors/tokens @mastors/types</code></pre>
           </div>
-          <pre><code class="language-bash"># React
+
+          <h3 class="doc-h3">Framework adapters</h3>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="lang-badge"><i class="fa-brands fa-react text-[0.65rem]"></i> bash</span>
+              <button class="copy-btn" onclick="copyBlock(this)"><i class="fa-solid fa-copy mr-1"></i>Copy</button>
+            </div>
+            <pre><code class="language-bash"># React
 pnpm add @mastors/adapter-react
 
 # Vue 3
@@ -601,220 +923,240 @@ pnpm add @mastors/adapter-vue
 
 # Svelte
 pnpm add @mastors/adapter-svelte</code></pre>
-        </div>
-
-        <h3 class="doc-h3">Build plugins</h3>
-        <div class="code-block">
-          <div class="code-block-header">
-            <span class="lang-badge"><i class="fa-solid fa-plug text-[0.65rem]"></i> bash</span>
-            <button class="copy-btn" onclick="copyBlock(this)"><i class="fa-solid fa-copy mr-1"></i>Copy</button>
           </div>
-          <pre><code class="language-bash">pnpm add -D @mastors/plugin-vite      # Vite
-pnpm add -D @mastors/plugin-webpack   # webpack</code></pre>
-        </div>
-      </section>
 
-      <!-- ════════════════════════════════════════════════════
+          <h3 class="doc-h3">Build plugins</h3>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="lang-badge"><i class="fa-solid fa-plug text-[0.65rem]"></i> bash</span>
+              <button class="copy-btn" onclick="copyBlock(this)"><i class="fa-solid fa-copy mr-1"></i>Copy</button>
+            </div>
+            <pre><code class="language-bash">pnpm add -D @mastors/plugin-vite      # Vite
+pnpm add -D @mastors/plugin-webpack   # webpack</code></pre>
+          </div>
+        </section>
+
+        <!-- ════════════════════════════════════════════════════
            QUICK START
       ═══════════════════════════════════════════════════════ -->
-      <section class="doc-section section-anchor" id="quick-start">
-        <div class="section-label">02</div>
-        <h2 class="doc-h2">Quick Start</h2>
-        <p class="doc-p">Get from zero to a fully-styled, accessible component in five steps.</p>
+        <section class="doc-section section-anchor" id="quick-start">
+          <div class="section-label">02</div>
+          <h2 class="doc-h2">Quick Start</h2>
+          <p class="doc-p">Get from zero to a fully-styled, accessible component in five steps.</p>
 
-        <!-- Step 1 -->
-        <div class="layer-step">
-          <div class="layer-num">1</div>
-          <div class="flex-1">
-            <div class="font-semibold text-slate-200 text-sm mb-0.5">Create <code>mastors.config.ts</code></div>
-            <p class="doc-p text-xs mb-0">Define your schema and custom vocabulary at the project root.</p>
-            <div class="code-block mt-3">
-              <div class="code-block-header">
-                <span class="lang-badge"><i class="fa-solid fa-gear text-[0.65rem]"></i> mastors.config.ts</span>
-                <button class="copy-btn" onclick="copyBlock(this)"><i class="fa-solid fa-copy mr-1"></i>Copy</button>
-              </div>
-              <pre><code class="language-typescript">import { defineSchema } from "@mastors/schemas";
+          <!-- Step 1 -->
+          <div class="layer-step">
+            <div class="layer-num">1</div>
+            <div class="flex-1">
+              <div class="font-semibold text-slate-200 text-sm mb-0.5">Create <code>mastors.config.ts</code></div>
+              <p class="doc-p text-xs mb-0">Define your schema and custom vocabulary at the project root.</p>
 
-export default defineSchema({
-  tokens: "./tokens/global.json",  // optional — uses built-in tokens by default
-  vocabulary: {
-    // Extend the built-in vocabulary with project-specific intents
-    "card.promo.featured": {
-      spacing: { x: "token.space.6", y: "token.space.5" },
-      shadow: "token.shadow.elevated",
-      radius: "token.radius.xl",
-      color: {
-        background: "token.color.primary.50",
-        border: "token.color.primary.200",
-      },
-      a11y: { role: "article", contrast: "AA" },
-    },
-  },
-});</code></pre>
             </div>
           </div>
-        </div>
+          <div class="code-block mt-3">
+            <div class="code-block-header">
+              <span class="lang-badge"><i class="fa-solid fa-gear text-[0.65rem]"></i> mastors.config.ts</span>
+              <button class="copy-btn" onclick="copyBlock(this)"><i class="fa-solid fa-copy mr-1"></i>Copy</button>
+            </div>
+            <pre><code class="language-typescript">import { defineSchema } from "@mastors/schemas";
+        
+        export default defineSchema({
+          tokens: "./tokens/global.json",  // optional — uses built-in tokens by default
+          vocabulary: {
+            // Extend the built-in vocabulary with project-specific intents
+            "card.promo.featured": {
+              spacing: { x: "token.space.6", y: "token.space.5" },
+              shadow: "token.shadow.elevated",
+              radius: "token.radius.xl",
+              color: {
+                background: "token.color.primary.50",
+                border: "token.color.primary.200",
+              },
+              a11y: { role: "article", contrast: "AA" },
+            },
+          },
+        });</code></pre>
+          </div>
 
-        <!-- Step 2 -->
-        <div class="layer-step">
-          <div class="layer-num">2</div>
-          <div class="flex-1">
-            <div class="font-semibold text-slate-200 text-sm mb-0.5">Add the Vite plugin</div>
-            <div class="code-block mt-3">
-              <div class="code-block-header">
-                <span class="lang-badge"><i class="fa-solid fa-file text-[0.65rem]"></i> vite.config.ts</span>
-                <button class="copy-btn" onclick="copyBlock(this)"><i class="fa-solid fa-copy mr-1"></i>Copy</button>
-              </div>
-              <pre><code class="language-typescript">import { defineConfig } from "vite";
-import { mastorsPlugin } from "@mastors/plugin-vite";
-import schema from "./mastors.config";
-
-export default defineConfig({
-  plugins: [
-    mastorsPlugin({
-      config: { schema, a11yMode: "warn" },
-      a11yManifest: true,   // emit mastors-a11y.json at build
-    }),
-  ],
-});</code></pre>
+          <!-- Step 2 -->
+          <div class="layer-step">
+            <div class="layer-num">2</div>
+            <div class="flex-1">
+              <div class="font-semibold text-slate-200 text-sm mb-0.5">Add the Vite plugin</div>
             </div>
           </div>
-        </div>
+          <div class="code-block mt-3">
+            <div class="code-block-header">
+              <span class="lang-badge"><i class="fa-solid fa-file text-[0.65rem]"></i> vite.config.ts</span>
+              <button class="copy-btn" onclick="copyBlock(this)"><i class="fa-solid fa-copy mr-1"></i>Copy</button>
+            </div>
+            <pre><code class="language-typescript">import { defineConfig } from "vite";
+          import { mastorsPlugin } from "@mastors/plugin-vite";
+          import schema from "./mastors.config";
+          
+          export default defineConfig({
+            plugins: [
+              mastorsPlugin({
+                config: { schema, a11yMode: "warn" },
+                a11yManifest: true,   // emit mastors-a11y.json at build
+              }),
+            ],
+          });</code></pre>
+          </div>
 
-        <!-- Step 3 -->
-        <div class="layer-step">
-          <div class="layer-num">3</div>
-          <div class="flex-1">
-            <div class="font-semibold text-slate-200 text-sm mb-0.5">Import the virtual CSS module</div>
-            <div class="code-block mt-3">
-              <div class="code-block-header">
-                <span class="lang-badge"><i class="fa-solid fa-file text-[0.65rem]"></i> main.ts</span>
-                <button class="copy-btn" onclick="copyBlock(this)"><i class="fa-solid fa-copy mr-1"></i>Copy</button>
-              </div>
-              <pre><code class="language-typescript">import "virtual:mastors";  // inject compiled CSS (zero-runtime)
-import { configure } from "@mastors/api";
-import schema from "./mastors.config";
-
-configure({ schema, a11yMode: "warn" });</code></pre>
+          <!-- Step 3 -->
+          <div class="layer-step">
+            <div class="layer-num">3</div>
+            <div class="flex-1">
+              <div class="font-semibold text-slate-200 text-sm mb-0.5">Import the virtual CSS module</div>
             </div>
           </div>
-        </div>
+          <div class="code-block mt-3">
+            <div class="code-block-header">
+              <span class="lang-badge"><i class="fa-solid fa-file text-[0.65rem]"></i> main.ts</span>
+              <button class="copy-btn" onclick="copyBlock(this)"><i class="fa-solid fa-copy mr-1"></i>Copy</button>
+            </div>
+            <pre><code class="language-typescript">import "virtual:mastors";  // inject compiled CSS (zero-runtime)
+          import { configure } from "@mastors/api";
+          import schema from "./mastors.config";
+          
+          configure({ schema, a11yMode: "warn" });</code></pre>
+          </div>
 
-        <!-- Step 4 -->
-        <div class="layer-step">
-          <div class="layer-num">4</div>
-          <div class="flex-1">
-            <div class="font-semibold text-slate-200 text-sm mb-0.5">Declare intent</div>
-            <div class="code-block mt-3">
-              <div class="code-block-header">
-                <span class="lang-badge"><i class="fa-brands fa-react text-[0.65rem]"></i> Card.tsx</span>
-                <button class="copy-btn" onclick="copyBlock(this)"><i class="fa-solid fa-copy mr-1"></i>Copy</button>
-              </div>
-              <pre><code class="language-typescript">import { intent } from "@mastors/api";
-
-const card = intent("card.elevated.interactive");
-// Mastors auto-resolves:
-//   ✓ Elevation shadow from token.shadow.elevated
-//   ✓ WCAG AA focus ring (ring.primary)
-//   ✓ Hover lift interaction
-//   ✓ prefers-reduced-motion guard
-//   ✓ Theme-aware background & border colors</code></pre>
+          <!-- Step 4 -->
+          <div class="layer-step">
+            <div class="layer-num">4</div>
+            <div class="flex-1">
+              <div class="font-semibold text-slate-200 text-sm mb-0.5">Declare intent</div>
             </div>
           </div>
-        </div>
+          <div class="code-block mt-3">
+            <div class="code-block-header">
+              <span class="lang-badge"><i class="fa-brands fa-react text-[0.65rem]"></i> Card.tsx</span>
+              <button class="copy-btn" onclick="copyBlock(this)"><i class="fa-solid fa-copy mr-1"></i>Copy</button>
+            </div>
+            <pre><code class="language-typescript">import { intent } from "@mastors/api";
+          
+          const card = intent("card.elevated.interactive");
+          // Mastors auto-resolves:
+          //   ✓ Elevation shadow from token.shadow.elevated
+          //   ✓ WCAG AA focus ring (ring.primary)
+          //   ✓ Hover lift interaction
+          //   ✓ prefers-reduced-motion guard
+          //   ✓ Theme-aware background & border colors</code></pre>
+          </div>
 
-        <!-- Step 5 -->
-        <div class="layer-step">
-          <div class="layer-num">5</div>
-          <div class="flex-1">
-            <div class="font-semibold text-slate-200 text-sm mb-0.5">Render with a framework adapter</div>
-            <div class="code-block mt-3">
-              <div class="code-block-header">
-                <span class="lang-badge"><i class="fa-brands fa-react text-[0.65rem]"></i> React</span>
-                <button class="copy-btn" onclick="copyBlock(this)"><i class="fa-solid fa-copy mr-1"></i>Copy</button>
-              </div>
-              <pre><code class="language-typescript">import { Mastors } from "@mastors/adapter-react";
-
-export function Card({ title, body }) {
-  return (
-    &lt;Mastors.div intent="card.elevated.interactive"&gt;
-      &lt;Mastors.h2 intent="heading.section"&gt;{title}&lt;/Mastors.h2&gt;
-      &lt;Mastors.p intent="body.readable"&gt;{body}&lt;/Mastors.p&gt;
-      &lt;Mastors.button intent="button.primary.cta"&gt;Get Started&lt;/Mastors.button&gt;
-    &lt;/Mastors.div&gt;
-  );
-}</code></pre>
+          <!-- Step 5 -->
+          <div class="layer-step">
+            <div class="layer-num">5</div>
+            <div class="flex-1">
+              <div class="font-semibold text-slate-200 text-sm mb-0.5">Render with a framework adapter</div>
             </div>
           </div>
-        </div>
-      </section>
+          <div class="code-block mt-3">
+            <div class="code-block-header">
+              <span class="lang-badge"><i class="fa-brands fa-react text-[0.65rem]"></i> React</span>
+              <button class="copy-btn" onclick="copyBlock(this)"><i class="fa-solid fa-copy mr-1"></i>Copy</button>
+            </div>
+            <pre><code class="language-typescript">import { Mastors } from "@mastors/adapter-react";
+          
+          export function Card({ title, body }) {
+            return (
+              &lt;Mastors.div intent="card.elevated.interactive"&gt;
+                &lt;Mastors.h2 intent="heading.section"&gt;{title}&lt;/Mastors.h2&gt;
+                &lt;Mastors.p intent="body.readable"&gt;{body}&lt;/Mastors.p&gt;
+                &lt;Mastors.button intent="button.primary.cta"&gt;Get Started&lt;/Mastors.button&gt;
+              &lt;/Mastors.div&gt;
+            );
+          }</code></pre>
+          </div>
+        </section>
 
-      <!-- ════════════════════════════════════════════════════
+        <!-- ════════════════════════════════════════════════════
            ARCHITECTURE
       ═══════════════════════════════════════════════════════ -->
-      <section class="doc-section section-anchor" id="architecture">
-        <div class="section-label">03</div>
-        <h2 class="doc-h2">Architecture</h2>
-        <p class="doc-p">Mastors is organized as a five-layer pipeline. All resolution happens at <strong class="text-slate-300">build time</strong> — the browser receives plain atomic CSS with zero JavaScript in the styling critical path.</p>
+        <section class="doc-section section-anchor" id="architecture">
+          <div class="section-label">03</div>
+          <h2 class="doc-h2">Architecture</h2>
+          <p class="doc-p">Mastors is organized as a five-layer pipeline. All resolution happens at <strong
+              class="text-slate-300">build time</strong> — the browser receives plain atomic CSS with zero JavaScript in
+            the styling critical path.</p>
 
-        <div class="space-y-1 mt-4 rounded-xl overflow-hidden border border-ink-400">
-          <div class="flex items-start gap-4 p-4 bg-ink-700 border-b border-ink-600 group hover:bg-ink-600 transition-colors">
-            <div class="flex-shrink-0 w-24 text-[0.65rem] font-mono font-bold text-brand-400 pt-0.5">LAYER 1</div>
-            <div class="flex-1">
-              <div class="text-xs font-bold text-slate-200 mb-0.5 font-mono">@mastors/api</div>
-              <div class="text-[0.75rem] text-slate-500">Intent Declaration API — <code>intent()</code> · <code>semantics()</code> · <code>compose()</code> · <code>configure()</code></div>
+          <div class="space-y-1 mt-4 rounded-xl overflow-hidden border border-ink-400">
+            <div
+              class="flex items-start gap-4 p-4 bg-ink-700 border-b border-ink-600 group hover:bg-ink-600 transition-colors">
+              <div class="flex-shrink-0 w-16 sm:w-24 text-[0.65rem] font-mono font-bold text-brand-400 pt-0.5">LAYER 1
+              </div>
+              <div class="flex-1">
+                <div class="text-xs font-bold text-slate-200 mb-0.5 font-mono">@mastors/api</div>
+                <div class="text-[0.75rem] text-slate-500">Intent Declaration API — <code>intent()</code> ·
+                  <code>semantics()</code> · <code>compose()</code> · <code>configure()</code>
+                </div>
+              </div>
+              <i class="fa-solid fa-arrow-down text-ink-300 mt-1 flex-shrink-0"></i>
             </div>
-            <i class="fa-solid fa-arrow-down text-ink-300 mt-1 flex-shrink-0"></i>
-          </div>
-          <div class="flex items-start gap-4 p-4 bg-ink-700 border-b border-ink-600 group hover:bg-ink-600 transition-colors">
-            <div class="flex-shrink-0 w-24 text-[0.65rem] font-mono font-bold text-blue-400 pt-0.5">LAYER 2</div>
-            <div class="flex-1">
-              <div class="text-xs font-bold text-slate-200 mb-0.5 font-mono">@mastors/core</div>
-              <div class="text-[0.75rem] text-slate-500">Semantic Resolver — token mapping · context inference · plugin hooks · resolver cache</div>
+            <div
+              class="flex items-start gap-4 p-4 bg-ink-700 border-b border-ink-600 group hover:bg-ink-600 transition-colors">
+              <div class="flex-shrink-0 w-16 sm:w-24 text-[0.65rem] font-mono font-bold text-blue-400 pt-0.5">LAYER 2
+              </div>
+              <div class="flex-1">
+                <div class="text-xs font-bold text-slate-200 mb-0.5 font-mono">@mastors/core</div>
+                <div class="text-[0.75rem] text-slate-500">Semantic Resolver — token mapping · context inference ·
+                  plugin hooks · resolver cache</div>
+              </div>
+              <i class="fa-solid fa-arrow-down text-ink-300 mt-1 flex-shrink-0"></i>
             </div>
-            <i class="fa-solid fa-arrow-down text-ink-300 mt-1 flex-shrink-0"></i>
-          </div>
-          <div class="flex items-start gap-4 p-4 bg-ink-700 border-b border-ink-600 group hover:bg-ink-600 transition-colors">
-            <div class="flex-shrink-0 w-24 text-[0.65rem] font-mono font-bold text-purple-400 pt-0.5">LAYER 3</div>
-            <div class="flex-1">
-              <div class="text-xs font-bold text-slate-200 mb-0.5 font-mono">@mastors/core (runtime)</div>
-              <div class="text-[0.75rem] text-slate-500">Adaptive Runtime — responsive optimizer · theme scaler · motion orchestrator</div>
+            <div
+              class="flex items-start gap-4 p-4 bg-ink-700 border-b border-ink-600 group hover:bg-ink-600 transition-colors">
+              <div class="flex-shrink-0 w-16 sm:w-24 text-[0.65rem] font-mono font-bold text-purple-400 pt-0.5">LAYER 3
+              </div>
+              <div class="flex-1">
+                <div class="text-xs font-bold text-slate-200 mb-0.5 font-mono">@mastors/core (runtime)</div>
+                <div class="text-[0.75rem] text-slate-500">Adaptive Runtime — responsive optimizer · theme scaler ·
+                  motion orchestrator</div>
+              </div>
+              <i class="fa-solid fa-arrow-down text-ink-300 mt-1 flex-shrink-0"></i>
             </div>
-            <i class="fa-solid fa-arrow-down text-ink-300 mt-1 flex-shrink-0"></i>
-          </div>
-          <div class="flex items-start gap-4 p-4 bg-ink-700 border-b border-ink-600 group hover:bg-ink-600 transition-colors">
-            <div class="flex-shrink-0 w-24 text-[0.65rem] font-mono font-bold text-green-400 pt-0.5">LAYER 4</div>
-            <div class="flex-1">
-              <div class="text-xs font-bold text-slate-200 mb-0.5 font-mono">@mastors/accessibility</div>
-              <div class="text-[0.75rem] text-slate-500">WCAG 2.2 Guard — contrast enforcement · ARIA automation · motion sensitivity guard</div>
+            <div
+              class="flex items-start gap-4 p-4 bg-ink-700 border-b border-ink-600 group hover:bg-ink-600 transition-colors">
+              <div class="flex-shrink-0 w-16 sm:w-24 text-[0.65rem] font-mono font-bold text-green-400 pt-0.5">LAYER 4
+              </div>
+              <div class="flex-1">
+                <div class="text-xs font-bold text-slate-200 mb-0.5 font-mono">@mastors/accessibility</div>
+                <div class="text-[0.75rem] text-slate-500">WCAG 2.2 Guard — contrast enforcement · ARIA automation ·
+                  motion sensitivity guard</div>
+              </div>
+              <i class="fa-solid fa-arrow-down text-ink-300 mt-1 flex-shrink-0"></i>
             </div>
-            <i class="fa-solid fa-arrow-down text-ink-300 mt-1 flex-shrink-0"></i>
-          </div>
-          <div class="flex items-start gap-4 p-4 bg-ink-700 group hover:bg-ink-600 transition-colors">
-            <div class="flex-shrink-0 w-24 text-[0.65rem] font-mono font-bold text-yellow-400 pt-0.5">LAYER 5</div>
-            <div class="flex-1">
-              <div class="text-xs font-bold text-slate-200 mb-0.5 font-mono">@mastors/compiler</div>
-              <div class="text-[0.75rem] text-slate-500">Output Compiler — zero-runtime atomic CSS · class deduplication · token injection · a11y manifest</div>
+            <div class="flex items-start gap-4 p-4 bg-ink-700 group hover:bg-ink-600 transition-colors">
+              <div class="flex-shrink-0 w-16 sm:w-24 text-[0.65rem] font-mono font-bold text-yellow-400 pt-0.5">LAYER 5
+              </div>
+              <div class="flex-1">
+                <div class="text-xs font-bold text-slate-200 mb-0.5 font-mono">@mastors/compiler</div>
+                <div class="text-[0.75rem] text-slate-500">Output Compiler — zero-runtime atomic CSS · class
+                  deduplication · token injection · a11y manifest</div>
+              </div>
+              <span
+                class="text-[0.6rem] font-bold text-slate-500 mt-1 flex-shrink-0 bg-ink-500 px-2 py-0.5 rounded">OUTPUT</span>
             </div>
-            <span class="text-[0.6rem] font-bold text-slate-500 mt-1 flex-shrink-0 bg-ink-500 px-2 py-0.5 rounded">OUTPUT</span>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- ════════════════════════════════════════════════════
+        <!-- ════════════════════════════════════════════════════
            INTENT API
       ═══════════════════════════════════════════════════════ -->
-      <section class="doc-section section-anchor" id="intent-api">
-        <div class="section-label">04</div>
-        <h2 class="doc-h2">Intent Declaration API</h2>
-        <p class="doc-p">The <code>@mastors/api</code> package exposes four functions forming the public developer interface.</p>
+        <section class="doc-section section-anchor" id="intent-api">
+          <div class="section-label">04</div>
+          <h2 class="doc-h2">Intent Declaration API</h2>
+          <p class="doc-p">The <code>@mastors/api</code> package exposes four functions forming the public developer
+            interface.</p>
 
-        <div class="code-block">
-          <div class="code-block-header">
-            <span class="lang-badge"><i class="fa-solid fa-code text-[0.65rem]"></i> typescript</span>
-            <button class="copy-btn" onclick="copyBlock(this)"><i class="fa-solid fa-copy mr-1"></i>Copy</button>
-          </div>
-          <pre><code class="language-typescript">import { intent, semantics, compose, configure, intentClass } from "@mastors/api";
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="lang-badge"><i class="fa-solid fa-code text-[0.65rem]"></i> typescript</span>
+              <button class="copy-btn" onclick="copyBlock(this)"><i class="fa-solid fa-copy mr-1"></i>Copy</button>
+            </div>
+            <pre><code class="language-typescript">import { intent, semantics, compose, configure, intentClass } from "@mastors/api";
 
 // ── configure() — initialize once at app entry ──
 configure({ schema: mySchema, a11yMode: "warn" });
@@ -836,23 +1178,25 @@ semantics({
 
 // ── compose() — merge multiple intents (last wins on conflicts) ──
 const heroCard = compose("card.elevated", "card.elevated.interactive");</code></pre>
-        </div>
-      </section>
+          </div>
+        </section>
 
-      <!-- ════════════════════════════════════════════════════
+        <!-- ════════════════════════════════════════════════════
            SEMANTIC RESOLVER
       ═══════════════════════════════════════════════════════ -->
-      <section class="doc-section section-anchor" id="resolver">
-        <div class="section-label">05</div>
-        <h2 class="doc-h2">Semantic Resolver</h2>
-        <p class="doc-p"><code>@mastors/core</code> houses the <code>SemanticResolver</code> class — the engine that maps intent identifiers to typed style maps via the schema vocabulary. Results are automatically cached per intent ID + context.</p>
+        <section class="doc-section section-anchor" id="resolver">
+          <div class="section-label">05</div>
+          <h2 class="doc-h2">Semantic Resolver</h2>
+          <p class="doc-p"><code>@mastors/core</code> houses the <code>SemanticResolver</code> class — the engine that
+            maps intent identifiers to typed style maps via the schema vocabulary. Results are automatically cached per
+            intent ID + context.</p>
 
-        <div class="code-block">
-          <div class="code-block-header">
-            <span class="lang-badge"><i class="fa-solid fa-gears text-[0.65rem]"></i> typescript</span>
-            <button class="copy-btn" onclick="copyBlock(this)"><i class="fa-solid fa-copy mr-1"></i>Copy</button>
-          </div>
-          <pre><code class="language-typescript">import { SemanticResolver } from "@mastors/core";
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="lang-badge"><i class="fa-solid fa-gears text-[0.65rem]"></i> typescript</span>
+              <button class="copy-btn" onclick="copyBlock(this)"><i class="fa-solid fa-copy mr-1"></i>Copy</button>
+            </div>
+            <pre><code class="language-typescript">import { SemanticResolver } from "@mastors/core";
 import { defaultSchema } from "@mastors/schemas";
 
 const resolver = new SemanticResolver(defaultSchema);
@@ -873,48 +1217,72 @@ const styleMap = resolver.resolve(descriptor);
 // Useful methods
 resolver.clearCache();           // clear cached results (call when schema changes)
 resolver.setSchema(newSchema);   // swap schema (also clears cache)</code></pre>
-        </div>
+          </div>
 
-        <h3 class="doc-h3">Specificity walk</h3>
-        <p class="doc-p text-sm">When looking up a vocabulary entry, the resolver walks from most-specific to least-specific:</p>
-        <div class="flex flex-wrap items-center gap-2 mt-2 mb-4">
-          <span class="intent-chip">card.elevated.interactive</span>
-          <i class="fa-solid fa-arrow-right text-slate-600 text-xs"></i>
-          <span class="intent-chip">card.elevated</span>
-          <i class="fa-solid fa-arrow-right text-slate-600 text-xs"></i>
-          <span class="intent-chip">card</span>
-          <i class="fa-solid fa-arrow-right text-slate-600 text-xs"></i>
-          <span class="text-slate-500 text-xs">fallback (empty map)</span>
-        </div>
-      </section>
+          <h3 class="doc-h3">Specificity walk</h3>
+          <p class="doc-p text-sm">When looking up a vocabulary entry, the resolver walks from most-specific to
+            least-specific:</p>
+          <div class="flex flex-wrap items-center gap-2 mt-2 mb-4">
+            <span class="intent-chip">card.elevated.interactive</span>
+            <i class="fa-solid fa-arrow-right text-slate-600 text-xs"></i>
+            <span class="intent-chip">card.elevated</span>
+            <i class="fa-solid fa-arrow-right text-slate-600 text-xs"></i>
+            <span class="intent-chip">card</span>
+            <i class="fa-solid fa-arrow-right text-slate-600 text-xs"></i>
+            <span class="text-slate-500 text-xs">fallback (empty map)</span>
+          </div>
+        </section>
 
-      <!-- ════════════════════════════════════════════════════
+        <!-- ════════════════════════════════════════════════════
            VOCABULARY
       ═══════════════════════════════════════════════════════ -->
-      <section class="doc-section section-anchor" id="vocabulary">
-        <div class="section-label">06</div>
-        <h2 class="doc-h2">Built-in Vocabulary</h2>
-        <p class="doc-p">Mastors ships 19 production-ready intents covering the most common UI patterns — all with automatic token resolution, WCAG 2.2 compliance, and interaction semantics.</p>
+        <section class="doc-section section-anchor" id="vocabulary">
+          <div class="section-label">06</div>
+          <h2 class="doc-h2">Built-in Vocabulary</h2>
+          <p class="doc-p">Mastors ships 19 production-ready intents covering the most common UI patterns — all with
+            automatic token resolution, WCAG 2.2 compliance, and interaction semantics.</p>
 
-        <!-- Cards -->
-        <div class="section-anchor" id="vocab-cards">
-          <h3 class="doc-h3"><i class="fa-solid fa-id-card text-brand-400 mr-2"></i>Cards</h3>
-          <div class="doc-table-wrap">
-            <table class="doc-table">
-              <thead><tr><th>Intent</th><th>Shadow</th><th>Interaction</th><th>WCAG</th></tr></thead>
-              <tbody>
-                <tr><td><span class="intent-chip">card.base</span></td><td>—</td><td>—</td><td><span class="badge badge-green">AA</span></td></tr>
-                <tr><td><span class="intent-chip">card.elevated</span></td><td><code>token.shadow.elevated</code></td><td>—</td><td><span class="badge badge-green">AA</span></td></tr>
-                <tr><td><span class="intent-chip">card.elevated.interactive</span></td><td><code>token.shadow.elevated</code></td><td>hover:lift · focus:ring · active:press</td><td><span class="badge badge-green">AA</span></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="code-block">
-            <div class="code-block-header">
-              <span class="lang-badge"><i class="fa-solid fa-code text-[0.65rem]"></i> Schema definition</span>
-              <button class="copy-btn" onclick="copyBlock(this)"><i class="fa-solid fa-copy mr-1"></i>Copy</button>
+          <!-- Cards -->
+          <div class="section-anchor" id="vocab-cards">
+            <h3 class="doc-h3"><i class="fa-solid fa-id-card text-brand-400 mr-2"></i>Cards</h3>
+            <div class="doc-table-wrap">
+              <table class="doc-table">
+                <thead>
+                  <tr>
+                    <th>Intent</th>
+                    <th>Shadow</th>
+                    <th>Interaction</th>
+                    <th>WCAG</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="intent-chip">card.base</span></td>
+                    <td>—</td>
+                    <td>—</td>
+                    <td><span class="badge badge-green">AA</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="intent-chip">card.elevated</span></td>
+                    <td><code>token.shadow.elevated</code></td>
+                    <td>—</td>
+                    <td><span class="badge badge-green">AA</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="intent-chip">card.elevated.interactive</span></td>
+                    <td><code>token.shadow.elevated</code></td>
+                    <td>hover:lift · focus:ring · active:press</td>
+                    <td><span class="badge badge-green">AA</span></td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
-            <pre><code class="language-typescript">"card.elevated.interactive": {
+            <div class="code-block">
+              <div class="code-block-header">
+                <span class="lang-badge"><i class="fa-solid fa-code text-[0.65rem]"></i> Schema definition</span>
+                <button class="copy-btn" onclick="copyBlock(this)"><i class="fa-solid fa-copy mr-1"></i>Copy</button>
+              </div>
+              <pre><code class="language-typescript">"card.elevated.interactive": {
   spacing: { x: "token.space.4", y: "token.space.3" },
   shadow: "token.shadow.elevated",
   radius: "token.radius.lg",
@@ -925,110 +1293,247 @@ resolver.setSchema(newSchema);   // swap schema (also clears cache)</code></pre>
   motion: "transition.natural",
   a11y: { role: "article", contrast: "AA" },
 }</code></pre>
+            </div>
           </div>
-        </div>
 
-        <!-- Buttons -->
-        <div class="section-anchor" id="vocab-buttons">
-          <h3 class="doc-h3"><i class="fa-solid fa-computer-mouse text-brand-400 mr-2"></i>Buttons</h3>
-          <div class="doc-table-wrap">
-            <table class="doc-table">
-              <thead><tr><th>Intent</th><th>Background</th><th>Interaction</th><th>WCAG</th></tr></thead>
-              <tbody>
-                <tr><td><span class="intent-chip">button.primary</span></td><td><code>color.primary.600</code></td><td>hover:darken · focus:ring</td><td><span class="badge badge-green">AA</span></td></tr>
-                <tr><td><span class="intent-chip">button.primary.cta</span></td><td><code>color.primary.600</code></td><td>hover:darken · focus:ring</td><td><span class="badge badge-blue">AAA</span></td></tr>
-                <tr><td><span class="intent-chip">button.secondary</span></td><td><code>color.neutral.100</code></td><td>hover:lighten · focus:ring</td><td><span class="badge badge-green">AA</span></td></tr>
-                <tr><td><span class="intent-chip">button.destructive</span></td><td><code>color.error.500</code></td><td>hover:darken · focus:ring.error</td><td><span class="badge badge-green">AA</span></td></tr>
-              </tbody>
-            </table>
+          <!-- Buttons -->
+          <div class="section-anchor" id="vocab-buttons">
+            <h3 class="doc-h3"><i class="fa-solid fa-computer-mouse text-brand-400 mr-2"></i>Buttons</h3>
+            <div class="doc-table-wrap">
+              <table class="doc-table">
+                <thead>
+                  <tr>
+                    <th>Intent</th>
+                    <th>Background</th>
+                    <th>Interaction</th>
+                    <th>WCAG</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="intent-chip">button.primary</span></td>
+                    <td><code>color.primary.600</code></td>
+                    <td>hover:darken · focus:ring</td>
+                    <td><span class="badge badge-green">AA</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="intent-chip">button.primary.cta</span></td>
+                    <td><code>color.primary.600</code></td>
+                    <td>hover:darken · focus:ring</td>
+                    <td><span class="badge badge-blue">AAA</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="intent-chip">button.secondary</span></td>
+                    <td><code>color.neutral.100</code></td>
+                    <td>hover:lighten · focus:ring</td>
+                    <td><span class="badge badge-green">AA</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="intent-chip">button.destructive</span></td>
+                    <td><code>color.error.500</code></td>
+                    <td>hover:darken · focus:ring.error</td>
+                    <td><span class="badge badge-green">AA</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
-        </div>
 
-        <!-- Typography -->
-        <div class="section-anchor" id="vocab-typography">
-          <h3 class="doc-h3"><i class="fa-solid fa-font text-brand-400 mr-2"></i>Typography</h3>
-          <div class="doc-table-wrap">
-            <table class="doc-table">
-              <thead><tr><th>Intent</th><th>Size token</th><th>Weight</th><th>Line height</th></tr></thead>
-              <tbody>
-                <tr><td><span class="intent-chip">heading.hero</span></td><td><code>token.text.5xl</code></td><td>bold</td><td>tight (1.25)</td></tr>
-                <tr><td><span class="intent-chip">heading.section</span></td><td><code>token.text.3xl</code></td><td>bold</td><td>tight (1.25)</td></tr>
-                <tr><td><span class="intent-chip">heading.subsection</span></td><td><code>token.text.xl</code></td><td>semibold</td><td>snug (1.375)</td></tr>
-                <tr><td><span class="intent-chip">body.readable</span></td><td><code>token.text.base</code></td><td>normal</td><td>relaxed (1.625)</td></tr>
-                <tr><td><span class="intent-chip">body.readable.longform</span></td><td><code>token.text.lg</code></td><td>normal</td><td>loose (2)</td></tr>
-              </tbody>
-            </table>
+          <!-- Typography -->
+          <div class="section-anchor" id="vocab-typography">
+            <h3 class="doc-h3"><i class="fa-solid fa-font text-brand-400 mr-2"></i>Typography</h3>
+            <div class="doc-table-wrap">
+              <table class="doc-table">
+                <thead>
+                  <tr>
+                    <th>Intent</th>
+                    <th>Size token</th>
+                    <th>Weight</th>
+                    <th>Line height</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="intent-chip">heading.hero</span></td>
+                    <td><code>token.text.5xl</code></td>
+                    <td>bold</td>
+                    <td>tight (1.25)</td>
+                  </tr>
+                  <tr>
+                    <td><span class="intent-chip">heading.section</span></td>
+                    <td><code>token.text.3xl</code></td>
+                    <td>bold</td>
+                    <td>tight (1.25)</td>
+                  </tr>
+                  <tr>
+                    <td><span class="intent-chip">heading.subsection</span></td>
+                    <td><code>token.text.xl</code></td>
+                    <td>semibold</td>
+                    <td>snug (1.375)</td>
+                  </tr>
+                  <tr>
+                    <td><span class="intent-chip">body.readable</span></td>
+                    <td><code>token.text.base</code></td>
+                    <td>normal</td>
+                    <td>relaxed (1.625)</td>
+                  </tr>
+                  <tr>
+                    <td><span class="intent-chip">body.readable.longform</span></td>
+                    <td><code>token.text.lg</code></td>
+                    <td>normal</td>
+                    <td>loose (2)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
-        </div>
 
-        <!-- Alerts -->
-        <div class="section-anchor" id="vocab-alerts">
-          <h3 class="doc-h3"><i class="fa-solid fa-bell text-brand-400 mr-2"></i>Alerts &amp; Feedback</h3>
-          <div class="doc-table-wrap">
-            <table class="doc-table">
-              <thead><tr><th>Intent</th><th>Background</th><th>ARIA role</th><th>WCAG</th></tr></thead>
-              <tbody>
-                <tr><td><span class="intent-chip">alert.info</span></td><td><code>color.primary.50</code></td><td><code>status</code></td><td><span class="badge badge-green">AA</span></td></tr>
-                <tr><td><span class="intent-chip">alert.success</span></td><td><code>color.success.100</code></td><td><code>status</code></td><td><span class="badge badge-green">AA</span></td></tr>
-                <tr><td><span class="intent-chip">alert.warning</span></td><td><code>color.warning.100</code></td><td><code>alert</code></td><td><span class="badge badge-green">AA</span></td></tr>
-                <tr><td><span class="intent-chip">alert.destructive</span></td><td><code>color.error.100</code></td><td><code>alert</code></td><td><span class="badge badge-green">AA</span></td></tr>
-                <tr><td><span class="intent-chip">toast.success.transient</span></td><td><code>color.neutral.800</code></td><td><code>status</code></td><td><span class="badge badge-green">AA</span></td></tr>
-              </tbody>
-            </table>
+          <!-- Alerts -->
+          <div class="section-anchor" id="vocab-alerts">
+            <h3 class="doc-h3"><i class="fa-solid fa-bell text-brand-400 mr-2"></i>Alerts &amp; Feedback</h3>
+            <div class="doc-table-wrap">
+              <table class="doc-table">
+                <thead>
+                  <tr>
+                    <th>Intent</th>
+                    <th>Background</th>
+                    <th>ARIA role</th>
+                    <th>WCAG</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="intent-chip">alert.info</span></td>
+                    <td><code>color.primary.50</code></td>
+                    <td><code>status</code></td>
+                    <td><span class="badge badge-green">AA</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="intent-chip">alert.success</span></td>
+                    <td><code>color.success.100</code></td>
+                    <td><code>status</code></td>
+                    <td><span class="badge badge-green">AA</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="intent-chip">alert.warning</span></td>
+                    <td><code>color.warning.100</code></td>
+                    <td><code>alert</code></td>
+                    <td><span class="badge badge-green">AA</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="intent-chip">alert.destructive</span></td>
+                    <td><code>color.error.100</code></td>
+                    <td><code>alert</code></td>
+                    <td><span class="badge badge-green">AA</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="intent-chip">toast.success.transient</span></td>
+                    <td><code>color.neutral.800</code></td>
+                    <td><code>status</code></td>
+                    <td><span class="badge badge-green">AA</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
-        </div>
 
-        <!-- Nav -->
-        <div class="section-anchor" id="vocab-nav">
-          <h3 class="doc-h3"><i class="fa-solid fa-compass text-brand-400 mr-2"></i>Navigation</h3>
-          <div class="doc-table-wrap">
-            <table class="doc-table">
-              <thead><tr><th>Intent</th><th>Surface</th><th>Shadow</th><th>ARIA landmark</th></tr></thead>
-              <tbody>
-                <tr><td><span class="intent-chip">nav.primary</span></td><td><code>color.neutral.0</code></td><td>—</td><td><code>navigation</code></td></tr>
-                <tr><td><span class="intent-chip">nav.primary.sticky</span></td><td><code>color.neutral.0</code></td><td><code>token.shadow.base</code></td><td><code>navigation</code></td></tr>
-              </tbody>
-            </table>
+          <!-- Nav -->
+          <div class="section-anchor" id="vocab-nav">
+            <h3 class="doc-h3"><i class="fa-solid fa-compass text-brand-400 mr-2"></i>Navigation</h3>
+            <div class="doc-table-wrap">
+              <table class="doc-table">
+                <thead>
+                  <tr>
+                    <th>Intent</th>
+                    <th>Surface</th>
+                    <th>Shadow</th>
+                    <th>ARIA landmark</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="intent-chip">nav.primary</span></td>
+                    <td><code>color.neutral.0</code></td>
+                    <td>—</td>
+                    <td><code>navigation</code></td>
+                  </tr>
+                  <tr>
+                    <td><span class="intent-chip">nav.primary.sticky</span></td>
+                    <td><code>color.neutral.0</code></td>
+                    <td><code>token.shadow.base</code></td>
+                    <td><code>navigation</code></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
-        </div>
 
-        <!-- Forms -->
-        <div class="section-anchor" id="vocab-forms">
-          <h3 class="doc-h3"><i class="fa-solid fa-pen-to-square text-brand-400 mr-2"></i>Forms</h3>
-          <div class="doc-table-wrap">
-            <table class="doc-table">
-              <thead><tr><th>Intent</th><th>Border</th><th>Focus</th><th>ARIA role</th></tr></thead>
-              <tbody>
-                <tr><td><span class="intent-chip">form.field</span></td><td><code>color.neutral.300</code></td><td><code>ring.primary</code></td><td><code>group</code></td></tr>
-                <tr><td><span class="intent-chip">form.destructive.confirm</span></td><td><code>color.error.500</code></td><td>—</td><td><code>dialog</code></td></tr>
-              </tbody>
-            </table>
+          <!-- Forms -->
+          <div class="section-anchor" id="vocab-forms">
+            <h3 class="doc-h3"><i class="fa-solid fa-pen-to-square text-brand-400 mr-2"></i>Forms</h3>
+            <div class="doc-table-wrap">
+              <table class="doc-table">
+                <thead>
+                  <tr>
+                    <th>Intent</th>
+                    <th>Border</th>
+                    <th>Focus</th>
+                    <th>ARIA role</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="intent-chip">form.field</span></td>
+                    <td><code>color.neutral.300</code></td>
+                    <td><code>ring.primary</code></td>
+                    <td><code>group</code></td>
+                  </tr>
+                  <tr>
+                    <td><span class="intent-chip">form.destructive.confirm</span></td>
+                    <td><code>color.error.500</code></td>
+                    <td>—</td>
+                    <td><code>dialog</code></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
-        </div>
 
-        <!-- Layout -->
-        <div class="section-anchor" id="vocab-layout">
-          <h3 class="doc-h3"><i class="fa-solid fa-table-columns text-brand-400 mr-2"></i>Layout</h3>
-          <div class="doc-table-wrap">
-            <table class="doc-table">
-              <thead><tr><th>Intent</th><th>Description</th></tr></thead>
-              <tbody>
-                <tr><td><span class="intent-chip">container.max.centered</span></td><td>Max-width centered layout wrapper with horizontal padding</td></tr>
-                <tr><td><span class="intent-chip">grid.autofill.dense</span></td><td>Auto-fill CSS grid with dense packing algorithm</td></tr>
-              </tbody>
-            </table>
+          <!-- Layout -->
+          <div class="section-anchor" id="vocab-layout">
+            <h3 class="doc-h3"><i class="fa-solid fa-table-columns text-brand-400 mr-2"></i>Layout</h3>
+            <div class="doc-table-wrap">
+              <table class="doc-table">
+                <thead>
+                  <tr>
+                    <th>Intent</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="intent-chip">container.max.centered</span></td>
+                    <td>Max-width centered layout wrapper with horizontal padding</td>
+                  </tr>
+                  <tr>
+                    <td><span class="intent-chip">grid.autofill.dense</span></td>
+                    <td>Auto-fill CSS grid with dense packing algorithm</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
-        </div>
 
-        <!-- Custom intents -->
-        <h3 class="doc-h3">Adding custom intents</h3>
-        <p class="doc-p">Extend the built-in vocabulary in your <code>mastors.config.ts</code>. Custom intents follow the same schema shape as built-in ones:</p>
-        <div class="code-block">
-          <div class="code-block-header">
-            <span class="lang-badge"><i class="fa-solid fa-code text-[0.65rem]"></i> typescript</span>
-            <button class="copy-btn" onclick="copyBlock(this)"><i class="fa-solid fa-copy mr-1"></i>Copy</button>
-          </div>
-          <pre><code class="language-typescript">defineSchema({
+          <!-- Custom intents -->
+          <h3 class="doc-h3">Adding custom intents</h3>
+          <p class="doc-p">Extend the built-in vocabulary in your <code>mastors.config.ts</code>. Custom intents follow
+            the same schema shape as built-in ones:</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="lang-badge"><i class="fa-solid fa-code text-[0.65rem]"></i> typescript</span>
+              <button class="copy-btn" onclick="copyBlock(this)"><i class="fa-solid fa-copy mr-1"></i>Copy</button>
+            </div>
+            <pre><code class="language-typescript">defineSchema({
   vocabulary: {
     "dashboard.stat.positive": {
       spacing: { x: "token.space.4", y: "token.space.3" },
@@ -1051,24 +1556,25 @@ resolver.setSchema(newSchema);   // swap schema (also clears cache)</code></pre>
     },
   },
 });</code></pre>
-        </div>
-      </section>
+          </div>
+        </section>
 
-      <!-- ════════════════════════════════════════════════════
+        <!-- ════════════════════════════════════════════════════
            ADAPTERS
       ═══════════════════════════════════════════════════════ -->
-      <section class="doc-section section-anchor" id="adapters">
-        <div class="section-label">07</div>
-        <h2 class="doc-h2">Framework Adapters</h2>
-        <p class="doc-p">Mastors provides first-class adapter packages for React, Vue 3, and Svelte — each exposing the idiomatic API for that framework.</p>
+        <section class="doc-section section-anchor" id="adapters">
+          <div class="section-label">07</div>
+          <h2 class="doc-h2">Framework Adapters</h2>
+          <p class="doc-p">Mastors provides first-class adapter packages for React, Vue 3, and Svelte — each exposing
+            the idiomatic API for that framework.</p>
 
-        <h3 class="doc-h3"><i class="fa-brands fa-react mr-2 text-blue-400"></i>React</h3>
-        <div class="code-block">
-          <div class="code-block-header">
-            <span class="lang-badge"><i class="fa-brands fa-react text-[0.65rem]"></i> React / TSX</span>
-            <button class="copy-btn" onclick="copyBlock(this)"><i class="fa-solid fa-copy mr-1"></i>Copy</button>
-          </div>
-          <pre><code class="language-typescript">import { useIntent, Mastors } from "@mastors/adapter-react";
+          <h3 class="doc-h3"><i class="fa-brands fa-react mr-2 text-blue-400"></i>React</h3>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="lang-badge"><i class="fa-brands fa-react text-[0.65rem]"></i> React / TSX</span>
+              <button class="copy-btn" onclick="copyBlock(this)"><i class="fa-solid fa-copy mr-1"></i>Copy</button>
+            </div>
+            <pre><code class="language-typescript">import { useIntent, Mastors } from "@mastors/adapter-react";
 
 // Hook — resolves to a className string
 function Card({ title, body }) {
@@ -1082,15 +1588,15 @@ function Card({ title, body }) {
   &lt;Mastors.p  intent="body.readable"&gt;Body text&lt;/Mastors.p&gt;
   &lt;Mastors.button intent="button.primary.cta"&gt;Get Started&lt;/Mastors.button&gt;
 &lt;/Mastors.div&gt;</code></pre>
-        </div>
-
-        <h3 class="doc-h3"><i class="fa-brands fa-vuejs mr-2 text-green-400"></i>Vue 3</h3>
-        <div class="code-block">
-          <div class="code-block-header">
-            <span class="lang-badge"><i class="fa-brands fa-vuejs text-[0.65rem]"></i> Vue 3 / SFC</span>
-            <button class="copy-btn" onclick="copyBlock(this)"><i class="fa-solid fa-copy mr-1"></i>Copy</button>
           </div>
-          <pre><code class="language-typescript">// main.ts — register globally
+
+          <h3 class="doc-h3"><i class="fa-brands fa-vuejs mr-2 text-green-400"></i>Vue 3</h3>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="lang-badge"><i class="fa-brands fa-vuejs text-[0.65rem]"></i> Vue 3 / SFC</span>
+              <button class="copy-btn" onclick="copyBlock(this)"><i class="fa-solid fa-copy mr-1"></i>Copy</button>
+            </div>
+            <pre><code class="language-typescript">// main.ts — register globally
 import { MastorsPlugin } from "@mastors/adapter-vue";
 app.use(MastorsPlugin);
 
@@ -1107,15 +1613,15 @@ const cardClass = useIntent("card.elevated.interactive");
   &lt;!-- Directive (requires MastorsPlugin) --&gt;
   &lt;div v-intent="'button.primary.cta'"&gt;...&lt;/div&gt;
 &lt;/template&gt;</code></pre>
-        </div>
-
-        <h3 class="doc-h3"><i class="fa-solid fa-s mr-2 text-orange-400"></i>Svelte</h3>
-        <div class="code-block">
-          <div class="code-block-header">
-            <span class="lang-badge"><i class="fa-solid fa-code text-[0.65rem]"></i> Svelte</span>
-            <button class="copy-btn" onclick="copyBlock(this)"><i class="fa-solid fa-copy mr-1"></i>Copy</button>
           </div>
-          <pre><code class="language-typescript">import { resolveIntent, intentAction } from "@mastors/adapter-svelte";
+
+          <h3 class="doc-h3"><i class="fa-solid fa-s mr-2 text-orange-400"></i>Svelte</h3>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="lang-badge"><i class="fa-solid fa-code text-[0.65rem]"></i> Svelte</span>
+              <button class="copy-btn" onclick="copyBlock(this)"><i class="fa-solid fa-copy mr-1"></i>Copy</button>
+            </div>
+            <pre><code class="language-typescript">import { resolveIntent, intentAction } from "@mastors/adapter-svelte";
 
 // Class binding (resolved at import time)
 const cardClass = resolveIntent("card.elevated.interactive");
@@ -1125,24 +1631,25 @@ const cardClass = resolveIntent("card.elevated.interactive");
 
 // Class shorthand
 &lt;div class={resolveIntent("button.primary.cta")}&gt;...&lt;/div&gt;</code></pre>
-        </div>
-      </section>
+          </div>
+        </section>
 
-      <!-- ════════════════════════════════════════════════════
+        <!-- ════════════════════════════════════════════════════
            BUILD PLUGINS
       ═══════════════════════════════════════════════════════ -->
-      <section class="doc-section section-anchor" id="build-plugins">
-        <div class="section-label">08</div>
-        <h2 class="doc-h2">Build Plugins</h2>
-        <p class="doc-p">Mastors scans source files for <code>intent("...")</code> calls and compiles atomic CSS at build time via Vite or webpack plugins.</p>
+        <section class="doc-section section-anchor" id="build-plugins">
+          <div class="section-label">08</div>
+          <h2 class="doc-h2">Build Plugins</h2>
+          <p class="doc-p">Mastors scans source files for <code>intent("...")</code> calls and compiles atomic CSS at
+            build time via Vite or webpack plugins.</p>
 
-        <h3 class="doc-h3"><i class="fa-solid fa-bolt mr-2 text-yellow-400"></i>Vite Plugin</h3>
-        <div class="code-block">
-          <div class="code-block-header">
-            <span class="lang-badge"><i class="fa-solid fa-bolt text-[0.65rem]"></i> vite.config.ts</span>
-            <button class="copy-btn" onclick="copyBlock(this)"><i class="fa-solid fa-copy mr-1"></i>Copy</button>
-          </div>
-          <pre><code class="language-typescript">import { mastorsPlugin } from "@mastors/plugin-vite";
+          <h3 class="doc-h3"><i class="fa-solid fa-bolt mr-2 text-yellow-400"></i>Vite Plugin</h3>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="lang-badge"><i class="fa-solid fa-bolt text-[0.65rem]"></i> vite.config.ts</span>
+              <button class="copy-btn" onclick="copyBlock(this)"><i class="fa-solid fa-copy mr-1"></i>Copy</button>
+            </div>
+            <pre><code class="language-typescript">import { mastorsPlugin } from "@mastors/plugin-vite";
 
 export default defineConfig({
   plugins: [
@@ -1157,15 +1664,15 @@ export default defineConfig({
     }),
   ],
 });</code></pre>
-        </div>
-
-        <h3 class="doc-h3"><i class="fa-solid fa-box mr-2 text-blue-400"></i>webpack Plugin</h3>
-        <div class="code-block">
-          <div class="code-block-header">
-            <span class="lang-badge"><i class="fa-solid fa-box text-[0.65rem]"></i> webpack.config.js</span>
-            <button class="copy-btn" onclick="copyBlock(this)"><i class="fa-solid fa-copy mr-1"></i>Copy</button>
           </div>
-          <pre><code class="language-typescript">const { MastorsWebpackPlugin } = require("@mastors/plugin-webpack");
+
+          <h3 class="doc-h3"><i class="fa-solid fa-box mr-2 text-blue-400"></i>webpack Plugin</h3>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="lang-badge"><i class="fa-solid fa-box text-[0.65rem]"></i> webpack.config.js</span>
+              <button class="copy-btn" onclick="copyBlock(this)"><i class="fa-solid fa-copy mr-1"></i>Copy</button>
+            </div>
+            <pre><code class="language-typescript">const { MastorsWebpackPlugin } = require("@mastors/plugin-webpack");
 
 module.exports = {
   plugins: [
@@ -1175,23 +1682,23 @@ module.exports = {
     }),
   ],
 };</code></pre>
-        </div>
-      </section>
+          </div>
+        </section>
 
-      <!-- ════════════════════════════════════════════════════
+        <!-- ════════════════════════════════════════════════════
            CONFIGURATION
       ═══════════════════════════════════════════════════════ -->
-      <section class="doc-section section-anchor" id="configuration">
-        <div class="section-label">09</div>
-        <h2 class="doc-h2">Configuration</h2>
-        <p class="doc-p">Full <code>MastorsConfig</code> type reference:</p>
+        <section class="doc-section section-anchor" id="configuration">
+          <div class="section-label">09</div>
+          <h2 class="doc-h2">Configuration</h2>
+          <p class="doc-p">Full <code>MastorsConfig</code> type reference:</p>
 
-        <div class="code-block">
-          <div class="code-block-header">
-            <span class="lang-badge"><i class="fa-solid fa-sliders text-[0.65rem]"></i> typescript</span>
-            <button class="copy-btn" onclick="copyBlock(this)"><i class="fa-solid fa-copy mr-1"></i>Copy</button>
-          </div>
-          <pre><code class="language-typescript">type MastorsConfig = {
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="lang-badge"><i class="fa-solid fa-sliders text-[0.65rem]"></i> typescript</span>
+              <button class="copy-btn" onclick="copyBlock(this)"><i class="fa-solid fa-copy mr-1"></i>Copy</button>
+            </div>
+            <pre><code class="language-typescript">type MastorsConfig = {
   schema: MastorsSchema;           // required — your project schema
 
   a11yMode?:
@@ -1208,15 +1715,15 @@ module.exports = {
   themes?: string[];           // theme names to generate variants for
   defaultTheme?: string;       // active theme at build time
 };</code></pre>
-        </div>
-
-        <h3 class="doc-h3">VocabularyEntry schema shape</h3>
-        <div class="code-block">
-          <div class="code-block-header">
-            <span class="lang-badge"><i class="fa-solid fa-code text-[0.65rem]"></i> typescript</span>
-            <button class="copy-btn" onclick="copyBlock(this)"><i class="fa-solid fa-copy mr-1"></i>Copy</button>
           </div>
-          <pre><code class="language-typescript">type VocabularyEntry = {
+
+          <h3 class="doc-h3">VocabularyEntry schema shape</h3>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="lang-badge"><i class="fa-solid fa-code text-[0.65rem]"></i> typescript</span>
+              <button class="copy-btn" onclick="copyBlock(this)"><i class="fa-solid fa-copy mr-1"></i>Copy</button>
+            </div>
+            <pre><code class="language-typescript">type VocabularyEntry = {
   spacing?:    { x?: TokenPath; y?: TokenPath };
   radius?:     TokenPath;
   shadow?:     TokenPath;
@@ -1241,83 +1748,161 @@ module.exports = {
     contrast?: "AA" | "AAA";   // WCAG contrast level to enforce
   };
 };</code></pre>
-        </div>
-      </section>
+          </div>
+        </section>
 
-      <!-- ════════════════════════════════════════════════════
+        <!-- ════════════════════════════════════════════════════
            DESIGN TOKENS
       ═══════════════════════════════════════════════════════ -->
-      <section class="doc-section section-anchor" id="tokens">
-        <div class="section-label">10</div>
-        <h2 class="doc-h2">Design Tokens</h2>
-        <p class="doc-p">Mastors uses a dot-notation token path system. Every token path maps to a CSS custom property at compile time:</p>
+        <section class="doc-section section-anchor" id="tokens">
+          <div class="section-label">10</div>
+          <h2 class="doc-h2">Design Tokens</h2>
+          <p class="doc-p">Mastors uses a dot-notation token path system. Every token path maps to a CSS custom property
+            at compile time:</p>
 
-        <div class="flex flex-wrap items-center gap-3 p-4 rounded-xl my-4" style="background: #070910; border: 1px solid #2e3350;">
-          <code class="text-brand-400 text-sm font-mono">token.space.4</code>
-          <i class="fa-solid fa-arrow-right text-slate-600"></i>
-          <code class="text-green-400 text-sm font-mono">--mastors-space-4: 1rem</code>
-        </div>
+          <div class="flex flex-wrap items-center gap-3 p-4 rounded-xl my-4"
+            style="background: #070910; border: 1px solid #2e3350;">
+            <code class="text-brand-400 text-sm font-mono">token.space.4</code>
+            <i class="fa-solid fa-arrow-right text-slate-600"></i>
+            <code class="text-green-400 text-sm font-mono">--mastors-space-4: 1rem</code>
+          </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
 
-          <!-- Spacing -->
-          <div class="feature-card">
-            <div class="text-[0.65rem] font-bold tracking-widest uppercase text-brand-400 mb-3"><i class="fa-solid fa-ruler-combined mr-1.5"></i>Spacing (4pt base)</div>
-            <div class="space-y-0">
-              <div class="token-row"><div class="token-name">token.space.1</div><div class="token-value">0.25rem</div></div>
-              <div class="token-row"><div class="token-name">token.space.2</div><div class="token-value">0.5rem</div></div>
-              <div class="token-row"><div class="token-name">token.space.4</div><div class="token-value">1rem</div></div>
-              <div class="token-row"><div class="token-name">token.space.6</div><div class="token-value">1.5rem</div></div>
-              <div class="token-row"><div class="token-name">token.space.8</div><div class="token-value">2rem</div></div>
-              <div class="token-row"><div class="token-name">token.space.12</div><div class="token-value">3rem</div></div>
+            <!-- Spacing -->
+            <div class="feature-card">
+              <div class="text-[0.65rem] font-bold tracking-widest uppercase text-brand-400 mb-3"><i
+                  class="fa-solid fa-ruler-combined mr-1.5"></i>Spacing (4pt base)</div>
+              <div class="space-y-0">
+                <div class="token-row">
+                  <div class="token-name">token.space.1</div>
+                  <div class="token-value">0.25rem</div>
+                </div>
+                <div class="token-row">
+                  <div class="token-name">token.space.2</div>
+                  <div class="token-value">0.5rem</div>
+                </div>
+                <div class="token-row">
+                  <div class="token-name">token.space.4</div>
+                  <div class="token-value">1rem</div>
+                </div>
+                <div class="token-row">
+                  <div class="token-name">token.space.6</div>
+                  <div class="token-value">1.5rem</div>
+                </div>
+                <div class="token-row">
+                  <div class="token-name">token.space.8</div>
+                  <div class="token-value">2rem</div>
+                </div>
+                <div class="token-row">
+                  <div class="token-name">token.space.12</div>
+                  <div class="token-value">3rem</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Colors -->
+            <div class="feature-card">
+              <div class="text-[0.65rem] font-bold tracking-widest uppercase text-brand-400 mb-3"><i
+                  class="fa-solid fa-palette mr-1.5"></i>Semantic Colors</div>
+              <div class="space-y-0">
+                <div class="token-row">
+                  <div class="token-swatch" style="background:#eff6ff"></div>
+                  <div class="token-name">token.color.primary.50</div>
+                  <div class="token-value">#eff6ff</div>
+                </div>
+                <div class="token-row">
+                  <div class="token-swatch" style="background:#2563eb"></div>
+                  <div class="token-name">token.color.primary.600</div>
+                  <div class="token-value">#2563eb</div>
+                </div>
+                <div class="token-row">
+                  <div class="token-swatch" style="background:#22c55e"></div>
+                  <div class="token-name">token.color.success.500</div>
+                  <div class="token-value">#22c55e</div>
+                </div>
+                <div class="token-row">
+                  <div class="token-swatch" style="background:#eab308"></div>
+                  <div class="token-name">token.color.warning.500</div>
+                  <div class="token-value">#eab308</div>
+                </div>
+                <div class="token-row">
+                  <div class="token-swatch" style="background:#ef4444"></div>
+                  <div class="token-name">token.color.error.500</div>
+                  <div class="token-value">#ef4444</div>
+                </div>
+                <div class="token-row">
+                  <div class="token-swatch" style="background:#ffffff; border-color: #2e3350"></div>
+                  <div class="token-name">token.color.neutral.0</div>
+                  <div class="token-value">#ffffff</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Radius -->
+            <div class="feature-card">
+              <div class="text-[0.65rem] font-bold tracking-widest uppercase text-brand-400 mb-3"><i
+                  class="fa-solid fa-vector-square mr-1.5"></i>Border Radius</div>
+              <div class="space-y-0">
+                <div class="token-row">
+                  <div class="token-name">token.radius.sm</div>
+                  <div class="token-value">0.125rem</div>
+                </div>
+                <div class="token-row">
+                  <div class="token-name">token.radius.md</div>
+                  <div class="token-value">0.375rem</div>
+                </div>
+                <div class="token-row">
+                  <div class="token-name">token.radius.lg</div>
+                  <div class="token-value">0.5rem</div>
+                </div>
+                <div class="token-row">
+                  <div class="token-name">token.radius.xl</div>
+                  <div class="token-value">0.75rem</div>
+                </div>
+                <div class="token-row">
+                  <div class="token-name">token.radius.full</div>
+                  <div class="token-value">9999px</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Shadows -->
+            <div class="feature-card">
+              <div class="text-[0.65rem] font-bold tracking-widest uppercase text-brand-400 mb-3"><i
+                  class="fa-solid fa-sun mr-1.5"></i>Elevation (Shadows)</div>
+              <div class="space-y-0">
+                <div class="token-row">
+                  <div class="token-name">token.shadow.sm</div>
+                  <div class="token-value">0 1px 2px …</div>
+                </div>
+                <div class="token-row">
+                  <div class="token-name">token.shadow.base</div>
+                  <div class="token-value">0 1px 3px …</div>
+                </div>
+                <div class="token-row">
+                  <div class="token-name">token.shadow.md</div>
+                  <div class="token-value">0 4px 6px …</div>
+                </div>
+                <div class="token-row">
+                  <div class="token-name">token.shadow.elevated</div>
+                  <div class="token-value">0 10px 15px …</div>
+                </div>
+                <div class="token-row">
+                  <div class="token-name">token.shadow.xl</div>
+                  <div class="token-value">0 25px 50px …</div>
+                </div>
+              </div>
             </div>
           </div>
 
-          <!-- Colors -->
-          <div class="feature-card">
-            <div class="text-[0.65rem] font-bold tracking-widest uppercase text-brand-400 mb-3"><i class="fa-solid fa-palette mr-1.5"></i>Semantic Colors</div>
-            <div class="space-y-0">
-              <div class="token-row"><div class="token-swatch" style="background:#eff6ff"></div><div class="token-name">token.color.primary.50</div><div class="token-value">#eff6ff</div></div>
-              <div class="token-row"><div class="token-swatch" style="background:#2563eb"></div><div class="token-name">token.color.primary.600</div><div class="token-value">#2563eb</div></div>
-              <div class="token-row"><div class="token-swatch" style="background:#22c55e"></div><div class="token-name">token.color.success.500</div><div class="token-value">#22c55e</div></div>
-              <div class="token-row"><div class="token-swatch" style="background:#eab308"></div><div class="token-name">token.color.warning.500</div><div class="token-value">#eab308</div></div>
-              <div class="token-row"><div class="token-swatch" style="background:#ef4444"></div><div class="token-name">token.color.error.500</div><div class="token-value">#ef4444</div></div>
-              <div class="token-row"><div class="token-swatch" style="background:#ffffff; border-color: #2e3350"></div><div class="token-name">token.color.neutral.0</div><div class="token-value">#ffffff</div></div>
+          <h3 class="doc-h3">Token Registry API</h3>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="lang-badge"><i class="fa-solid fa-coins text-[0.65rem]"></i> typescript</span>
+              <button class="copy-btn" onclick="copyBlock(this)"><i class="fa-solid fa-copy mr-1"></i>Copy</button>
             </div>
-          </div>
-
-          <!-- Radius -->
-          <div class="feature-card">
-            <div class="text-[0.65rem] font-bold tracking-widest uppercase text-brand-400 mb-3"><i class="fa-solid fa-vector-square mr-1.5"></i>Border Radius</div>
-            <div class="space-y-0">
-              <div class="token-row"><div class="token-name">token.radius.sm</div><div class="token-value">0.125rem</div></div>
-              <div class="token-row"><div class="token-name">token.radius.md</div><div class="token-value">0.375rem</div></div>
-              <div class="token-row"><div class="token-name">token.radius.lg</div><div class="token-value">0.5rem</div></div>
-              <div class="token-row"><div class="token-name">token.radius.xl</div><div class="token-value">0.75rem</div></div>
-              <div class="token-row"><div class="token-name">token.radius.full</div><div class="token-value">9999px</div></div>
-            </div>
-          </div>
-
-          <!-- Shadows -->
-          <div class="feature-card">
-            <div class="text-[0.65rem] font-bold tracking-widest uppercase text-brand-400 mb-3"><i class="fa-solid fa-sun mr-1.5"></i>Elevation (Shadows)</div>
-            <div class="space-y-0">
-              <div class="token-row"><div class="token-name">token.shadow.sm</div><div class="token-value">0 1px 2px …</div></div>
-              <div class="token-row"><div class="token-name">token.shadow.base</div><div class="token-value">0 1px 3px …</div></div>
-              <div class="token-row"><div class="token-name">token.shadow.md</div><div class="token-value">0 4px 6px …</div></div>
-              <div class="token-row"><div class="token-name">token.shadow.elevated</div><div class="token-value">0 10px 15px …</div></div>
-              <div class="token-row"><div class="token-name">token.shadow.xl</div><div class="token-value">0 25px 50px …</div></div>
-            </div>
-          </div>
-        </div>
-
-        <h3 class="doc-h3">Token Registry API</h3>
-        <div class="code-block">
-          <div class="code-block-header">
-            <span class="lang-badge"><i class="fa-solid fa-coins text-[0.65rem]"></i> typescript</span>
-            <button class="copy-btn" onclick="copyBlock(this)"><i class="fa-solid fa-copy mr-1"></i>Copy</button>
-          </div>
-          <pre><code class="language-typescript">import { TokenRegistry, defaultTokens } from "@mastors/tokens";
+            <pre><code class="language-typescript">import { TokenRegistry, defaultTokens } from "@mastors/tokens";
 
 const registry = new TokenRegistry(defaultTokens);
 
@@ -1329,67 +1914,95 @@ registry.generateCssVars(":root");               // → ":root { --mastors-space
 const custom = registry.extend({
   token: { space: { "4": "0.875rem" } }          // override one value
 });</code></pre>
-        </div>
-      </section>
+          </div>
+        </section>
 
-      <!-- ════════════════════════════════════════════════════
+        <!-- ════════════════════════════════════════════════════
            ACCESSIBILITY
       ═══════════════════════════════════════════════════════ -->
-      <section class="doc-section section-anchor" id="accessibility">
-        <div class="section-label">11</div>
-        <h2 class="doc-h2">Accessibility Guard</h2>
-        <p class="doc-p">The <code>@mastors/accessibility</code> package wraps every resolved intent with automatic WCAG 2.2 compliance checking — contrast ratios, focus rings, ARIA hints, and motion sensitivity.</p>
+        <section class="doc-section section-anchor" id="accessibility">
+          <div class="section-label">11</div>
+          <h2 class="doc-h2">Accessibility Guard</h2>
+          <p class="doc-p">The <code>@mastors/accessibility</code> package wraps every resolved intent with automatic
+            WCAG 2.2 compliance checking — contrast ratios, focus rings, ARIA hints, and motion sensitivity.</p>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 my-5">
-          <div class="feature-card flex gap-3">
-            <i class="fa-solid fa-eye text-blue-400 text-lg mt-0.5 flex-shrink-0"></i>
-            <div>
-              <div class="text-xs font-bold text-slate-200 mb-1">Contrast Enforcement</div>
-              <div class="text-[0.75rem] text-slate-500">Checks every foreground/background pair against AA (4.5:1) or AAA (7:1) thresholds automatically.</div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 my-5">
+            <div class="feature-card flex gap-3">
+              <i class="fa-solid fa-eye text-blue-400 text-lg mt-0.5 flex-shrink-0"></i>
+              <div>
+                <div class="text-xs font-bold text-slate-200 mb-1">Contrast Enforcement</div>
+                <div class="text-[0.75rem] text-slate-500">Checks every foreground/background pair against AA (4.5:1) or
+                  AAA (7:1) thresholds automatically.</div>
+              </div>
+            </div>
+            <div class="feature-card flex gap-3">
+              <i class="fa-solid fa-crosshairs text-brand-400 text-lg mt-0.5 flex-shrink-0"></i>
+              <div>
+                <div class="text-xs font-bold text-slate-200 mb-1">Focus Ring Generation</div>
+                <div class="text-[0.75rem] text-slate-500">Auto-generates 2px visible focus rings for all interactive
+                  intents meeting WCAG 2.4.7.</div>
+              </div>
+            </div>
+            <div class="feature-card flex gap-3">
+              <i class="fa-solid fa-universal-access text-green-400 text-lg mt-0.5 flex-shrink-0"></i>
+              <div>
+                <div class="text-xs font-bold text-slate-200 mb-1">ARIA Recommendations</div>
+                <div class="text-[0.75rem] text-slate-500">Suggests required ARIA attributes and landmark roles for
+                  every semantic intent type.</div>
+              </div>
+            </div>
+            <div class="feature-card flex gap-3">
+              <i class="fa-solid fa-person-running text-yellow-400 text-lg mt-0.5 flex-shrink-0"></i>
+              <div>
+                <div class="text-xs font-bold text-slate-200 mb-1">Motion Sensitivity</div>
+                <div class="text-[0.75rem] text-slate-500">Wraps all transitions in
+                  <code>@media (prefers-reduced-motion: reduce)</code> automatically.
+                </div>
+              </div>
             </div>
           </div>
-          <div class="feature-card flex gap-3">
-            <i class="fa-solid fa-crosshairs text-brand-400 text-lg mt-0.5 flex-shrink-0"></i>
-            <div>
-              <div class="text-xs font-bold text-slate-200 mb-1">Focus Ring Generation</div>
-              <div class="text-[0.75rem] text-slate-500">Auto-generates 2px visible focus rings for all interactive intents meeting WCAG 2.4.7.</div>
-            </div>
-          </div>
-          <div class="feature-card flex gap-3">
-            <i class="fa-solid fa-universal-access text-green-400 text-lg mt-0.5 flex-shrink-0"></i>
-            <div>
-              <div class="text-xs font-bold text-slate-200 mb-1">ARIA Recommendations</div>
-              <div class="text-[0.75rem] text-slate-500">Suggests required ARIA attributes and landmark roles for every semantic intent type.</div>
-            </div>
-          </div>
-          <div class="feature-card flex gap-3">
-            <i class="fa-solid fa-person-running text-yellow-400 text-lg mt-0.5 flex-shrink-0"></i>
-            <div>
-              <div class="text-xs font-bold text-slate-200 mb-1">Motion Sensitivity</div>
-              <div class="text-[0.75rem] text-slate-500">Wraps all transitions in <code>@media (prefers-reduced-motion: reduce)</code> automatically.</div>
-            </div>
-          </div>
-        </div>
 
-        <h3 class="doc-h3">Guard modes</h3>
-        <div class="doc-table-wrap">
-          <table class="doc-table">
-            <thead><tr><th>Mode</th><th>Behavior</th><th>When to use</th></tr></thead>
-            <tbody>
-              <tr><td><span class="badge badge-yellow">warn</span></td><td><code>console.warn</code> on violations</td><td>Default — development</td></tr>
-              <tr><td><span class="badge badge-red">enforce</span></td><td>Throws on <code>error</code>-severity violations</td><td>CI/CD pipelines</td></tr>
-              <tr><td><span class="badge badge-blue">report</span></td><td>Silently collects all violations</td><td>Audits / manifests</td></tr>
-              <tr><td><span class="badge badge-purple">off</span></td><td>Disables guard entirely</td><td>Performance-critical builds</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="code-block">
-          <div class="code-block-header">
-            <span class="lang-badge"><i class="fa-solid fa-universal-access text-[0.65rem]"></i> typescript</span>
-            <button class="copy-btn" onclick="copyBlock(this)"><i class="fa-solid fa-copy mr-1"></i>Copy</button>
+          <h3 class="doc-h3">Guard modes</h3>
+          <div class="doc-table-wrap">
+            <table class="doc-table">
+              <thead>
+                <tr>
+                  <th>Mode</th>
+                  <th>Behavior</th>
+                  <th>When to use</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="badge badge-yellow">warn</span></td>
+                  <td><code>console.warn</code> on violations</td>
+                  <td>Default — development</td>
+                </tr>
+                <tr>
+                  <td><span class="badge badge-red">enforce</span></td>
+                  <td>Throws on <code>error</code>-severity violations</td>
+                  <td>CI/CD pipelines</td>
+                </tr>
+                <tr>
+                  <td><span class="badge badge-blue">report</span></td>
+                  <td>Silently collects all violations</td>
+                  <td>Audits / manifests</td>
+                </tr>
+                <tr>
+                  <td><span class="badge badge-purple">off</span></td>
+                  <td>Disables guard entirely</td>
+                  <td>Performance-critical builds</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-          <pre><code class="language-typescript">import { AccessibilityGuard, contrastRatio, meetsContrastRequirement } from "@mastors/accessibility";
+
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="lang-badge"><i class="fa-solid fa-universal-access text-[0.65rem]"></i> typescript</span>
+              <button class="copy-btn" onclick="copyBlock(this)"><i class="fa-solid fa-copy mr-1"></i>Copy</button>
+            </div>
+            <pre><code class="language-typescript">import { AccessibilityGuard, contrastRatio, meetsContrastRequirement } from "@mastors/accessibility";
 
 // Utility functions
 contrastRatio("#3b82f6", "#ffffff");              // → 3.94
@@ -1402,273 +2015,297 @@ guard.check(intentId, styleMap);                  // throws if error-severity vi
 // Generate a full compliance manifest
 const manifest = guard.generateManifest(totalIntents);
 // { totalIntents, passCount, failCount, violations: A11yViolation[] }</code></pre>
-        </div>
-      </section>
+          </div>
+        </section>
 
-      <!-- ════════════════════════════════════════════════════
+        <!-- ════════════════════════════════════════════════════
            PACKAGES
       ═══════════════════════════════════════════════════════ -->
-      <section class="doc-section section-anchor" id="packages">
-        <div class="section-label">12</div>
-        <h2 class="doc-h2">Package Reference</h2>
-        <p class="doc-p">Mastors is a pnpm monorepo with fully tree-shakeable packages.</p>
+        <section class="doc-section section-anchor" id="packages">
+          <div class="section-label">12</div>
+          <h2 class="doc-h2">Package Reference</h2>
+          <p class="doc-p">Mastors is a pnpm monorepo with fully tree-shakeable packages.</p>
 
-        <div class="doc-table-wrap">
-          <table class="doc-table">
-            <thead><tr><th>Package</th><th>Description</th><th>Key exports</th></tr></thead>
-            <tbody>
-              <tr>
-                <td><code>@mastors/api</code></td>
-                <td>Public Intent Declaration API</td>
-                <td><code>intent</code> · <code>configure</code> · <code>semantics</code> · <code>compose</code></td>
-              </tr>
-              <tr>
-                <td><code>@mastors/core</code></td>
-                <td>Semantic Resolver Engine</td>
-                <td><code>SemanticResolver</code> · <code>defaultResolver</code></td>
-              </tr>
-              <tr>
-                <td><code>@mastors/schemas</code></td>
-                <td>Built-in semantic vocabulary</td>
-                <td><code>defineSchema</code> · <code>defaultSchema</code> · <code>builtinVocabulary</code></td>
-              </tr>
-              <tr>
-                <td><code>@mastors/tokens</code></td>
-                <td>Design token registry</td>
-                <td><code>TokenRegistry</code> · <code>defaultTokens</code> · <code>defaultRegistry</code></td>
-              </tr>
-              <tr>
-                <td><code>@mastors/compiler</code></td>
-                <td>Zero-runtime CSS output compiler</td>
-                <td><code>MastorsCompiler</code></td>
-              </tr>
-              <tr>
-                <td><code>@mastors/accessibility</code></td>
-                <td>WCAG 2.2 guard layer</td>
-                <td><code>AccessibilityGuard</code> · <code>contrastRatio</code> · <code>generateFocusRing</code></td>
-              </tr>
-              <tr>
-                <td><code>@mastors/types</code></td>
-                <td>Shared TypeScript definitions</td>
-                <td>All core types (tree-shakeable)</td>
-              </tr>
-              <tr>
-                <td><code>@mastors/utils</code></td>
-                <td>Shared utility functions</td>
-                <td><code>camelToKebab</code> · <code>tokenPathToCssVar</code> · <code>deepMerge</code></td>
-              </tr>
-              <tr>
-                <td><code>@mastors/adapter-react</code></td>
-                <td>React adapter</td>
-                <td><code>useIntent</code> · <code>Mastors.*</code></td>
-              </tr>
-              <tr>
-                <td><code>@mastors/adapter-vue</code></td>
-                <td>Vue 3 adapter</td>
-                <td><code>useIntent</code> · <code>MastorsPlugin</code> · <code>v-intent</code></td>
-              </tr>
-              <tr>
-                <td><code>@mastors/adapter-svelte</code></td>
-                <td>Svelte adapter</td>
-                <td><code>resolveIntent</code> · <code>intentAction</code></td>
-              </tr>
-              <tr>
-                <td><code>@mastors/plugin-vite</code></td>
-                <td>Vite build plugin</td>
-                <td><code>mastorsPlugin</code></td>
-              </tr>
-              <tr>
-                <td><code>@mastors/plugin-webpack</code></td>
-                <td>webpack build plugin</td>
-                <td><code>MastorsWebpackPlugin</code></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
+          <div class="doc-table-wrap">
+            <table class="doc-table">
+              <thead>
+                <tr>
+                  <th>Package</th>
+                  <th>Description</th>
+                  <th>Key exports</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>@mastors/api</code></td>
+                  <td>Public Intent Declaration API</td>
+                  <td><code>intent</code> · <code>configure</code> · <code>semantics</code> · <code>compose</code></td>
+                </tr>
+                <tr>
+                  <td><code>@mastors/core</code></td>
+                  <td>Semantic Resolver Engine</td>
+                  <td><code>SemanticResolver</code> · <code>defaultResolver</code></td>
+                </tr>
+                <tr>
+                  <td><code>@mastors/schemas</code></td>
+                  <td>Built-in semantic vocabulary</td>
+                  <td><code>defineSchema</code> · <code>defaultSchema</code> · <code>builtinVocabulary</code></td>
+                </tr>
+                <tr>
+                  <td><code>@mastors/tokens</code></td>
+                  <td>Design token registry</td>
+                  <td><code>TokenRegistry</code> · <code>defaultTokens</code> · <code>defaultRegistry</code></td>
+                </tr>
+                <tr>
+                  <td><code>@mastors/compiler</code></td>
+                  <td>Zero-runtime CSS output compiler</td>
+                  <td><code>MastorsCompiler</code></td>
+                </tr>
+                <tr>
+                  <td><code>@mastors/accessibility</code></td>
+                  <td>WCAG 2.2 guard layer</td>
+                  <td><code>AccessibilityGuard</code> · <code>contrastRatio</code> · <code>generateFocusRing</code></td>
+                </tr>
+                <tr>
+                  <td><code>@mastors/types</code></td>
+                  <td>Shared TypeScript definitions</td>
+                  <td>All core types (tree-shakeable)</td>
+                </tr>
+                <tr>
+                  <td><code>@mastors/utils</code></td>
+                  <td>Shared utility functions</td>
+                  <td><code>camelToKebab</code> · <code>tokenPathToCssVar</code> · <code>deepMerge</code></td>
+                </tr>
+                <tr>
+                  <td><code>@mastors/adapter-react</code></td>
+                  <td>React adapter</td>
+                  <td><code>useIntent</code> · <code>Mastors.*</code></td>
+                </tr>
+                <tr>
+                  <td><code>@mastors/adapter-vue</code></td>
+                  <td>Vue 3 adapter</td>
+                  <td><code>useIntent</code> · <code>MastorsPlugin</code> · <code>v-intent</code></td>
+                </tr>
+                <tr>
+                  <td><code>@mastors/adapter-svelte</code></td>
+                  <td>Svelte adapter</td>
+                  <td><code>resolveIntent</code> · <code>intentAction</code></td>
+                </tr>
+                <tr>
+                  <td><code>@mastors/plugin-vite</code></td>
+                  <td>Vite build plugin</td>
+                  <td><code>mastorsPlugin</code></td>
+                </tr>
+                <tr>
+                  <td><code>@mastors/plugin-webpack</code></td>
+                  <td>webpack build plugin</td>
+                  <td><code>MastorsWebpackPlugin</code></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
 
-      <!-- ════════════════════════════════════════════════════
+        <!-- ════════════════════════════════════════════════════
            ROADMAP
       ═══════════════════════════════════════════════════════ -->
-      <section class="doc-section section-anchor" id="roadmap">
-        <div class="section-label">13</div>
-        <h2 class="doc-h2">Roadmap</h2>
-        <p class="doc-p">Mastors is actively developed. Here's what's shipped and what's coming.</p>
+        <section class="doc-section section-anchor" id="roadmap">
+          <div class="section-label">13</div>
+          <h2 class="doc-h2">Roadmap</h2>
+          <p class="doc-p">Mastors is actively developed. Here's what's shipped and what's coming.</p>
 
-        <div class="mt-4 rounded-xl border border-ink-400 overflow-hidden">
-          <div class="roadmap-row px-5">
-            <div class="roadmap-dot done mt-1.5"></div>
-            <div class="flex-1">
-              <div class="flex items-center gap-2 mb-0.5">
-                <span class="text-sm font-semibold text-slate-200">Phase 1 — Foundation</span>
-                <span class="badge badge-green text-[0.55rem]">✓ Shipped</span>
-                <span class="text-[0.68rem] text-slate-600">Q3–Q4 2025</span>
+          <div class="mt-4 rounded-xl border border-ink-400 overflow-auto">
+            <div class="roadmap-row px-5">
+              <div class="roadmap-dot done mt-1.5"></div>
+              <div class="flex-1">
+                <div class="flex items-center gap-2 mb-0.5">
+                  <span class="text-sm font-semibold text-slate-200">Phase 1 — Foundation</span>
+                  <span class="badge badge-green text-[0.55rem]">✓ Shipped</span>
+                  <span class="text-[0.68rem] text-slate-600">Q3–Q4 2025</span>
+                </div>
+                <div class="text-[0.78rem] text-slate-500">Core <code>intent()</code> API · SemanticResolver v0.1 · Vite
+                  plugin · Interactive Playground</div>
               </div>
-              <div class="text-[0.78rem] text-slate-500">Core <code>intent()</code> API · SemanticResolver v0.1 · Vite plugin · Interactive Playground</div>
+            </div>
+            <div class="roadmap-row px-5">
+              <div class="roadmap-dot active mt-1.5"></div>
+              <div class="flex-1">
+                <div class="flex items-center gap-2 mb-0.5">
+                  <span class="text-sm font-semibold text-slate-200">Phase 2 — Engine</span>
+                  <span class="badge badge-purple text-[0.55rem]">In Progress</span>
+                  <span class="text-[0.68rem] text-slate-600">Q1–Q2 2026</span>
+                </div>
+                <div class="text-[0.78rem] text-slate-500">Zero-runtime compiler · WCAG 2.2 Guard · Animation intents ·
+                  VSCode extension with intent autocomplete</div>
+              </div>
+            </div>
+            <div class="roadmap-row px-5">
+              <div class="roadmap-dot soon mt-1.5"></div>
+              <div class="flex-1">
+                <div class="flex items-center gap-2 mb-0.5">
+                  <span class="text-sm font-semibold text-slate-200">Phase 3 — AI Integration</span>
+                  <span class="badge badge-yellow text-[0.55rem]">Planned</span>
+                  <span class="text-[0.68rem] text-slate-600">Q3–Q4 2026</span>
+                </div>
+                <div class="text-[0.78rem] text-slate-500">AI cleanup layer (<code>mastors ai-normalize</code>) · Figma
+                  plugin · Vue &amp; Svelte adapters · Mastors Studio beta</div>
+              </div>
+            </div>
+            <div class="roadmap-row px-5">
+              <div class="roadmap-dot future mt-1.5"></div>
+              <div class="flex-1">
+                <div class="flex items-center gap-2 mb-0.5">
+                  <span class="text-sm font-semibold text-slate-200">Phase 4 — Ecosystem</span>
+                  <span class="badge badge-purple text-[0.55rem]">Future</span>
+                  <span class="text-[0.68rem] text-slate-600">2027+</span>
+                </div>
+                <div class="text-[0.78rem] text-slate-500">Component marketplace · Mastors Cloud · Enterprise compiler ·
+                  Angular adapter · MCP server for LLMs</div>
+              </div>
             </div>
           </div>
-          <div class="roadmap-row px-5">
-            <div class="roadmap-dot active mt-1.5"></div>
-            <div class="flex-1">
-              <div class="flex items-center gap-2 mb-0.5">
-                <span class="text-sm font-semibold text-slate-200">Phase 2 — Engine</span>
-                <span class="badge badge-purple text-[0.55rem]">In Progress</span>
-                <span class="text-[0.68rem] text-slate-600">Q1–Q2 2026</span>
-              </div>
-              <div class="text-[0.78rem] text-slate-500">Zero-runtime compiler · WCAG 2.2 Guard · Animation intents · VSCode extension with intent autocomplete</div>
-            </div>
-          </div>
-          <div class="roadmap-row px-5">
-            <div class="roadmap-dot soon mt-1.5"></div>
-            <div class="flex-1">
-              <div class="flex items-center gap-2 mb-0.5">
-                <span class="text-sm font-semibold text-slate-200">Phase 3 — AI Integration</span>
-                <span class="badge badge-yellow text-[0.55rem]">Planned</span>
-                <span class="text-[0.68rem] text-slate-600">Q3–Q4 2026</span>
-              </div>
-              <div class="text-[0.78rem] text-slate-500">AI cleanup layer (<code>mastors ai-normalize</code>) · Figma plugin · Vue &amp; Svelte adapters · Mastors Studio beta</div>
-            </div>
-          </div>
-          <div class="roadmap-row px-5">
-            <div class="roadmap-dot future mt-1.5"></div>
-            <div class="flex-1">
-              <div class="flex items-center gap-2 mb-0.5">
-                <span class="text-sm font-semibold text-slate-200">Phase 4 — Ecosystem</span>
-                <span class="badge badge-purple text-[0.55rem]">Future</span>
-                <span class="text-[0.68rem] text-slate-600">2027+</span>
-              </div>
-              <div class="text-[0.78rem] text-slate-500">Component marketplace · Mastors Cloud · Enterprise compiler · Angular adapter · MCP server for LLMs</div>
-            </div>
-          </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- ════════════════════════════════════════════════════
+        <!-- ════════════════════════════════════════════════════
            PLAYGROUND CTA SECTION
       ═══════════════════════════════════════════════════════ -->
-      <section class="py-16 text-center">
-        <div class="inline-block relative">
-          <div class="absolute inset-0 rounded-2xl" style="background: radial-gradient(ellipse 400px 200px at 50% 50%, rgba(99,102,241,0.2), transparent); filter: blur(20px);"></div>
-          <div class="relative rounded-2xl p-8 sm:p-12" style="background: #111320; border: 1px solid #2e3350;">
-            <div class="text-brand-400 text-3xl mb-4">◆</div>
-            <h2 class="font-display font-bold text-2xl sm:text-3xl text-white mb-3 tracking-tight">Try it in the Playground</h2>
-            <p class="text-slate-400 text-sm leading-relaxed max-w-sm mx-auto mb-6">
-              Type any intent identifier and see live CSS output, token references, WCAG hints, and a rendered preview.
-            </p>
-            <a href="./playground/index.html"
-               class="inline-flex items-center gap-2.5 px-7 py-3 rounded-xl text-white font-semibold text-sm transition-all"
-               style="background: linear-gradient(135deg, #6366f1, #4338ca); box-shadow: 0 8px 32px rgba(99,102,241,0.4);"
-               onmouseover="this.style.boxShadow='0 8px 40px rgba(99,102,241,0.6)'; this.style.transform='translateY(-1px)'"
-               onmouseout="this.style.boxShadow='0 8px 32px rgba(99,102,241,0.4)'; this.style.transform='translateY(0)'">
-              <i class="fa-solid fa-play text-xs cta-pulse"></i>
-              Open Mastors Playground
-              <i class="fa-solid fa-arrow-right text-xs opacity-70"></i>
-            </a>
+        <section class="py-16 text-center">
+          <div class="inline-block relative">
+            <div class="absolute inset-0 rounded-2xl"
+              style="background: radial-gradient(ellipse 400px 200px at 50% 50%, rgba(99,102,241,0.2), transparent); filter: blur(20px);">
+            </div>
+            <div class="relative rounded-2xl p-8 sm:p-12" style="background: #111320; border: 1px solid #2e3350;">
+              <div class="text-brand-400 text-3xl mb-4">◆</div>
+              <h2 class="font-display font-bold text-2xl sm:text-3xl text-white mb-3 tracking-tight">Try it in the
+                Playground</h2>
+              <p class="text-slate-400 text-sm leading-relaxed max-w-sm mx-auto mb-6">
+                Type any intent identifier and see live CSS output, token references, WCAG hints, and a rendered
+                preview.
+              </p>
+              <a href="./playground/index.html"
+                class="inline-flex items-center gap-2.5 px-7 py-3 rounded-xl text-white font-semibold text-sm transition-all"
+                style="background: linear-gradient(135deg, #6366f1, #4338ca); box-shadow: 0 8px 32px rgba(99,102,241,0.4);"
+                onmouseover="this.style.boxShadow='0 8px 40px rgba(99,102,241,0.6)'; this.style.transform='translateY(-1px)'"
+                onmouseout="this.style.boxShadow='0 8px 32px rgba(99,102,241,0.4)'; this.style.transform='translateY(0)'">
+                <i class="fa-solid fa-play text-xs cta-pulse"></i>
+                Open Mastors Playground
+                <i class="fa-solid fa-arrow-right text-xs opacity-70"></i>
+              </a>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-    </div><!-- /max-w-4xl -->
-  </main>
-</div><!-- /flex wrapper -->
+      </div><!-- /max-w-4xl -->
+    </main>
+  </div><!-- /flex wrapper -->
 
-<!-- ═══════════════════════════════════════════════════════════
+  <!-- ═══════════════════════════════════════════════════════════
      FOOTER
 ════════════════════════════════════════════════════════════ -->
-<footer class="border-t border-ink-600 bg-ink-800">
-  <div class="max-w-5xl mx-auto px-6 py-10">
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 mb-8">
-      <div>
-        <div class="flex items-center gap-2 mb-3">
-          <span class="text-brand-500 text-base font-bold">◆</span>
-          <span class="font-display font-bold text-sm text-white">Mastors</span>
+  <footer class="border-t border-ink-600 bg-ink-800">
+    <div class="max-w-5xl mx-auto px-6 py-10">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 mb-8">
+        <div>
+          <div class="flex items-center gap-2 mb-3">
+            <span class="text-brand-500 text-base font-bold">◆</span>
+            <span class="font-display font-bold text-sm text-white">Mastors</span>
+          </div>
+          <p class="text-[0.75rem] text-slate-500 leading-relaxed">Intent-Based Styling Framework. Style is the
+            expression of intent.</p>
+          <div class="flex items-center gap-2 mt-3">
+            <span class="badge badge-green text-[0.55rem]">v0.1.0</span>
+            <span class="badge badge-blue text-[0.55rem]">MIT License</span>
+          </div>
         </div>
-        <p class="text-[0.75rem] text-slate-500 leading-relaxed">Intent-Based Styling Framework. Style is the expression of intent.</p>
-        <div class="flex items-center gap-2 mt-3">
-          <span class="badge badge-green text-[0.55rem]">v0.1.0</span>
-          <span class="badge badge-blue text-[0.55rem]">MIT License</span>
+        <div>
+          <div class="text-[0.62rem] font-bold tracking-widest uppercase text-ink-200 mb-3">Docs</div>
+          <div class="space-y-1.5">
+            <a href="#quick-start"
+              class="block text-[0.75rem] text-slate-500 hover:text-slate-300 transition-colors">Quick Start</a>
+            <a href="#vocabulary"
+              class="block text-[0.75rem] text-slate-500 hover:text-slate-300 transition-colors">Vocabulary</a>
+            <a href="#adapters"
+              class="block text-[0.75rem] text-slate-500 hover:text-slate-300 transition-colors">Framework Adapters</a>
+            <a href="#tokens" class="block text-[0.75rem] text-slate-500 hover:text-slate-300 transition-colors">Design
+              Tokens</a>
+            <a href="#accessibility"
+              class="block text-[0.75rem] text-slate-500 hover:text-slate-300 transition-colors">Accessibility</a>
+          </div>
+        </div>
+        <div>
+          <div class="text-[0.62rem] font-bold tracking-widest uppercase text-ink-200 mb-3">Resources</div>
+          <div class="space-y-1.5">
+            <a href="./playground/index.html"
+              class="block text-[0.75rem] text-brand-400 hover:text-brand-300 transition-colors">
+              <i class="fa-solid fa-play text-[0.6rem] mr-1"></i>Playground
+            </a>
+            <a href="#" class="block text-[0.75rem] text-slate-500 hover:text-slate-300 transition-colors">
+              <i class="fa-brands fa-github text-[0.65rem] mr-1"></i>GitHub
+            </a>
+            <a href="#roadmap"
+              class="block text-[0.75rem] text-slate-500 hover:text-slate-300 transition-colors">Roadmap</a>
+          </div>
         </div>
       </div>
-      <div>
-        <div class="text-[0.62rem] font-bold tracking-widest uppercase text-ink-200 mb-3">Docs</div>
-        <div class="space-y-1.5">
-          <a href="#quick-start" class="block text-[0.75rem] text-slate-500 hover:text-slate-300 transition-colors">Quick Start</a>
-          <a href="#vocabulary"  class="block text-[0.75rem] text-slate-500 hover:text-slate-300 transition-colors">Vocabulary</a>
-          <a href="#adapters"    class="block text-[0.75rem] text-slate-500 hover:text-slate-300 transition-colors">Framework Adapters</a>
-          <a href="#tokens"      class="block text-[0.75rem] text-slate-500 hover:text-slate-300 transition-colors">Design Tokens</a>
-          <a href="#accessibility" class="block text-[0.75rem] text-slate-500 hover:text-slate-300 transition-colors">Accessibility</a>
-        </div>
-      </div>
-      <div>
-        <div class="text-[0.62rem] font-bold tracking-widest uppercase text-ink-200 mb-3">Resources</div>
-        <div class="space-y-1.5">
-          <a href="./playground/index.html" class="block text-[0.75rem] text-brand-400 hover:text-brand-300 transition-colors">
-            <i class="fa-solid fa-play text-[0.6rem] mr-1"></i>Playground
-          </a>
-          <a href="#" class="block text-[0.75rem] text-slate-500 hover:text-slate-300 transition-colors">
-            <i class="fa-brands fa-github text-[0.65rem] mr-1"></i>GitHub
-          </a>
-          <a href="#roadmap" class="block text-[0.75rem] text-slate-500 hover:text-slate-300 transition-colors">Roadmap</a>
-        </div>
+      <div class="border-t border-ink-600 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <span class="text-[0.68rem] text-slate-600">© 2026 Mastors Project — MIT License · Open Research</span>
+        <span class="text-[0.68rem] text-slate-600">Based on thesis: <em>MASTORS — Intent-Based Styling for the Future
+            Web</em>, v1.0, May 2026</span>
       </div>
     </div>
-    <div class="border-t border-ink-600 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
-      <span class="text-[0.68rem] text-slate-600">© 2026 Mastors Project — MIT License · Open Research</span>
-      <span class="text-[0.68rem] text-slate-600">Based on thesis: <em>MASTORS — Intent-Based Styling for the Future Web</em>, v1.0, May 2026</span>
-    </div>
-  </div>
-</footer>
+  </footer>
 
-<script>
-  // ── Sidebar toggle ──────────────────────────────────────────
-  function toggleSidebar(open) {
-    document.getElementById('main-sidebar').classList.toggle('open', open);
-    document.getElementById('sidebar-overlay').classList.toggle('open', open);
-  }
-  function closeSidebarMobile() {
-    if (window.innerWidth < 1024) toggleSidebar(false);
-  }
+  <script>
+    // ── Sidebar toggle ──────────────────────────────────────────
+    function toggleSidebar(open) {
+      document.getElementById('main-sidebar').classList.toggle('open', open);
+      document.getElementById('sidebar-overlay').classList.toggle('open', open);
+    }
+    function closeSidebarMobile() {
+      if (window.innerWidth < 1024) toggleSidebar(false);
+    }
 
-  // ── Copy text utility ───────────────────────────────────────
-  function copyText(text) {
-    navigator.clipboard.writeText(text).catch(() => {});
-  }
+    // ── Copy text utility ───────────────────────────────────────
+    function copyText(text) {
+      navigator.clipboard.writeText(text).catch(() => { });
+    }
 
-  // ── Copy code block (reads from the nearest pre > code) ─────
-  function copyBlock(btn) {
-    const block = btn.closest('.code-block');
-    const code  = block?.querySelector('code');
-    if (!code) return;
-    navigator.clipboard.writeText(code.textContent ?? '').then(() => {
-      const orig = btn.innerHTML;
-      btn.innerHTML = '<i class="fa-solid fa-check mr-1"></i>Copied!';
-      btn.style.color = '#86efac';
-      setTimeout(() => { btn.innerHTML = orig; btn.style.color = ''; }, 1500);
+    // ── Copy code block (reads from the nearest pre > code) ─────
+    function copyBlock(btn) {
+      const block = btn.closest('.code-block');
+      const code = block?.querySelector('code');
+      if (!code) return;
+      navigator.clipboard.writeText(code.textContent ?? '').then(() => {
+        const orig = btn.innerHTML;
+        btn.innerHTML = '<i class="fa-solid fa-check mr-1"></i>Copied!';
+        btn.style.color = '#86efac';
+        setTimeout(() => { btn.innerHTML = orig; btn.style.color = ''; }, 1500);
+      });
+    }
+
+    // ── Active sidebar link via IntersectionObserver ────────────
+    const sections = document.querySelectorAll('.section-anchor');
+    const sidebarLinks = document.querySelectorAll('.sidebar-link[href]');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          sidebarLinks.forEach(link => {
+            const href = link.getAttribute('href');
+            link.classList.toggle('active', href === '#' + id);
+          });
+        }
+      });
+    }, { rootMargin: '-10% 0px -80% 0px', threshold: 0 });
+
+    sections.forEach(s => observer.observe(s));
+
+    // ── Highlight all Prism blocks ───────────────────────────────
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.Prism) Prism.highlightAll();
     });
-  }
-
-  // ── Active sidebar link via IntersectionObserver ────────────
-  const sections = document.querySelectorAll('.section-anchor');
-  const sidebarLinks = document.querySelectorAll('.sidebar-link[href]');
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const id = entry.target.id;
-        sidebarLinks.forEach(link => {
-          const href = link.getAttribute('href');
-          link.classList.toggle('active', href === '#' + id);
-        });
-      }
-    });
-  }, { rootMargin: '-10% 0px -80% 0px', threshold: 0 });
-
-  sections.forEach(s => observer.observe(s));
-
-  // ── Highlight all Prism blocks ───────────────────────────────
-  document.addEventListener('DOMContentLoaded', () => {
-    if (window.Prism) Prism.highlightAll();
-  });
-</script>
+  </script>
 </body>
+
 </html>
