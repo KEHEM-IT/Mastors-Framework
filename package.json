@@ -13,6 +13,7 @@
     "build": "pnpm --filter \"./packages/**\" -r run build",
     "build:watch": "pnpm --filter \"./packages/**\" -r run dev --parallel",
     "playground": "pnpm --filter mastors-playground dev",
+    "deploy:pages": "pnpm build && pnpm --filter mastors-playground run build:pages",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
