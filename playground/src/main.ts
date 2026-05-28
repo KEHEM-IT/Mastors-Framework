@@ -7,6 +7,7 @@ import { SemanticResolver } from "@mastors/core";
 import { defaultSchema }    from "@mastors/schemas";
 import { defaultTokens }    from "@mastors/tokens";
 import type { ResolvedStyleMap, StyleRule } from "@mastors/types";
+import { camelToKebab as toKebab } from "@mastors/utils";
 
 // ── Per-category imports (tree-shakeable) ─────────────────────
 import cardsData      from "./data/vocabulary/cards.json";
@@ -138,11 +139,99 @@ function isColorToken(ref: string): boolean {
   return COLOR_TOKEN_PREFIXES.some((p) => ref.startsWith(p));
 }
 
-function toKebab(str: string): string {
-  return str.replace(/([A-Z])/g, (c) => `-${c.toLowerCase()}`);
+// ── Theme-aware token overrides ───────────────────────────────
+// The schema uses static light-mode tokens (neutral.0 = white, etc.)
+// This map swaps them to dark-mode equivalents in the preview only.
+const DARK_TOKEN_OVERRIDES: Record<string, string> = {
+  // ── Neutral scale ──────────────────────────────────────────
+  "token.color.neutral.0":   "#1d2133",   // white  → dark card surface
+  "token.color.neutral.50":  "#161929",   // gray50 → dark page bg
+  "token.color.neutral.100": "#252840",   // gray100→ dark subtle surface
+  "token.color.neutral.200": "#2e3350",   // gray200→ dark border
+  "token.color.neutral.300": "#3d4166",   // gray300→ dark muted border
+  // Text
+  "token.color.neutral.800": "#e2e8f0",   // dark text → light text
+  "token.color.neutral.700": "#94a3b8",   // body text → muted light
+  "token.color.neutral.500": "#64748b",
+  "token.color.neutral.400": "#475569",
+
+  // ── Semantic surface tokens (card / nav / input) ───────────
+  "token.color.surface.base":     "#1d2133",   // card, modal surface
+  "token.color.surface.raised":   "#252840",   // elevated card surface
+  "token.color.surface.overlay":  "#2e3350",   // overlay / dropdown
+  "token.color.surface.nav":      "#111320",   // nav bar surface
+  "token.color.surface.input":    "#111827",   // input background
+  "token.color.surface.subtle":   "#161929",   // page / subtle surface
+
+  // ── Semantic border tokens ─────────────────────────────────
+  "token.color.border.subtle":    "#2e3350",   // subtle dividers / card borders
+  "token.color.border.default":   "#3d4166",   // default border
+  "token.color.border.strong":    "#4a5080",   // strong border
+  "token.color.border.input":     "#374151",   // form input border
+  "token.color.border.focus":     "#6366f1",   // focus ring border
+
+  // ── Focus ring ─────────────────────────────────────────────
+  "token.color.focus.ring":       "rgba(99,102,241,0.55)",
+
+  // ── Primary scale ──────────────────────────────────────────
+  "token.color.primary.50":       "rgba(59,130,246,0.12)",
+  "token.color.primary.100":      "rgba(59,130,246,0.15)",
+  "token.color.primary.200":      "rgba(59,130,246,0.3)",
+  "token.color.primary.700":      "#93c5fd",
+
+  // ── Semantic alert / status tokens (info) ─────────────────
+  "token.color.info.surface":     "rgba(59,130,246,0.12)",
+  "token.color.info.bg":          "rgba(59,130,246,0.12)",
+  "token.color.info.text":        "#93c5fd",
+  "token.color.info.border":      "rgba(59,130,246,0.4)",
+  "token.color.info.accent":      "#3b82f6",
+
+  // ── Semantic alert / status tokens (success) ──────────────
+  "token.color.success.surface":  "rgba(34,197,94,0.12)",
+  "token.color.success.bg":       "rgba(34,197,94,0.12)",
+  "token.color.success.text":     "#86efac",
+  "token.color.success.border":   "rgba(34,197,94,0.4)",
+  "token.color.success.accent":   "#22c55e",
+  "token.color.success.100":      "rgba(34,197,94,0.12)",
+  "token.color.success.700":      "#86efac",
+
+  // ── Semantic alert / status tokens (warning) ──────────────
+  "token.color.warning.surface":  "rgba(234,179,8,0.12)",
+  "token.color.warning.bg":       "rgba(234,179,8,0.12)",
+  "token.color.warning.text":     "#fde047",
+  "token.color.warning.border":   "rgba(234,179,8,0.4)",
+  "token.color.warning.accent":   "#eab308",
+  "token.color.warning.100":      "rgba(234,179,8,0.12)",
+  "token.color.warning.700":      "#fde047",
+
+  // ── Semantic alert / status tokens (error / destructive) ──
+  "token.color.error.surface":    "rgba(239,68,68,0.12)",
+  "token.color.error.bg":         "rgba(239,68,68,0.12)",
+  "token.color.error.text":       "#fca5a5",
+  "token.color.error.border":     "rgba(239,68,68,0.4)",
+  "token.color.error.accent":     "#ef4444",
+  "token.color.error.100":        "rgba(239,68,68,0.12)",
+  "token.color.error.500":        "#ef4444",
+  "token.color.error.700":        "#fca5a5",
+
+  "token.color.destructive.surface": "rgba(239,68,68,0.12)",
+  "token.color.destructive.bg":      "rgba(239,68,68,0.12)",
+  "token.color.destructive.text":    "#fca5a5",
+  "token.color.destructive.border":  "rgba(239,68,68,0.4)",
+  "token.color.destructive.accent":  "#ef4444",
+};
+
+function resolveTokenForTheme(ref: string, isDark: boolean): string {
+  if (isDark) {
+    const override = DARK_TOKEN_OVERRIDES[ref];
+    if (override) return override;
+  }
+  return resolveTokenValue(ref);
 }
 
 // ── Build preview element ─────────────────────────────────────
+// Strategy: apply computedStyles FIRST, then theme-aware overrides LAST
+// so light/dark switch always wins over resolved token values.
 function buildPreviewEl(intentId: string, styleMap: ResolvedStyleMap): HTMLElement {
   const entry    = INTENT_MAP.get(intentId);
   const category = intentId.split(".")[0] ?? "";
@@ -150,26 +239,47 @@ function buildPreviewEl(intentId: string, styleMap: ResolvedStyleMap): HTMLEleme
   const isDark   = currentTheme === "dark";
   const pv       = entry?.preview;
 
+  // Non-color computed styles (layout, spacing, border-radius, etc.)
+  // We split them so color props from tokens don't stomp our theme colors.
   const computedStyles: Record<string, string> = {};
+  const COLOR_PROPS = new Set([
+    "color","background","background-color",
+    "border-color","border-top-color","border-right-color","border-bottom-color","border-left-color",
+    "outline-color","box-shadow","text-decoration-color","caret-color",
+  ]);
+  const computedColors: Record<string, string> = {};
   for (const rule of styleMap.base) {
     const prop = toKebab(rule.property);
-    const val  = rule.tokenRef ? resolveTokenValue(rule.tokenRef) : String(rule.value);
-    computedStyles[prop] = val;
+    // Use theme-aware resolver so dark mode gets dark surface colors
+    const val  = rule.tokenRef ? resolveTokenForTheme(rule.tokenRef, isDark) : String(rule.value);
+    if (COLOR_PROPS.has(prop)) {
+      computedColors[prop] = val;
+    } else {
+      computedStyles[prop] = val;
+    }
   }
+
+  // Helper: only use a resolved color if it's a real CSS value (not an unresolved token path)
+  const isValidColor = (v: string | undefined): v is string =>
+    !!v && !v.startsWith("token.") && v !== "undefined";
 
   const textColor  = isDark ? "#e2e8f0" : "#1e293b";
   const mutedColor = isDark ? "#94a3b8" : "#64748b";
+  const borderCol  = isDark ? "#374151" : "#d1d5db";
+  const inputBg    = isDark ? "#111827" : "#ffffff";
   let el: HTMLElement;
 
   if (category === "button") {
     el = document.createElement("button");
     el.textContent = pv?.text ?? entry?.label ?? "Button";
+    // Apply layout styles first, then token colors (buttons should keep their token colors)
+    Object.assign(el.style, computedStyles);
+    Object.assign(el.style, computedColors);
     el.style.cursor = "pointer";
     el.style.fontFamily = "Inter, sans-serif";
     el.style.fontWeight = "600";
     el.style.fontSize   = "0.9rem";
     el.style.letterSpacing = "-0.01em";
-    Object.assign(el.style, computedStyles);
     return el;
   }
 
@@ -177,20 +287,21 @@ function buildPreviewEl(intentId: string, styleMap: ResolvedStyleMap): HTMLEleme
     const tag = pv?.tag ?? (variant === "hero" ? "h1" : variant === "section" ? "h2" : "h3");
     el = document.createElement(tag);
     el.textContent = pv?.text ?? entry?.label ?? "Heading";
+    Object.assign(el.style, computedStyles);
+    // Theme color always wins for text
     el.style.color = textColor;
     el.style.fontFamily = "Inter, sans-serif";
     el.style.maxWidth = "520px";
-    Object.assign(el.style, computedStyles);
     return el;
   }
 
   if (category === "body") {
     el = document.createElement("p");
     el.textContent = pv?.text ?? "Body text placeholder.";
+    Object.assign(el.style, computedStyles);
     el.style.color = textColor;
     el.style.maxWidth = "480px";
     el.style.fontFamily = "Inter, sans-serif";
-    Object.assign(el.style, computedStyles);
     return el;
   }
 
@@ -201,33 +312,44 @@ function buildPreviewEl(intentId: string, styleMap: ResolvedStyleMap): HTMLEleme
     const icon  = pv?.icon  ?? "📢";
     const title = pv?.title ?? "Alert";
     const body  = pv?.body  ?? "Alert message.";
+    Object.assign(el.style, computedStyles);
+    const alertBg = computedColors["background-color"] ?? computedColors["background"];
+    if (isValidColor(alertBg)) el.style.backgroundColor = alertBg;
+    const alertFg = computedColors["color"];
+    const alertText = isValidColor(alertFg) ? alertFg : textColor;
+    el.style.color = alertText;
+    const alertBorder = computedColors["border-color"];
+    if (isValidColor(alertBorder)) { el.style.borderColor = alertBorder; el.style.borderWidth = "1px"; el.style.borderStyle = "solid"; }
     el.innerHTML = `
       <div style="display:flex;align-items:flex-start;gap:10px;">
         <span style="font-size:1.1rem;flex-shrink:0;margin-top:1px">${icon}</span>
         <div>
-          <div style="font-weight:700;font-size:0.88rem;margin-bottom:3px;font-family:Inter,sans-serif">${title}</div>
-          <div style="font-size:0.82rem;line-height:1.5;font-family:Inter,sans-serif">${body}</div>
+          <div style="font-weight:700;font-size:0.88rem;margin-bottom:3px;font-family:Inter,sans-serif;color:inherit">${title}</div>
+          <div style="font-size:0.82rem;line-height:1.5;font-family:Inter,sans-serif;color:inherit">${body}</div>
         </div>
       </div>`;
-    Object.assign(el.style, computedStyles);
     return el;
   }
 
   if (category === "toast") {
     el = document.createElement("div");
-    el.style.width = "360px";
+    el.style.width = "min(360px, 100%)";
     const title = pv?.title ?? "Notification";
     const body  = pv?.body  ?? "";
+    Object.assign(el.style, computedStyles);
+    const toastBg = computedColors["background-color"] ?? computedColors["background"];
+    if (isValidColor(toastBg)) el.style.backgroundColor = toastBg;
+    const toastColor = computedColors["color"];
+    el.style.color = isValidColor(toastColor) ? toastColor : textColor;
     el.innerHTML = `
       <div style="display:flex;align-items:center;gap:10px;font-family:Inter,sans-serif">
         <span style="color:#4ade80;font-size:1rem;flex-shrink:0">✓</span>
         <div>
-          <div style="font-weight:700;font-size:0.85rem;margin-bottom:2px">${title}</div>
-          <div style="font-size:0.75rem;opacity:0.75">${body}</div>
+          <div style="font-weight:700;font-size:0.85rem;margin-bottom:2px;color:inherit">${title}</div>
+          <div style="font-size:0.75rem;opacity:0.75;color:inherit">${body}</div>
         </div>
         <button style="margin-left:auto;background:none;border:none;cursor:pointer;opacity:0.5;font-size:1rem;color:inherit">✕</button>
       </div>`;
-    Object.assign(el.style, computedStyles);
     return el;
   }
 
@@ -241,14 +363,22 @@ function buildPreviewEl(intentId: string, styleMap: ResolvedStyleMap): HTMLEleme
     const linksHtml = links.map((l) =>
       `<a href="#" style="color:${mutedColor};text-decoration:none;font-size:0.83rem">${l}</a>`
     ).join("");
+    Object.assign(el.style, computedStyles);
+    const navBg = computedColors["background-color"] ?? computedColors["background"];
+    if (isValidColor(navBg)) el.style.backgroundColor = navBg;
+    else el.style.backgroundColor = isDark ? "#1d2133" : "#ffffff";
+    const navBorder = computedColors["border-color"];
+    if (isValidColor(navBorder)) { el.style.borderColor = navBorder; el.style.borderWidth = "1px"; el.style.borderStyle = "solid"; }
+    else { el.style.borderColor = isDark ? "#2e3350" : "#e2e8f0"; el.style.borderWidth = "1px"; el.style.borderStyle = "solid"; }
+    el.style.borderRadius = el.style.borderRadius || "8px";
+    el.style.padding = el.style.padding || "12px 16px";
     el.innerHTML = `
-      <div style="display:flex;align-items:center;gap:1.5rem;font-family:Inter,sans-serif">
+      <div style="display:flex;align-items:center;font-family:Inter,sans-serif;flex-wrap:wrap;gap:0.75rem">
         <span style="font-weight:700;color:${textColor};font-size:0.95rem">${logo}</span>
         <span style="flex:1"></span>
         ${linksHtml}
         <button style="background:#6366f1;color:white;border:none;padding:6px 14px;border-radius:6px;font-size:0.8rem;font-weight:600;cursor:pointer;font-family:Inter,sans-serif">${cta}</button>
       </div>`;
-    Object.assign(el.style, computedStyles);
     return el;
   }
 
@@ -257,6 +387,7 @@ function buildPreviewEl(intentId: string, styleMap: ResolvedStyleMap): HTMLEleme
     el.style.maxWidth = "360px";
     el.style.width = "100%";
     el.style.fontFamily = "Inter, sans-serif";
+    Object.assign(el.style, computedStyles);
     if (intentId.includes("destructive")) {
       const heading     = pv?.heading     ?? "Confirm Deletion";
       const description = pv?.description ?? "This action cannot be undone.";
@@ -269,7 +400,7 @@ function buildPreviewEl(intentId: string, styleMap: ResolvedStyleMap): HTMLEleme
         <input type="text" placeholder="${placeholder}"
           style="width:100%;padding:8px 12px;border-radius:6px;border:1.5px solid #ef4444;
                  background:${isDark ? "rgba(239,68,68,0.08)" : "rgba(239,68,68,0.04)"};
-                 color:${textColor};font-size:0.83rem;font-family:inherit;outline:none;" />`;
+                 color:${textColor};font-size:0.83rem;font-family:inherit;outline:none;box-sizing:border-box;" />`;
     } else {
       const label       = pv?.label      ?? "Label";
       const placeholder = pv?.placeholder ?? "Enter value";
@@ -278,12 +409,11 @@ function buildPreviewEl(intentId: string, styleMap: ResolvedStyleMap): HTMLEleme
       el.innerHTML = `
         <label style="display:block;font-size:0.78rem;font-weight:600;margin-bottom:6px;color:${mutedColor}">${label}</label>
         <input type="${inputType}" placeholder="${placeholder}"
-          style="width:100%;padding:9px 12px;border-radius:6px;border:1.5px solid ${isDark ? "#374151" : "#d1d5db"};
-                 background:${isDark ? "#111827" : "#ffffff"};color:${textColor};
-                 font-size:0.85rem;font-family:inherit;outline:none;" />
+          style="width:100%;padding:9px 12px;border-radius:6px;border:1.5px solid ${borderCol};
+                 background:${inputBg};color:${textColor};
+                 font-size:0.85rem;font-family:inherit;outline:none;box-sizing:border-box;" />
         ${helperText ? `<p style="font-size:0.72rem;color:${mutedColor};margin-top:5px">${helperText}</p>` : ""}`;
     }
-    Object.assign(el.style, computedStyles);
     return el;
   }
 
@@ -293,6 +423,7 @@ function buildPreviewEl(intentId: string, styleMap: ResolvedStyleMap): HTMLEleme
     el.style.maxWidth = "580px";
     const label       = pv?.label       ?? intentId;
     const description = pv?.description ?? "Layout container.";
+    Object.assign(el.style, computedStyles);
     el.innerHTML = `
       <div style="border:2px dashed ${isDark ? "#2e3350" : "#cbd5e1"};border-radius:8px;padding:24px;text-align:center;font-family:Inter,sans-serif">
         <div style="color:${isDark ? "#6366f1" : "#4f46e5"};font-weight:700;font-size:0.85rem;margin-bottom:4px;letter-spacing:0.05em;text-transform:uppercase">
@@ -300,7 +431,6 @@ function buildPreviewEl(intentId: string, styleMap: ResolvedStyleMap): HTMLEleme
         </div>
         <div style="color:${mutedColor};font-size:0.78rem">${description}</div>
       </div>`;
-    Object.assign(el.style, computedStyles);
     return el;
   }
 
@@ -309,17 +439,38 @@ function buildPreviewEl(intentId: string, styleMap: ResolvedStyleMap): HTMLEleme
   el.style.maxWidth = "340px";
   el.style.width = "100%";
   el.style.fontFamily = "Inter, sans-serif";
-  const cardTitle = entry?.label ?? intentId;
-  const cardBody  = entry?.description ??
+
+  // Use preview title/body first, fall back to entry label/description
+  const cardTitle = pv?.title ?? entry?.label ?? intentId;
+  const cardBody  = pv?.body  ?? entry?.description ??
     "This element is styled by the Mastors semantic resolver.";
+
+  // Apply non-color computed styles (padding, radius, shadow, etc.)
+  Object.assign(el.style, computedStyles);
+
+  // Apply background: use resolved token if valid, otherwise theme fallback
+  const resolvedBg = computedColors["background-color"] ?? computedColors["background"];
+  el.style.backgroundColor = isValidColor(resolvedBg)
+    ? resolvedBg
+    : isDark ? "#1d2133" : "#ffffff";
+
+  // Apply border color similarly
+  const resolvedBorder = computedColors["border-color"];
+  el.style.borderColor = isValidColor(resolvedBorder)
+    ? resolvedBorder!
+    : isDark ? "#2e3350" : "#e2e8f0";
+  if (!el.style.borderWidth) {
+    el.style.borderWidth  = "1px";
+    el.style.borderStyle  = "solid";
+  }
+
   el.innerHTML = `
     <div style="font-weight:700;font-size:0.95rem;margin-bottom:6px;color:${textColor}">${cardTitle}</div>
-    <p style="font-size:0.82rem;line-height:1.6;color:${mutedColor}">${cardBody}</p>
-    <div style="margin-top:12px;display:flex;gap:8px">
+    <p style="font-size:0.82rem;line-height:1.6;color:${mutedColor};margin:0">${cardBody}</p>
+    <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
       <button style="background:#6366f1;color:white;border:none;padding:6px 14px;border-radius:6px;font-size:0.78rem;font-weight:600;cursor:pointer;font-family:inherit">Primary</button>
-      <button style="background:transparent;color:${mutedColor};border:1px solid ${isDark ? "#374151" : "#d1d5db"};padding:6px 14px;border-radius:6px;font-size:0.78rem;font-weight:600;cursor:pointer;font-family:inherit">Secondary</button>
+      <button style="background:transparent;color:${mutedColor};border:1px solid ${borderCol};padding:6px 14px;border-radius:6px;font-size:0.78rem;font-weight:600;cursor:pointer;font-family:inherit">Secondary</button>
     </div>`;
-  Object.assign(el.style, computedStyles);
   return el;
 }
 
@@ -746,4 +897,5 @@ let debounceTimer: ReturnType<typeof setTimeout>;
 
 // ── Boot ──────────────────────────────────────────────────────
 buildPresetList();
+setPreviewTheme("dark");   // establish dark as the primary theme explicitly
 update("card.elevated.interactive");

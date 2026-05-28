@@ -5,18 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mastors Playground — Intent-Based Styling Explorer</title>
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
 
-  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-
-  <!-- Prism.js (syntax highlighting) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
@@ -31,23 +25,8 @@
             mono: ['Fira Code', 'Consolas', 'monospace'],
           },
           colors: {
-            brand: {
-              50:  '#eef2ff',
-              100: '#e0e7ff',
-              400: '#818cf8',
-              500: '#6366f1',
-              600: '#4f46e5',
-              700: '#4338ca',
-            },
-            dark: {
-              900: '#0b0d14',
-              800: '#111320',
-              700: '#161929',
-              600: '#1d2133',
-              500: '#252840',
-              400: '#2e3350',
-              300: '#3d4166',
-            }
+            brand: { 50:'#eef2ff',100:'#e0e7ff',400:'#818cf8',500:'#6366f1',600:'#4f46e5',700:'#4338ca' },
+            dark:  { 900:'#0b0d14',800:'#111320',700:'#161929',600:'#1d2133',500:'#252840',400:'#2e3350',300:'#3d4166' }
           }
         }
       }
@@ -61,189 +40,144 @@
     ::-webkit-scrollbar-thumb { background: #2e3350; border-radius: 99px; }
     ::-webkit-scrollbar-thumb:hover { background: #4338ca; }
 
-    /* ── Prism override — transparent bg ── */
+    /* ── Prism ── */
     pre[class*="language-"] {
-      background: transparent !important;
-      margin: 0 !important;
-      padding: 0 !important;
-      font-size: 0.78rem !important;
-      line-height: 1.75 !important;
-      font-family: 'Fira Code', monospace !important;
+      background: transparent !important; margin: 0 !important; padding: 0 !important;
+      font-size: 0.78rem !important; line-height: 1.75 !important; font-family: 'Fira Code', monospace !important;
     }
-    code[class*="language-"] {
-      font-family: 'Fira Code', monospace !important;
-      font-size: 0.78rem !important;
-    }
+    code[class*="language-"] { font-family: 'Fira Code', monospace !important; font-size: 0.78rem !important; }
 
-    /* ── Sidebar preset button ── */
+    /* ── Sidebar ── */
     .preset-btn {
-      display: block;
-      width: 100%;
-      text-align: left;
-      padding: 5px 10px;
-      border-radius: 6px;
-      font-family: 'Fira Code', monospace;
-      font-size: 0.73rem;
-      color: #94a3b8;
-      background: transparent;
-      border: 1px solid transparent;
-      cursor: pointer;
-      transition: all 0.13s ease;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      display: block; width: 100%; text-align: left; padding: 5px 10px; border-radius: 6px;
+      font-family: 'Fira Code', monospace; font-size: 0.73rem; color: #94a3b8;
+      background: transparent; border: 1px solid transparent; cursor: pointer;
+      transition: all 0.13s ease; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     }
-    .preset-btn:hover {
-      background: #1d2133;
-      color: #e2e8f0;
-      border-color: #2e3350;
-    }
-    .preset-btn.active {
-      background: rgba(99,102,241,0.15);
-      color: #818cf8;
-      border-color: rgba(99,102,241,0.4);
-    }
-
-    /* ── Category label ── */
+    .preset-btn:hover  { background: #1d2133; color: #e2e8f0; border-color: #2e3350; }
+    .preset-btn.active { background: rgba(99,102,241,0.15); color: #818cf8; border-color: rgba(99,102,241,0.4); }
     .cat-label {
-      font-size: 0.62rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: #3d4166;
-      padding: 10px 10px 3px;
+      font-size: 0.62rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      color: #3d4166; padding: 10px 10px 3px;
     }
 
-    /* ── Preview pane light / dark ── */
-    #preview-pane {
-      background: #f1f5f9;
-      transition: background 0.2s;
-    }
-    #preview-pane.is-dark {
-      background: #0f172a;
-    }
+    /* ── Preview pane ── */
+    #preview-pane { background: #f1f5f9; transition: background 0.2s; }
+    #preview-pane.is-dark { background: #0f172a; }
 
-    /* ── Theme toggle buttons ── */
+    /* ── Theme buttons ── */
     .theme-btn {
-      padding: 3px 12px;
-      border-radius: 5px;
-      font-size: 0.7rem;
-      font-weight: 600;
-      cursor: pointer;
-      border: 1px solid transparent;
-      transition: all 0.13s;
-      color: #64748b;
-      background: rgba(0,0,0,0.06);
+      padding: 3px 12px; border-radius: 5px; font-size: 0.7rem; font-weight: 600;
+      cursor: pointer; border: 1px solid transparent; transition: all 0.13s;
+      color: #64748b; background: rgba(0,0,0,0.06);
     }
     .theme-btn:hover { background: rgba(0,0,0,0.1); }
-    .theme-btn.active {
-      background: white;
-      color: #1e293b;
-      border-color: #e2e8f0;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-    }
+    .theme-btn.active { background: white; color: #1e293b; border-color: #e2e8f0; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
     #preview-pane.is-dark .theme-btn { color: #94a3b8; background: rgba(255,255,255,0.05); }
-    #preview-pane.is-dark .theme-btn.active {
-      background: #1d2133;
-      color: #e2e8f0;
-      border-color: #2e3350;
-    }
+    #preview-pane.is-dark .theme-btn.active { background: #1d2133; color: #e2e8f0; border-color: #2e3350; }
 
-    /* ── Input focus glow ── */
-    #intent-input:focus {
-      outline: none;
-      border-color: #6366f1;
-      box-shadow: 0 0 0 3px rgba(99,102,241,0.2);
-    }
+    /* ── Input ── */
+    #intent-input:focus { outline: none; border-color: #6366f1; box-shadow: 0 0 0 3px rgba(99,102,241,0.2); }
 
-    /* ── Animated badge pulse ── */
-    @keyframes pulse-dot {
-      0%, 100% { opacity: 1; }
-      50%       { opacity: 0.4; }
-    }
+    /* ── Animations ── */
+    @keyframes pulse-dot { 0%,100%{opacity:1} 50%{opacity:0.4} }
     .live-dot { animation: pulse-dot 1.8s ease-in-out infinite; }
-
-    /* ── Slide-in animation for preview element ── */
-    @keyframes slide-up {
-      from { opacity: 0; transform: translateY(10px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+    @keyframes slide-up { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
     #preview-mount > * { animation: slide-up 0.2s ease; }
 
-    /* ── Tab active indicator ── */
+    /* ── Tabs ── */
     .tab-btn { transition: all 0.15s; }
-    .tab-btn.active {
-      color: #818cf8;
-      border-bottom: 2px solid #6366f1;
-    }
+    .tab-btn.active { color: #818cf8; border-bottom: 2px solid #6366f1; }
 
     /* ── Hint rows ── */
-    .hint-row {
-      display: flex;
-      align-items: flex-start;
-      gap: 8px;
-      padding: 8px 10px;
-      border-radius: 6px;
-      font-size: 0.75rem;
-      line-height: 1.5;
-      margin-bottom: 4px;
-    }
+    .hint-row { display:flex; align-items:flex-start; gap:8px; padding:8px 10px; border-radius:6px; font-size:0.75rem; line-height:1.5; margin-bottom:4px; }
     .hint-row.info    { background: rgba(99,102,241,0.08); color: #a5b4fc; }
     .hint-row.warning { background: rgba(234,179,8,0.1);   color: #fde047; }
     .hint-row.error   { background: rgba(239,68,68,0.1);   color: #fca5a5; }
 
     /* ── Token chip ── */
     .token-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      background: rgba(99,102,241,0.1);
-      border: 1px solid rgba(99,102,241,0.25);
-      border-radius: 4px;
-      padding: 1px 6px;
-      font-family: 'Fira Code', monospace;
-      font-size: 0.68rem;
-      color: #a5b4fc;
-      white-space: nowrap;
+      display:inline-flex; align-items:center; gap:4px;
+      background:rgba(99,102,241,0.1); border:1px solid rgba(99,102,241,0.25);
+      border-radius:4px; padding:1px 6px; font-family:'Fira Code',monospace;
+      font-size:0.68rem; color:#a5b4fc; white-space:nowrap;
     }
 
-    /* ── Resolved rule row ── */
-    .rule-row {
-      display: flex;
-      align-items: baseline;
-      gap: 6px;
-      padding: 4px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.04);
-      font-size: 0.75rem;
-    }
-    .rule-prop { color: #7dd3fc; font-family: 'Fira Code', monospace; flex-shrink: 0; min-width: 160px; }
-    .rule-val  { color: #86efac; font-family: 'Fira Code', monospace; flex: 1; word-break: break-all; }
-    .rule-ref  { color: #475569; font-family: 'Fira Code', monospace; font-size: 0.65rem; flex-shrink: 0; }
+    /* ── Rule row ── */
+    .rule-row { display:flex; align-items:baseline; gap:6px; padding:4px 0; border-bottom:1px solid rgba(255,255,255,0.04); font-size:0.75rem; }
+    .rule-prop { color:#7dd3fc; font-family:'Fira Code',monospace; flex-shrink:0; min-width:160px; }
+    .rule-val  { color:#86efac; font-family:'Fira Code',monospace; flex:1; word-break:break-all; }
+    .rule-ref  { color:#475569; font-family:'Fira Code',monospace; font-size:0.65rem; flex-shrink:0; }
 
     /* ── Copy button ── */
     .copy-btn {
-      opacity: 0;
-      transition: opacity 0.15s;
-      cursor: pointer;
-      padding: 2px 8px;
-      border-radius: 4px;
-      font-size: 0.65rem;
-      font-weight: 600;
-      background: rgba(99,102,241,0.15);
-      color: #818cf8;
-      border: 1px solid rgba(99,102,241,0.3);
+      opacity:0; transition:opacity 0.15s; cursor:pointer; padding:2px 8px; border-radius:4px;
+      font-size:0.65rem; font-weight:600; background:rgba(99,102,241,0.15);
+      color:#818cf8; border:1px solid rgba(99,102,241,0.3);
     }
     .copy-btn:hover { background: rgba(99,102,241,0.3); }
     .output-panel:hover .copy-btn { opacity: 1; }
+
+    /* ── Responsive: sidebar overlay on mobile ── */
+    #sidebar-overlay {
+      display: none;
+      position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 40;
+    }
+    #sidebar-overlay.open { display: block; }
+
+    /* ── Mobile: sidebar slides in ── */
+    @media (max-width: 767px) {
+      #main-sidebar {
+        position: fixed; top: 0; left: 0; height: 100dvh;
+        transform: translateX(-100%); transition: transform 0.22s ease; z-index: 50;
+      }
+      #main-sidebar.open { transform: translateX(0); }
+
+      /* Right output panel full-width on mobile, hidden behind bottom sheet pattern */
+      #output-panel {
+        position: fixed; bottom: 0; left: 0; right: 0;
+        height: 50vh; z-index: 30;
+        transform: translateY(calc(100% - 40px));
+        transition: transform 0.22s ease;
+        border-top: 1px solid #2e3350;
+        border-radius: 12px 12px 0 0;
+      }
+      #output-panel.open { transform: translateY(0); }
+      #output-panel-handle {
+        display: flex; align-items: center; justify-content: center;
+        height: 40px; cursor: pointer; flex-shrink: 0;
+        border-radius: 12px 12px 0 0;
+      }
+      #output-panel-handle::before {
+        content: ''; display: block; width: 36px; height: 4px;
+        background: #2e3350; border-radius: 99px;
+      }
+    }
+
+    @media (min-width: 768px) {
+      #output-panel-handle { display: none; }
+      #sidebar-toggle-btn  { display: none; }
+    }
+
+    /* ── Tabs scrollable on small panels ── */
+    #tabs-bar { overflow-x: auto; scrollbar-width: none; }
+    #tabs-bar::-webkit-scrollbar { display: none; }
   </style>
 </head>
 
 <body class="bg-dark-900 text-slate-200 font-sans h-screen flex flex-col overflow-hidden">
 
-  <!-- ═══════════════════════════════════════════════════════
-       HEADER
-  ════════════════════════════════════════════════════════ -->
-  <header class="h-14 flex-shrink-0 flex items-center gap-3 px-5 bg-dark-800 border-b border-dark-400 z-10">
+  <!-- Sidebar overlay (mobile) -->
+  <div id="sidebar-overlay" onclick="toggleSidebar(false)"></div>
+
+  <!-- ═══ HEADER ═══════════════════════════════════════════ -->
+  <header class="h-14 flex-shrink-0 flex items-center gap-3 px-4 bg-dark-800 border-b border-dark-400 z-10">
+
+    <!-- Mobile: sidebar toggle -->
+    <button id="sidebar-toggle-btn" class="md:hidden text-slate-400 hover:text-white p-1" onclick="toggleSidebar(true)">
+      <i class="fa-solid fa-bars text-base"></i>
+    </button>
+
     <!-- Logo -->
     <div class="flex items-center gap-2">
       <span class="text-brand-500 text-xl leading-none">◆</span>
@@ -251,20 +185,16 @@
       <span class="text-[0.6rem] font-bold bg-brand-500 text-white px-1.5 py-0.5 rounded uppercase tracking-widest">v0.1</span>
     </div>
 
-    <!-- Subtitle -->
     <span class="text-slate-500 text-xs hidden sm:block">Intent-Based Styling Explorer</span>
 
-    <!-- Live indicator -->
     <div class="flex items-center gap-1.5 ml-1">
       <span class="live-dot w-1.5 h-1.5 rounded-full bg-green-400 inline-block"></span>
-      <span class="text-[0.65rem] text-slate-500 font-mono">LIVE</span>
+      <span class="text-[0.65rem] text-slate-500 font-mono hidden sm:inline">LIVE</span>
     </div>
 
-    <!-- Spacer -->
     <div class="flex-1"></div>
 
-    <!-- Nav links -->
-    <nav class="flex items-center gap-4">
+    <nav class="flex items-center gap-3">
       <a href="#" class="text-slate-400 hover:text-slate-200 text-xs transition-colors flex items-center gap-1">
         <i class="fa-brands fa-github text-sm"></i>
         <span class="hidden sm:inline">GitHub</span>
@@ -280,33 +210,23 @@
     </nav>
   </header>
 
-  <!-- ═══════════════════════════════════════════════════════
-       MAIN LAYOUT  [sidebar | preview | output]
-  ════════════════════════════════════════════════════════ -->
-  <main class="flex-1 flex overflow-hidden min-h-0">
+  <!-- ═══ MAIN ══════════════════════════════════════════════ -->
+  <main class="flex-1 flex overflow-hidden min-h-0 relative">
 
     <!-- ── LEFT SIDEBAR ─────────────────────────────────── -->
-    <aside class="w-64 flex-shrink-0 flex flex-col bg-dark-800 border-r border-dark-400 overflow-hidden">
+    <aside id="main-sidebar" class="w-64 flex-shrink-0 flex flex-col bg-dark-800 border-r border-dark-400 overflow-hidden">
 
       <!-- Intent input -->
       <div class="p-4 border-b border-dark-400 flex-shrink-0">
         <label class="block text-[0.62rem] font-bold tracking-widest uppercase text-slate-500 mb-2">
-          <i class="fa-solid fa-terminal mr-1 text-brand-500"></i>
-          Intent Identifier
+          <i class="fa-solid fa-terminal mr-1 text-brand-500"></i>Intent Identifier
         </label>
         <div class="relative">
           <span class="absolute left-3 top-1/2 -translate-y-1/2 text-brand-400 font-mono text-sm pointer-events-none">⟩</span>
-          <input
-            id="intent-input"
-            type="text"
-            value="card.elevated.interactive"
-            spellcheck="false"
-            autocomplete="off"
-            placeholder="e.g. button.primary.cta"
-            class="w-full bg-dark-900 border border-dark-400 rounded-lg text-slate-100 font-mono text-[0.82rem] pl-8 pr-3 py-2 transition-all"
-          />
+          <input id="intent-input" type="text" value="card.elevated.interactive"
+            spellcheck="false" autocomplete="off" placeholder="e.g. button.primary.cta"
+            class="w-full bg-dark-900 border border-dark-400 rounded-lg text-slate-100 font-mono text-[0.82rem] pl-8 pr-3 py-2 transition-all" />
         </div>
-        <!-- Validation badge -->
         <div id="intent-status" class="mt-1.5 flex items-center gap-1.5 text-[0.65rem]">
           <i id="intent-status-icon" class="fa-solid fa-circle-check text-green-400"></i>
           <span id="intent-status-text" class="text-slate-500">Valid intent identifier</span>
@@ -334,8 +254,7 @@
       <!-- Vocabulary list -->
       <div class="flex-shrink-0 px-4 pt-3 pb-1">
         <div class="text-[0.62rem] font-bold tracking-widest uppercase text-slate-500">
-          <i class="fa-solid fa-list-ul mr-1 text-brand-500"></i>
-          Built-in Vocabulary
+          <i class="fa-solid fa-list-ul mr-1 text-brand-500"></i>Built-in Vocabulary
         </div>
       </div>
       <div id="preset-list" class="flex-1 overflow-y-auto px-3 pb-4 min-h-0">
@@ -344,29 +263,33 @@
     </aside>
 
     <!-- ── CENTER: PREVIEW ───────────────────────────────── -->
-    <div class="flex-1 flex flex-col min-w-0 overflow-hidden border-r border-dark-400">
+    <div class="flex-1 flex flex-col min-w-0 overflow-hidden md:border-r border-dark-400">
 
       <!-- Preview toolbar -->
-      <div class="h-10 flex-shrink-0 flex items-center justify-between px-4 bg-dark-700 border-b border-dark-400">
-        <div class="flex items-center gap-2 text-[0.65rem] text-slate-500">
-          <i class="fa-solid fa-eye text-brand-400"></i>
-          <span class="uppercase tracking-widest font-bold">Preview</span>
-          <span id="preview-intent-badge" class="font-mono text-brand-400 bg-dark-900 px-2 py-0.5 rounded border border-dark-400">
+      <div class="h-10 flex-shrink-0 flex items-center justify-between px-3 bg-dark-700 border-b border-dark-400 gap-2">
+        <div class="flex items-center gap-2 text-[0.65rem] text-slate-500 min-w-0">
+          <i class="fa-solid fa-eye text-brand-400 flex-shrink-0"></i>
+          <span class="uppercase tracking-widest font-bold hidden sm:inline flex-shrink-0">Preview</span>
+          <span id="preview-intent-badge" class="font-mono text-brand-400 bg-dark-900 px-2 py-0.5 rounded border border-dark-400 truncate max-w-[160px] sm:max-w-none">
             card.elevated.interactive
           </span>
         </div>
-        <div class="flex items-center gap-1.5">
+        <div class="flex items-center gap-1 flex-shrink-0">
           <button id="btn-light" class="theme-btn" onclick="setPreviewTheme('light')">
-            <i class="fa-solid fa-sun mr-1"></i>Light
+            <i class="fa-solid fa-sun mr-1"></i><span class="hidden sm:inline">Light</span>
           </button>
           <button id="btn-dark" class="theme-btn active" onclick="setPreviewTheme('dark')">
-            <i class="fa-solid fa-moon mr-1"></i>Dark
+            <i class="fa-solid fa-moon mr-1"></i><span class="hidden sm:inline">Dark</span>
+          </button>
+          <!-- Mobile: toggle output panel -->
+          <button class="md:hidden ml-1 text-slate-400 hover:text-white text-xs px-2 py-1 border border-dark-400 rounded" onclick="toggleOutputPanel()">
+            <i class="fa-solid fa-code text-xs"></i>
           </button>
         </div>
       </div>
 
       <!-- Preview canvas -->
-      <div id="preview-pane" class="is-dark flex-1 flex items-center justify-center overflow-auto p-8 relative">
+      <div id="preview-pane" class="is-dark flex-1 flex items-center justify-center overflow-auto p-4 sm:p-8 relative">
         <div id="preview-mount" class="w-full max-w-lg flex flex-col items-center justify-center gap-4">
           <!-- populated by JS -->
         </div>
@@ -374,105 +297,109 @@
     </div>
 
     <!-- ── RIGHT: OUTPUT PANEL ──────────────────────────── -->
-    <div class="w-[420px] flex-shrink-0 flex flex-col bg-dark-800 overflow-hidden">
+    <div id="output-panel" class="w-full md:w-[380px] lg:w-[420px] flex-shrink-0 flex flex-col bg-dark-800 overflow-hidden">
+
+      <!-- Drag handle (mobile only) -->
+      <div id="output-panel-handle" onclick="toggleOutputPanel()"></div>
 
       <!-- Tabs -->
-      <div class="h-10 flex-shrink-0 flex items-end border-b border-dark-400 bg-dark-700 px-1">
-        <button id="tab-mastors"
-          class="tab-btn px-3 py-2 text-[0.68rem] font-semibold tracking-wide uppercase text-slate-500 border-b-2 border-transparent hover:text-white"
-          onclick="switchTab('mastors')">
+      <div id="tabs-bar" class="h-10 flex-shrink-0 flex items-end border-b border-dark-400 bg-dark-700 px-1">
+        <button id="tab-mastors" class="tab-btn px-3 py-2 text-[0.68rem] font-semibold tracking-wide uppercase text-slate-500 border-b-2 border-transparent hover:text-white whitespace-nowrap" onclick="switchTab('mastors')">
           <span class="text-brand-500 mr-1 font-bold leading-none">◆</span>Mastors
         </button>
-        <button id="tab-css"    class="tab-btn active px-4 py-2 text-[0.68rem] font-semibold tracking-wide uppercase text-slate-300 border-b-2 border-brand-500 hover:text-white" onclick="switchTab('css')">
+        <button id="tab-css" class="tab-btn active px-3 py-2 text-[0.68rem] font-semibold tracking-wide uppercase text-slate-300 border-b-2 border-brand-500 hover:text-white whitespace-nowrap" onclick="switchTab('css')">
           <i class="fa-brands fa-css3-alt mr-1"></i>CSS
         </button>
-        <button id="tab-rules"  class="tab-btn px-4 py-2 text-[0.68rem] font-semibold tracking-wide uppercase text-slate-500 border-b-2 border-transparent hover:text-white" onclick="switchTab('rules')">
+        <button id="tab-rules" class="tab-btn px-3 py-2 text-[0.68rem] font-semibold tracking-wide uppercase text-slate-500 border-b-2 border-transparent hover:text-white whitespace-nowrap" onclick="switchTab('rules')">
           <i class="fa-solid fa-table-list mr-1"></i>Rules
         </button>
-        <button id="tab-a11y"   class="tab-btn px-4 py-2 text-[0.68rem] font-semibold tracking-wide uppercase text-slate-500 border-b-2 border-transparent hover:text-white" onclick="switchTab('a11y')">
+        <button id="tab-a11y" class="tab-btn px-3 py-2 text-[0.68rem] font-semibold tracking-wide uppercase text-slate-500 border-b-2 border-transparent hover:text-white whitespace-nowrap" onclick="switchTab('a11y')">
           <i class="fa-solid fa-universal-access mr-1"></i>A11y
         </button>
-        <button id="tab-tokens" class="tab-btn px-4 py-2 text-[0.68rem] font-semibold tracking-wide uppercase text-slate-500 border-b-2 border-transparent hover:text-white" onclick="switchTab('tokens')">
+        <button id="tab-tokens" class="tab-btn px-3 py-2 text-[0.68rem] font-semibold tracking-wide uppercase text-slate-500 border-b-2 border-transparent hover:text-white whitespace-nowrap" onclick="switchTab('tokens')">
           <i class="fa-solid fa-coins mr-1"></i>Tokens
         </button>
       </div>
 
-      <!-- ── Tab: CSS Output ── -->
+      <!-- ── CSS Output ── -->
       <div id="panel-css" class="output-panel flex-1 flex flex-col overflow-hidden">
         <div class="flex items-center justify-between px-4 py-2 border-b border-dark-400 flex-shrink-0">
           <div class="flex items-center gap-2">
             <span class="w-2 h-2 rounded-full bg-brand-500 live-dot"></span>
             <span class="text-[0.65rem] text-slate-500 uppercase tracking-widest font-bold">Generated at build time · zero runtime</span>
           </div>
-          <button class="copy-btn" onclick="copyCSS()">
-            <i class="fa-solid fa-copy mr-1"></i>Copy
-          </button>
+          <button class="copy-btn" onclick="copyCSS()"><i class="fa-solid fa-copy mr-1"></i>Copy</button>
         </div>
         <div class="flex-1 overflow-auto p-4 min-h-0">
           <pre><code id="css-output" class="language-css"></code></pre>
         </div>
       </div>
 
-      <!-- ── Tab: Rules ── -->
+      <!-- ── Rules ── -->
       <div id="panel-rules" class="hidden flex-1 flex flex-col overflow-hidden">
         <div class="px-4 py-2 border-b border-dark-400 flex-shrink-0">
           <span class="text-[0.65rem] text-slate-500 uppercase tracking-widest font-bold">Resolved style rules</span>
         </div>
-        <div id="rules-output" class="flex-1 overflow-auto p-4 min-h-0 space-y-0">
-          <!-- populated by JS -->
-        </div>
+        <div id="rules-output" class="flex-1 overflow-auto p-4 min-h-0"></div>
       </div>
 
-      <!-- ── Tab: A11y ── -->
+      <!-- ── A11y ── -->
       <div id="panel-a11y" class="hidden flex-1 flex flex-col overflow-hidden">
         <div class="px-4 py-2 border-b border-dark-400 flex-shrink-0 flex items-center justify-between">
           <span class="text-[0.65rem] text-slate-500 uppercase tracking-widest font-bold">WCAG 2.2 accessibility hints</span>
-          <span id="a11y-badge" class="text-[0.62rem] font-bold px-2 py-0.5 rounded-full bg-green-900/40 text-green-400 border border-green-800">
-            PASS
-          </span>
+          <span id="a11y-badge" class="text-[0.62rem] font-bold px-2 py-0.5 rounded-full bg-green-900/40 text-green-400 border border-green-800">PASS</span>
         </div>
-        <div id="a11y-output" class="flex-1 overflow-auto p-4 min-h-0">
-          <!-- populated by JS -->
-        </div>
+        <div id="a11y-output" class="flex-1 overflow-auto p-4 min-h-0"></div>
       </div>
 
-      <!-- ── Tab: Tokens ── -->
+      <!-- ── Tokens ── -->
       <div id="panel-tokens" class="hidden flex-1 flex flex-col overflow-hidden">
         <div class="px-4 py-2 border-b border-dark-400 flex-shrink-0">
           <span class="text-[0.65rem] text-slate-500 uppercase tracking-widest font-bold">Design token references</span>
         </div>
-        <div id="tokens-output" class="flex-1 overflow-auto p-4 min-h-0">
-          <!-- populated by JS -->
-        </div>
+        <div id="tokens-output" class="flex-1 overflow-auto p-4 min-h-0"></div>
       </div>
 
-      <!-- ── Tab: Mastors ── -->
+      <!-- ── Mastors ── -->
       <div id="panel-mastors" class="hidden flex-1 flex flex-col overflow-hidden">
         <div class="px-4 py-2 border-b border-dark-400 flex-shrink-0 flex items-center gap-2">
           <span class="text-brand-500 font-bold leading-none">◆</span>
           <span class="text-[0.65rem] text-slate-500 uppercase tracking-widest font-bold">Mastors Declaration &amp; Config</span>
         </div>
-        <div id="mastors-output" class="flex-1 overflow-auto p-4 min-h-0">
-          <!-- populated by JS -->
-        </div>
+        <div id="mastors-output" class="flex-1 overflow-auto p-4 min-h-0"></div>
       </div>
 
     </div>
   </main>
 
-  <!-- ═══════════════════════════════════════════════════════
-       STATUS BAR
-  ════════════════════════════════════════════════════════ -->
-  <footer class="h-6 flex-shrink-0 flex items-center gap-4 px-4 bg-brand-600 text-white text-[0.65rem] font-semibold tracking-wide">
-    <i class="fa-solid fa-bolt text-yellow-300"></i>
-    <span class="font-mono" id="status-intent">card.elevated.interactive</span>
-    <span class="opacity-60">·</span>
-    <span id="status-rules" class="opacity-80"></span>
-    <span class="opacity-60">·</span>
-    <span id="status-time-bar" class="opacity-80"></span>
+  <!-- ═══ STATUS BAR ════════════════════════════════════════ -->
+  <footer class="h-6 flex-shrink-0 flex items-center gap-3 px-4 bg-brand-600 text-white text-[0.65rem] font-semibold tracking-wide overflow-hidden">
+    <i class="fa-solid fa-bolt text-yellow-300 flex-shrink-0"></i>
+    <span class="font-mono truncate" id="status-intent">card.elevated.interactive</span>
+    <span class="opacity-60 flex-shrink-0">·</span>
+    <span id="status-rules" class="opacity-80 flex-shrink-0"></span>
+    <span class="opacity-60 flex-shrink-0">·</span>
+    <span id="status-time-bar" class="opacity-80 flex-shrink-0"></span>
     <div class="flex-1"></div>
-    <span class="opacity-60">Mastors v0.1.0 · Intent-Based Styling Framework</span>
+    <span class="opacity-60 hidden sm:inline flex-shrink-0">Mastors v0.1.0 · Intent-Based Styling Framework</span>
   </footer>
+
+  <script>
+    // ── Mobile sidebar ────────────────────────────────────
+    function toggleSidebar(open) {
+      const sidebar = document.getElementById('main-sidebar');
+      const overlay = document.getElementById('sidebar-overlay');
+      sidebar.classList.toggle('open', open);
+      overlay.classList.toggle('open', open);
+    }
+
+    // ── Mobile output panel ───────────────────────────────
+    let outputPanelOpen = false;
+    function toggleOutputPanel() {
+      outputPanelOpen = !outputPanelOpen;
+      document.getElementById('output-panel').classList.toggle('open', outputPanelOpen);
+    }
+  </script>
 
   <script type="module" src="/src/main.ts"></script>
 </body>
