@@ -113,7 +113,7 @@ export const MastorsComponent = defineComponent({
 
     return () => {
       const combined = [mastorsClass.value, props.class].filter(Boolean).join(" ");
-      return h(props.as, { ...attrs, class: combined }, slots.default?.());
+      return h(props.as, { ...attrs, class: combined }, slots['default']?.());
     };
   },
 });

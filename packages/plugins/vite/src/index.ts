@@ -134,7 +134,7 @@ export function mastorsPlugin(options: MastorsViteOptions): Plugin {
     handleHotUpdate(ctx: HmrContext): ModuleNode[] | undefined {
       if (!includePattern.test(ctx.file)) return undefined;
 
-      ctx.read().then((code) => {
+      Promise.resolve(ctx.read()).then((code: string) => {
         const found = extractIntents(code);
         let changed = false;
         for (const intentId of found) {

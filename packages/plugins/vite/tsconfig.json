@@ -4,7 +4,8 @@
   "compilerOptions": {
     "outDir": "./dist",
     "rootDir": "./src",
-    "composite": true
+    "composite": false,
+    "incremental": false
   },
   "include": ["src/**/*.ts"],
   "exclude": ["**/*.test.ts", "**/*.spec.ts", "dist", "node_modules"]
