@@ -12,13 +12,14 @@
     }
   },
   "scripts": {
-    "build": "tsup src/index.ts --format esm --dts",
-    "dev": "tsup src/index.ts --format esm --dts --watch",
+    "build": "tsup src/index.ts --format esm --dts --tsconfig tsconfig.json --no-splitting",
+    "dev": "tsup src/index.ts --format esm --dts --tsconfig tsconfig.json --no-splitting --watch",
     "clean": "rimraf dist"
   },
   "dependencies": {
     "@mastors/types": "workspace:*",
     "@mastors/tokens": "workspace:*",
+    "@mastors/utils": "workspace:*",
     "culori": "^4.0.0"
   },
   "devDependencies": {

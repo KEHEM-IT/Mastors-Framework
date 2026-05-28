@@ -13,12 +13,18 @@ import type { IntentId, IntentSegments, TokenMap, TokenValue } from "@mastors/ty
  */
 export function parseIntentId(raw: string): IntentSegments {
   const parts = raw.trim().split(".");
-  return {
+  const result: {
+    category: string;
+    variant?: string;
+    modifier?: string;
+    raw: string;
+  } = {
     category: parts[0] ?? "",
-    variant: parts[1],
-    modifier: parts[2],
     raw,
   };
+  if (parts[1] !== undefined) result.variant = parts[1];
+  if (parts[2] !== undefined) result.modifier = parts[2];
+  return result;
 }
 
 /**

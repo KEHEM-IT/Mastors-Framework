@@ -21,16 +21,16 @@
     "allowImportingTsExtensions": false,
     "verbatimModuleSyntax": true,
     "paths": {
-      "@mastors/core": ["./packages/core/src/index.ts"],
-      "@mastors/compiler": ["./packages/compiler/src/index.ts"],
-      "@mastors/api": ["./packages/api/src/index.ts"],
-      "@mastors/accessibility": ["./packages/accessibility/src/index.ts"],
-      "@mastors/tokens": ["./packages/tokens/src/index.ts"],
-      "@mastors/types": ["./packages/types/src/index.ts"],
-      "@mastors/utils": ["./packages/utils/src/index.ts"],
-      "@mastors/schemas": ["./packages/schemas/src/index.ts"],
-      "@mastors/adapters/*": ["./packages/adapters/*/src/index.ts"],
-      "@mastors/plugins/*": ["./packages/plugins/*/src/index.ts"]
+      "@mastors/core": ["./packages/core/dist/index.d.ts"],
+      "@mastors/compiler": ["./packages/compiler/dist/index.d.ts"],
+      "@mastors/api": ["./packages/api/dist/index.d.ts"],
+      "@mastors/accessibility": ["./packages/accessibility/dist/index.d.ts"],
+      "@mastors/tokens": ["./packages/tokens/dist/index.d.ts"],
+      "@mastors/types": ["./packages/types/dist/index.d.ts"],
+      "@mastors/utils": ["./packages/utils/dist/index.d.ts"],
+      "@mastors/schemas": ["./packages/schemas/dist/index.d.ts"],
+      "@mastors/adapters/*": ["./packages/adapters/*/dist/index.d.ts"],
+      "@mastors/plugins/*": ["./packages/plugins/*/dist/index.d.ts"]
     }
   },
   "include": [

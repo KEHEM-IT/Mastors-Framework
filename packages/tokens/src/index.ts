@@ -209,7 +209,7 @@ export class TokenRegistry {
 }
 
 function deepMergeTokens(base: TokenMap, override: TokenMap): TokenMap {
-  const result: TokenMap = { ...base };
+  const result: Record<string, TokenValue | TokenMap> = { ...base };
   for (const key of Object.keys(override)) {
     const bv = base[key];
     const ov = override[key];
@@ -219,7 +219,7 @@ function deepMergeTokens(base: TokenMap, override: TokenMap): TokenMap {
       result[key] = ov as TokenValue;
     }
   }
-  return result;
+  return result as TokenMap;
 }
 
 // ── Default Registry Singleton ───────────────────────────────

@@ -150,7 +150,7 @@ export class MastorsCompiler {
       css,
       classes: classMap,
       tokenVars,
-      a11yManifest,
+      ...(a11yManifest !== undefined && { a11yManifest }),
     };
   }
 
