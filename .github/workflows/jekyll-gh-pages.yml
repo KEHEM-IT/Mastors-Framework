@@ -1,4 +1,4 @@
-name: Deploy Playground to GitHub Pages
+name: Deploy to GitHub Pages
 
 on:
   push:
@@ -35,11 +35,17 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build packages
+      - name: Build workspace packages
         run: pnpm --filter "./packages/**" -r run build
 
       - name: Build playground
         run: pnpm --filter mastors-playground run build:pages
+
+      - name: Assemble site
+        run: |
+          mkdir -p _site/playground
+          cp index.html _site/index.html
+          cp -r playground/dist/. _site/playground/
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -47,7 +53,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./playground/dist
+          path: ./_site
 
   deploy:
     environment:
